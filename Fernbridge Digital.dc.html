@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --accent:#E3A93F; --ink:#0A1018; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ background:#0A1018; color:#EEF2F7; font-family:'Manrope',system-ui,sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  a{ color:var(--accent,#E3A93F); text-decoration:none; }
+  a:hover{ color:#F5D8A0; }
+  ::selection{ background:var(--accent,#E3A93F); color:#140E02; }
+  input,textarea,button{ font-family:inherit; }
+  @keyframes fbRise{ from{ opacity:0; transform:translateY(26px); } to{ opacity:1; transform:none; } }
+  @keyframes fbFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+  @keyframes fbPulse{ 0%,100%{ opacity:1; box-shadow:0 0 0 0 rgba(95,191,149,.5); } 50%{ opacity:.5; box-shadow:0 0 0 7px rgba(95,191,149,0); } }
+  @keyframes fbMarquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @keyframes fbDrift{ from{ background-position:0 0; } to{ background-position:80px 80px; } }
+  @keyframes fbSheen{ from{ transform:translateX(-120%) skewX(-18deg); } to{ transform:translateX(320%) skewX(-18deg); } }
+  @keyframes fbBar{ from{ transform:scaleY(0); } to{ transform:scaleY(1); } }
+  @keyframes fbBlink{ 0%,45%{ opacity:1; } 50%,95%{ opacity:0; } }
+  @keyframes fbOrbit{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+  @keyframes fbTilePop{ 0%{ transform:scale(.2) rotate(-40deg); opacity:0; } 60%{ transform:scale(1.15) rotate(6deg); opacity:1; } 100%{ transform:scale(1) rotate(0deg); opacity:1; } }
+  @keyframes fbTileCycle{ 0%,100%{ background:var(--accent,#E3A93F); } 33%{ background:#5FBF95; } 66%{ background:#93A2B5; } }
+  @keyframes fbTileCycle2{ 0%,100%{ background:#5FBF95; } 33%{ background:#93A2B5; } 66%{ background:var(--accent,#E3A93F); } }
+  @keyframes fbTileCycle3{ 0%,100%{ background:#93A2B5; } 33%{ background:var(--accent,#E3A93F); } 66%{ background:#5FBF95; } }
+  @keyframes fbMarkSpin{ 0%{ transform:rotate(0deg); } 100%{ transform:rotate(90deg); } }
+  [data-mark]:hover{ animation:fbMarkSpin .7s cubic-bezier(.6,-.3,.3,1.4) both; }
+  [data-mark]:hover > span:nth-child(1){ animation:fbTileCycle 1.6s linear infinite; }
+  [data-mark]:hover > span:nth-child(2){ animation:fbTileCycle2 1.6s linear infinite; }
+  [data-mark]:hover > span:nth-child(3){ animation:fbTileCycle3 1.6s linear infinite; }
+  [data-mark]:hover > span:nth-child(4){ border-color:var(--accent,#E3A93F); }
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+</style>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0A1018"></rect><g transform="translate(30,30)"><rect width="18" height="18" fill="#E3A93F"></rect><rect x="22" width="18" height="18" fill="#5FBF95"></rect><rect y="22" width="18" height="18" fill="#93A2B5"></rect><rect x="22" y="22" width="18" height="18" fill="none" stroke="#93A2B5" stroke-width="1.5"></rect></g></svg></template>
+</helmet>
+
+<div style="position:fixed; inset:0; pointer-events:none; z-index:90">
+  <div data-progress style="height:2px; width:0%; background:linear-gradient(90deg,var(--accent,#E3A93F),#5FBF95); box-shadow:0 0 18px rgba(227,169,63,.6)"></div>
+</div>
+<div data-spot style="position:fixed; top:0; left:0; width:620px; height:620px; margin:-310px 0 0 -310px; border-radius:50%; pointer-events:none; z-index:1; opacity:.5; background:radial-gradient(circle, rgba(227,169,63,.10) 0%, rgba(227,169,63,0) 62%); transition:transform .35s cubic-bezier(.2,.7,.2,1)"></div>
+
+<header style="position:sticky; top:0; z-index:80; backdrop-filter:blur(14px); background:rgba(10,16,24,.72); border-bottom:1px solid rgba(201,214,232,.10)">
+  <nav style="max-width:1180px; margin:0 auto; padding:16px 28px; display:flex; align-items:center; justify-content:space-between; gap:24px">
+    <a href="#top" style="display:flex; align-items:center; gap:11px; color:#EEF2F7; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.06rem; letter-spacing:-.02em">
+      <span data-mark style="position:relative; width:26px; height:26px; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:3px; transform-origin:50% 50%">
+        <span style="background:var(--accent,#E3A93F); border-radius:1px; animation:fbTilePop .55s cubic-bezier(.2,.8,.3,1.3) .05s both"></span>
+        <span style="background:#5FBF95; border-radius:1px; animation:fbTilePop .55s cubic-bezier(.2,.8,.3,1.3) .14s both"></span>
+        <span style="background:#93A2B5; border-radius:1px; animation:fbTilePop .55s cubic-bezier(.2,.8,.3,1.3) .32s both"></span>
+        <span style="background:#16212F; border:1px solid rgba(201,214,232,.16); border-radius:1px; transition:border-color .3s; animation:fbTilePop .55s cubic-bezier(.2,.8,.3,1.3) .23s both"></span>
+      </span>
+      Fernbridge Digital
+    </a>
+    <div style="display:flex; align-items:center; gap:30px">
+      <ul data-navlinks style="list-style:none; display:flex; gap:28px; font-size:.9rem; color:#93A2B5">
+        <li><a href="#approach" style="color:inherit; transition:color .2s" style-hover="color:#EEF2F7">Approach</a></li>
+        <li><a href="#services" style="color:inherit; transition:color .2s" style-hover="color:#EEF2F7">Services</a></li>
+        <li><a href="#clients" style="color:inherit; transition:color .2s" style-hover="color:#EEF2F7">Clients</a></li>
+        <li><a href="#team" style="color:inherit; transition:color .2s" style-hover="color:#EEF2F7">Team</a></li>
+        <li><a href="#packages" style="color:inherit; transition:color .2s" style-hover="color:#EEF2F7">Packages</a></li>
+      </ul>
+      <a href="#contact" data-magnet style="position:relative; overflow:hidden; background:var(--accent,#E3A93F); color:#140E02; padding:10px 20px; border-radius:3px; font-weight:700; font-size:.86rem; white-space:nowrap; transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s" style-hover="box-shadow:0 10px 26px rgba(227,169,63,.32)">Start a project</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top" style="position:relative; z-index:2">
+
+<section style="position:relative; overflow:hidden; border-bottom:1px solid rgba(201,214,232,.10)">
+  <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(201,214,232,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(201,214,232,.09) 1px, transparent 1px); background-size:80px 80px; animation:fbDrift 22s linear infinite; -webkit-mask-image:radial-gradient(ellipse 75% 70% at 50% 0%, #000 5%, transparent 72%); mask-image:radial-gradient(ellipse 75% 70% at 50% 0%, #000 5%, transparent 72%); pointer-events:none"></div>
+  <div style="position:absolute; top:-160px; right:-120px; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, rgba(227,169,63,.16), rgba(227,169,63,0) 65%); filter:blur(8px); pointer-events:none"></div>
+
+  <div style="position:relative; max-width:1180px; margin:0 auto; padding:92px 28px 64px">
+    <span style="display:inline-flex; align-items:center; gap:9px; font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.09em; text-transform:uppercase; color:var(--accent,#E3A93F); background:rgba(227,169,63,.10); border:1px solid rgba(227,169,63,.30); padding:7px 13px; border-radius:100px; margin-bottom:30px; animation:fbRise .7s cubic-bezier(.2,.7,.2,1) both">
+      <span style="width:7px; height:7px; border-radius:50%; background:#5FBF95; animation:fbPulse 2.4s ease-in-out infinite"></span>
+      Taking on new clients — Aug 2026
+    </span>
+
+    <h1 style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.035em; font-size:clamp(2.5rem,6.4vw,5rem); line-height:1.02; max-width:16ch; margin-bottom:26px">
+      <span style="display:block; animation:fbRise .8s cubic-bezier(.2,.7,.2,1) .06s both">We build your</span>
+      <span style="display:block; animation:fbRise .8s cubic-bezier(.2,.7,.2,1) .16s both">website. Then we</span>
+      <span style="display:block; animation:fbRise .8s cubic-bezier(.2,.7,.2,1) .26s both">run it <span style="position:relative; color:var(--accent,#E3A93F); white-space:nowrap">like operations<span style="position:absolute; left:0; right:0; bottom:.06em; height:3px; background:linear-gradient(90deg,var(--accent,#E3A93F),rgba(227,169,63,0)); transform-origin:left"></span></span>.</span>
+    </h1>
+
+    <p style="font-size:1.13rem; line-height:1.6; color:#93A2B5; max-width:52ch; margin-bottom:38px; text-wrap:pretty; animation:fbRise .8s cubic-bezier(.2,.7,.2,1) .36s both">
+      Design, build, and the part nobody else stays for — monitoring, updates, and a plain-language report every month. No agency that vanishes after handoff.
+    </p>
+
+    <div style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:70px; animation:fbRise .8s cubic-bezier(.2,.7,.2,1) .46s both">
+      <a href="#contact" data-magnet style="position:relative; overflow:hidden; background:var(--accent,#E3A93F); color:#140E02; padding:15px 28px; border-radius:3px; font-weight:700; font-size:.98rem; transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s" style-hover="box-shadow:0 14px 34px rgba(227,169,63,.3)">
+        Start a project
+        <span style="position:absolute; top:0; left:0; width:34%; height:100%; background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.45),rgba(255,255,255,0)); animation:fbSheen 3.6s ease-in-out infinite"></span>
+      </a>
+      <a href="#approach" style="border:1px solid rgba(201,214,232,.18); color:#EEF2F7; padding:15px 28px; border-radius:3px; font-size:.98rem; font-weight:600; transition:border-color .2s, background .2s" style-hover="border-color:rgba(201,214,232,.42); background:rgba(201,214,232,.05)">See how it works</a>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); border:1px solid rgba(201,214,232,.12); border-radius:10px; overflow:hidden; background:linear-gradient(180deg, rgba(20,31,45,.9), rgba(15,23,34,.9)); animation:fbRise .9s cubic-bezier(.2,.7,.2,1) .56s both">
+      <div style="padding:24px 26px; border-right:1px solid rgba(201,214,232,.10)">
+        <div style="display:flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:#93A2B5; margin-bottom:10px"><span style="width:6px; height:6px; border-radius:50%; background:#5FBF95; animation:fbPulse 2.4s ease-in-out infinite"></span>Team experience</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; letter-spacing:-.03em"><span data-count="24">0</span>+ yrs</div>
+      </div>
+      <div style="padding:24px 26px; border-right:1px solid rgba(201,214,232,.10)">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:#93A2B5; margin-bottom:10px">Uptime we hold</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; letter-spacing:-.03em"><span data-count="99.9" data-dec="1">0</span>%</div>
+      </div>
+      <div style="padding:24px 26px; border-right:1px solid rgba(201,214,232,.10)">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:#93A2B5; margin-bottom:10px">Countries</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; letter-spacing:-.03em">IN · FR</div>
+      </div>
+      <div style="padding:24px 26px">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:#93A2B5; margin-bottom:10px">Founders on call</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; letter-spacing:-.03em"><span data-count="4">0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="border-top:1px solid rgba(201,214,232,.10); overflow:hidden; padding:16px 0; background:rgba(15,23,34,.5)">
+    <div style="display:flex; width:max-content; animation:fbMarquee 32s linear infinite">
+      <div style="display:flex; gap:52px; padding-right:52px; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:#6E7F94; white-space:nowrap">
+        <span>Websites built to last</span><span style="color:var(--accent,#E3A93F)">◆</span>
+        <span>Uptime monitoring</span><span style="color:var(--accent,#E3A93F)">◆</span>
+        <span>Security updates</span><span style="color:var(--accent,#E3A93F)">◆</span>
+        <span>Monthly reporting</span><span style="color:var(--accent,#E3A93F)">◆</span>
+        <span>Workflow automation</span><span style="color:var(--accent,#E3A93F)">◆</span>
+        <span>Same-day edits</span><span style="color:var(--accent,#E3A93F)">◆</span>
+      </div>
+      <div style="display:flex; gap:52px; padding-right:52px; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:#6E7F94; white-space:nowrap" aria-hidden="true">
+        <span>Websites built to last</span><span style="color:var(--accent,#E3A93F)">◆</span>
+        <span>Uptime monitoring</span><span style="color:var(--accent,#E3A93F)">◆</span>
+        <span>Security updates</span><span style="color:var(--accent,#E3A93F)">◆</span>
+        <span>Monthly reporting</span><span style="color:var(--accent,#E3A93F)">◆</span>
+        <span>Workflow automation</span><span style="color:var(--accent,#E3A93F)">◆</span>
+        <span>Same-day edits</span><span style="color:var(--accent,#E3A93F)">◆</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problem" style="border-bottom:1px solid rgba(201,214,232,.10); padding:104px 0">
+  <div style="max-width:1180px; margin:0 auto; padding:0 28px">
+    <div data-reveal style="max-width:44ch; margin-bottom:52px">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent,#E3A93F); display:block; margin-bottom:16px">01 — The problem</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-.03em; font-size:clamp(1.8rem,3.6vw,2.7rem); line-height:1.12; margin-bottom:16px; text-wrap:pretty">Most small business sites launch once, then are never touched again.</h2>
+      <p style="color:#93A2B5; font-size:1.02rem; line-height:1.6; text-wrap:pretty">Six months later nobody remembers the login, an update breaks the layout, and no one is watching whether it still works.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px">
+      <div data-reveal data-delay="0" style="position:relative; overflow:hidden; padding:30px 28px 32px; border:1px solid rgba(201,214,232,.12); border-radius:10px; background:#0E1724; transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s" style-hover="transform:translateY(-6px); border-color:rgba(227,169,63,.45)">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:2.2rem; font-weight:500; color:rgba(201,214,232,.14); line-height:1; margin-bottom:18px">01</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.12rem; font-weight:600; margin-bottom:9px">It goes stale</h3>
+        <p style="color:#93A2B5; font-size:.93rem; line-height:1.6">Plugins go unpatched, content drifts out of date, and the site quietly falls behind — until something breaks.</p>
+      </div>
+      <div data-reveal data-delay="90" style="position:relative; overflow:hidden; padding:30px 28px 32px; border:1px solid rgba(201,214,232,.12); border-radius:10px; background:#0E1724; transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s" style-hover="transform:translateY(-6px); border-color:rgba(227,169,63,.45)">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:2.2rem; font-weight:500; color:rgba(201,214,232,.14); line-height:1; margin-bottom:18px">02</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.12rem; font-weight:600; margin-bottom:9px">No one is watching</h3>
+        <p style="color:#93A2B5; font-size:.93rem; line-height:1.6">A slow page, a broken form, a traffic drop — you find out when a customer mentions it. Or when they don't.</p>
+      </div>
+      <div data-reveal data-delay="180" style="position:relative; overflow:hidden; padding:30px 28px 32px; border:1px solid rgba(201,214,232,.12); border-radius:10px; background:#0E1724; transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s" style-hover="transform:translateY(-6px); border-color:rgba(227,169,63,.45)">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:2.2rem; font-weight:500; color:rgba(201,214,232,.14); line-height:1; margin-bottom:18px">03</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.12rem; font-weight:600; margin-bottom:9px">The agency is gone</h3>
+        <p style="color:#93A2B5; font-size:.93rem; line-height:1.6">Most shops are built to launch and move on. Support becomes a slow email thread, if it exists at all.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach" style="border-bottom:1px solid rgba(201,214,232,.10); padding:104px 0; background:linear-gradient(180deg,#0A1018,#0C1420)">
+  <div style="max-width:1180px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:56px; align-items:center">
+    <div data-reveal>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent,#E3A93F); display:block; margin-bottom:16px">02 — The fix</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-.03em; font-size:clamp(1.8rem,3.6vw,2.7rem); line-height:1.12; margin-bottom:16px">A website that is actually looked after.</h2>
+      <p style="color:#93A2B5; font-size:1.02rem; line-height:1.6; max-width:48ch; text-wrap:pretty">Our team spent the last decade owning KPIs, SLAs, and client relationships at companies like Amazon, HSBC, and Yext. Upkeep, monitoring, and reporting come standard — not as an upsell.</p>
+      <ul style="list-style:none; margin-top:26px; display:flex; flex-direction:column; gap:13px">
+        <li style="display:flex; gap:12px; align-items:flex-start; font-size:.98rem"><span style="color:#5FBF95; font-weight:700">✓</span>Uptime and performance monitored continuously</li>
+        <li style="display:flex; gap:12px; align-items:flex-start; font-size:.98rem"><span style="color:#5FBF95; font-weight:700">✓</span>Security updates and backups handled for you</li>
+        <li style="display:flex; gap:12px; align-items:flex-start; font-size:.98rem"><span style="color:#5FBF95; font-weight:700">✓</span>A plain-language report every month</li>
+        <li style="display:flex; gap:12px; align-items:flex-start; font-size:.98rem"><span style="color:#5FBF95; font-weight:700">✓</span>A real person to call, not a ticket into the void</li>
+      </ul>
+    </div>
+
+    <div data-reveal data-delay="120" data-tilt style="border:1px solid rgba(201,214,232,.14); border-radius:12px; overflow:hidden; background:#101B29; box-shadow:0 40px 80px -30px rgba(0,0,0,.75); transition:transform .3s cubic-bezier(.2,.7,.2,1)">
+      <div style="display:flex; align-items:center; gap:8px; padding:13px 18px; border-bottom:1px solid rgba(201,214,232,.12); background:#16212F">
+        <span style="width:9px; height:9px; border-radius:50%; background:rgba(201,214,232,.22)"></span>
+        <span style="width:9px; height:9px; border-radius:50%; background:rgba(201,214,232,.22)"></span>
+        <span style="width:9px; height:9px; border-radius:50%; background:rgba(201,214,232,.22)"></span>
+        <span style="margin-left:10px; font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:#93A2B5">site-report — august 2026<span style="animation:fbBlink 1.1s step-end infinite">_</span></span>
+      </div>
+      <div style="padding:24px">
+        <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid rgba(201,214,232,.10); font-size:.9rem"><span style="color:#93A2B5">Uptime</span><span style="font-family:'IBM Plex Mono',monospace; color:#5FBF95">99.98%</span></div>
+        <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid rgba(201,214,232,.10); font-size:.9rem"><span style="color:#93A2B5">Avg. load time</span><span style="font-family:'IBM Plex Mono',monospace; color:#5FBF95">1.1s</span></div>
+        <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid rgba(201,214,232,.10); font-size:.9rem"><span style="color:#93A2B5">Security updates applied</span><span style="font-family:'IBM Plex Mono',monospace; color:#5FBF95">4</span></div>
+        <div style="display:flex; justify-content:space-between; padding:12px 0; font-size:.9rem"><span style="color:#93A2B5">Broken links found &amp; fixed</span><span style="font-family:'IBM Plex Mono',monospace; color:var(--accent,#E3A93F)">2</span></div>
+        <div style="display:flex; align-items:flex-end; gap:6px; height:82px; margin:20px 0 10px">
+          <div style="flex:1; height:38%; transform-origin:bottom; background:linear-gradient(180deg,var(--accent,#E3A93F),rgba(227,169,63,.18)); border-radius:3px 3px 0 0; animation:fbBar .9s cubic-bezier(.2,.7,.2,1) .05s both"></div>
+          <div style="flex:1; height:54%; transform-origin:bottom; background:linear-gradient(180deg,var(--accent,#E3A93F),rgba(227,169,63,.18)); border-radius:3px 3px 0 0; animation:fbBar .9s cubic-bezier(.2,.7,.2,1) .12s both"></div>
+          <div style="flex:1; height:46%; transform-origin:bottom; background:linear-gradient(180deg,var(--accent,#E3A93F),rgba(227,169,63,.18)); border-radius:3px 3px 0 0; animation:fbBar .9s cubic-bezier(.2,.7,.2,1) .19s both"></div>
+          <div style="flex:1; height:68%; transform-origin:bottom; background:linear-gradient(180deg,var(--accent,#E3A93F),rgba(227,169,63,.18)); border-radius:3px 3px 0 0; animation:fbBar .9s cubic-bezier(.2,.7,.2,1) .26s both"></div>
+          <div style="flex:1; height:60%; transform-origin:bottom; background:linear-gradient(180deg,var(--accent,#E3A93F),rgba(227,169,63,.18)); border-radius:3px 3px 0 0; animation:fbBar .9s cubic-bezier(.2,.7,.2,1) .33s both"></div>
+          <div style="flex:1; height:86%; transform-origin:bottom; background:linear-gradient(180deg,#5FBF95,rgba(95,191,149,.18)); border-radius:3px 3px 0 0; animation:fbBar .9s cubic-bezier(.2,.7,.2,1) .4s both"></div>
+          <div style="flex:1; height:76%; transform-origin:bottom; background:linear-gradient(180deg,var(--accent,#E3A93F),rgba(227,169,63,.18)); border-radius:3px 3px 0 0; animation:fbBar .9s cubic-bezier(.2,.7,.2,1) .47s both"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:.88rem"><span style="color:#93A2B5">Visitors this month</span><span style="font-family:'IBM Plex Mono',monospace; color:#5FBF95">↑ 18%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" style="border-bottom:1px solid rgba(201,214,232,.10); padding:104px 0">
+  <div style="max-width:1180px; margin:0 auto; padding:0 28px">
+    <div data-reveal style="max-width:44ch; margin-bottom:48px">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent,#E3A93F); display:block; margin-bottom:16px">03 — What we do</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-.03em; font-size:clamp(1.8rem,3.6vw,2.7rem); line-height:1.12">Four things, done properly.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); grid-auto-rows:1fr; gap:1px; background:rgba(201,214,232,.12); border:1px solid rgba(201,214,232,.12); border-radius:12px; overflow:hidden">
+      <div data-reveal data-delay="0" style="background:#0A1018; padding:44px 34px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; transition:background .3s" style-hover="background:#101B29">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:.74rem; color:var(--accent,#E3A93F); display:block; margin-bottom:20px">01</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.24rem; font-weight:600; margin-bottom:11px">Website design &amp; build</h3>
+        <p style="color:#93A2B5; font-size:.96rem; line-height:1.62; max-width:34ch; text-wrap:pretty">Marketing sites, landing pages, and small storefronts — designed around what actually turns a visitor into a customer.</p>
+      </div>
+      <div data-reveal data-delay="80" style="background:#0A1018; padding:44px 34px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; transition:background .3s" style-hover="background:#101B29">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:.74rem; color:var(--accent,#E3A93F); display:block; margin-bottom:20px">02</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.24rem; font-weight:600; margin-bottom:11px">Ongoing care plans</h3>
+        <p style="color:#93A2B5; font-size:.96rem; line-height:1.62; max-width:34ch; text-wrap:pretty">Monitoring, backups, security updates, and content edits handled for you, so the site keeps working without you thinking about it.</p>
+      </div>
+      <div data-reveal data-delay="160" style="background:#0A1018; padding:44px 34px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; transition:background .3s" style-hover="background:#101B29">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:.74rem; color:var(--accent,#E3A93F); display:block; margin-bottom:20px">03</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.24rem; font-weight:600; margin-bottom:11px">Reporting &amp; insights</h3>
+        <p style="color:#93A2B5; font-size:.96rem; line-height:1.62; max-width:34ch; text-wrap:pretty">Plain-language monthly reports on traffic and performance — the same KPI discipline we used running enterprise business reviews.</p>
+      </div>
+      <div data-reveal data-delay="240" style="background:#0A1018; padding:44px 34px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; transition:background .3s" style-hover="background:#101B29">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:.74rem; color:var(--accent,#E3A93F); display:block; margin-bottom:20px">04</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.24rem; font-weight:600; margin-bottom:11px">Workflow automation</h3>
+        <p style="color:#93A2B5; font-size:.96rem; line-height:1.62; max-width:34ch; text-wrap:pretty">For clients who outgrow "just a website" — light automation for bookings, inquiries, and repetitive admin work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process" style="border-bottom:1px solid rgba(201,214,232,.10); padding:104px 0; background:#0C1420">
+  <div style="max-width:1180px; margin:0 auto; padding:0 28px">
+    <div data-reveal style="max-width:44ch; margin-bottom:48px">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent,#E3A93F); display:block; margin-bottom:16px">04 — How it works</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-.03em; font-size:clamp(1.8rem,3.6vw,2.7rem); line-height:1.12">From first call to a site that runs itself.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px">
+      <div data-reveal data-delay="0" style="padding-top:22px; border-top:2px solid rgba(227,169,63,.45)">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:.76rem; color:var(--accent,#E3A93F); display:block; margin-bottom:12px">STEP 01</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:600; margin-bottom:8px">Discovery call</h3>
+        <p style="color:#93A2B5; font-size:.93rem; line-height:1.6">We learn your business, your customers, and what the site has to do for you.</p>
+      </div>
+      <div data-reveal data-delay="90" style="padding-top:22px; border-top:2px solid rgba(227,169,63,.32)">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:.76rem; color:var(--accent,#E3A93F); display:block; margin-bottom:12px">STEP 02</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:600; margin-bottom:8px">Design &amp; build</h3>
+        <p style="color:#93A2B5; font-size:.93rem; line-height:1.6">Built with check-ins along the way, rather than one big reveal at the end.</p>
+      </div>
+      <div data-reveal data-delay="180" style="padding-top:22px; border-top:2px solid rgba(227,169,63,.22)">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:.76rem; color:var(--accent,#E3A93F); display:block; margin-bottom:12px">STEP 03</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:600; margin-bottom:8px">Launch</h3>
+        <p style="color:#93A2B5; font-size:.93rem; line-height:1.6">We go live, test everything, and hand over what you need to make simple edits yourself.</p>
+      </div>
+      <div data-reveal data-delay="270" style="padding-top:22px; border-top:2px solid rgba(95,191,149,.45)">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:.76rem; color:#5FBF95; display:block; margin-bottom:12px">STEP 04</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:600; margin-bottom:8px">Ongoing care</h3>
+        <p style="color:#93A2B5; font-size:.93rem; line-height:1.6">We keep monitoring, maintaining, and reporting — so the site stays your best salesperson.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="clients" style="border-bottom:1px solid rgba(201,214,232,.10); padding:104px 0">
+  <div style="max-width:1180px; margin:0 auto; padding:0 28px">
+    <div data-reveal style="max-width:46ch; margin-bottom:44px">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent,#E3A93F); display:block; margin-bottom:16px">05 — Clients</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-.03em; font-size:clamp(1.8rem,3.6vw,2.7rem); line-height:1.12; margin-bottom:16px">Sites we build and look after.</h2>
+      <p style="color:#93A2B5; font-size:1.02rem; line-height:1.6; text-wrap:pretty">Both are live and under an active care plan — monitored, updated, and reported on every month.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px">
+      <a href="https://aidevstudioone-max.github.io/pav-mantra-site/" target="_blank" rel="noopener" data-reveal data-delay="0" style="display:block; color:inherit; border:1px solid rgba(201,214,232,.12); border-radius:12px; overflow:hidden; background:#0E1724; transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s" style-hover="transform:translateY(-6px); border-color:rgba(227,169,63,.45); color:inherit">
+        <div style="position:relative; height:190px; overflow:hidden; border-bottom:1px solid rgba(201,214,232,.12); background:linear-gradient(135deg,#1B2436,#101B29); display:flex; align-items:center; justify-content:center">
+          <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(201,214,232,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(201,214,232,.06) 1px,transparent 1px); background-size:34px 34px"></div>
+          <span style="position:relative; font-family:'Space Grotesk',sans-serif; font-size:1.7rem; font-weight:700; letter-spacing:-.03em; color:rgba(238,242,247,.9)">Pav Mantra</span>
+          <span style="position:absolute; bottom:12px; left:16px; font-family:'IBM Plex Mono',monospace; font-size:.66rem; color:#6E7F94">aidevstudioone-max.github.io/pav-mantra-site</span>
+        </div>
+        <div style="padding:24px 26px 26px">
+          <div style="display:flex; align-items:center; gap:9px; font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:#5FBF95; margin-bottom:11px"><span style="width:6px; height:6px; border-radius:50%; background:#5FBF95; animation:fbPulse 2.4s ease-in-out infinite"></span>Live · under care</div>
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.2rem; font-weight:600; margin-bottom:7px">Pav Mantra</h3>
+          <p style="font-size:.92rem; color:#93A2B5; line-height:1.6; margin-bottom:14px">Food brand site — menu, story, and ordering enquiries in one place.</p>
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:.76rem; color:var(--accent,#E3A93F)">Visit site →</span>
+        </div>
+      </a>
+      <a href="https://aidevstudioone-max.github.io/shanti-auto-parts-site/" target="_blank" rel="noopener" data-reveal data-delay="110" style="display:block; color:inherit; border:1px solid rgba(201,214,232,.12); border-radius:12px; overflow:hidden; background:#0E1724; transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s" style-hover="transform:translateY(-6px); border-color:rgba(227,169,63,.45); color:inherit">
+        <div style="position:relative; height:190px; overflow:hidden; border-bottom:1px solid rgba(201,214,232,.12); background:linear-gradient(135deg,#1B2436,#101B29); display:flex; align-items:center; justify-content:center">
+          <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(201,214,232,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(201,214,232,.06) 1px,transparent 1px); background-size:34px 34px"></div>
+          <span style="position:relative; font-family:'Space Grotesk',sans-serif; font-size:1.7rem; font-weight:700; letter-spacing:-.03em; color:rgba(238,242,247,.9)">Shanti Auto Parts</span>
+          <span style="position:absolute; bottom:12px; left:16px; font-family:'IBM Plex Mono',monospace; font-size:.66rem; color:#6E7F94">aidevstudioone-max.github.io/shanti-auto-parts-site</span>
+        </div>
+        <div style="padding:24px 26px 26px">
+          <div style="display:flex; align-items:center; gap:9px; font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:#5FBF95; margin-bottom:11px"><span style="width:6px; height:6px; border-radius:50%; background:#5FBF95; animation:fbPulse 2.4s ease-in-out infinite"></span>Live · under care</div>
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.2rem; font-weight:600; margin-bottom:7px">Shanti Auto Parts</h3>
+          <p style="font-size:.92rem; color:#93A2B5; line-height:1.6; margin-bottom:14px">Auto parts supplier — catalogue, coverage, and direct enquiry line.</p>
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:.76rem; color:var(--accent,#E3A93F)">Visit site →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="team" style="border-bottom:1px solid rgba(201,214,232,.10); padding:104px 0">
+  <div style="max-width:1180px; margin:0 auto; padding:0 28px">
+    <div data-reveal style="max-width:46ch; margin-bottom:48px">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent,#E3A93F); display:block; margin-bottom:16px">06 — The team</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-.03em; font-size:clamp(1.8rem,3.6vw,2.7rem); line-height:1.12; margin-bottom:16px">Four people, two countries, one team.</h2>
+      <p style="color:#93A2B5; font-size:1.02rem; line-height:1.6; text-wrap:pretty">We spent our careers on the operations, data, and engineering side of companies you already know. Now we build for smaller ones.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px">
+      <div data-reveal data-delay="0" style="border:1px solid rgba(201,214,232,.12); border-radius:12px; overflow:hidden; background:#0E1724; transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s" style-hover="transform:translateY(-6px); border-color:rgba(227,169,63,.45)">
+        <div style="height:120px; display:flex; align-items:center; justify-content:center; background:repeating-linear-gradient(135deg,#16212F 0 10px,#111C29 10px 20px); border-bottom:1px solid rgba(201,214,232,.12)">
+          <div style="width:58px; height:58px; border-radius:50%; background:#0A1018; border:1px solid rgba(227,169,63,.4); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; color:var(--accent,#E3A93F)">AP</div>
+        </div>
+        <div style="padding:22px">
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.08rem; font-weight:600">Ankit Prakash</h3>
+          <span style="display:block; font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--accent,#E3A93F); margin:6px 0 4px">Operations &amp; Automation</span>
+          <div style="font-size:.78rem; color:#6E7F94; margin-bottom:13px">Hyderabad, India</div>
+          <p style="font-size:.88rem; color:#93A2B5; line-height:1.6">11 years in operations and data across Yext and Amazon. Builds the dashboards and automation behind the scenes.</p>
+        </div>
+      </div>
+      <div data-reveal data-delay="90" style="border:1px solid rgba(201,214,232,.12); border-radius:12px; overflow:hidden; background:#0E1724; transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s" style-hover="transform:translateY(-6px); border-color:rgba(227,169,63,.45)">
+        <div style="height:120px; display:flex; align-items:center; justify-content:center; background:repeating-linear-gradient(135deg,#16212F 0 10px,#111C29 10px 20px); border-bottom:1px solid rgba(201,214,232,.12)">
+          <div style="width:58px; height:58px; border-radius:50%; background:#0A1018; border:1px solid rgba(227,169,63,.4); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; color:var(--accent,#E3A93F)">IA</div>
+        </div>
+        <div style="padding:22px">
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.08rem; font-weight:600">Irfan Azmi</h3>
+          <span style="display:block; font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--accent,#E3A93F); margin:6px 0 4px">Client Success &amp; Insights</span>
+          <div style="font-size:.78rem; color:#6E7F94; margin-bottom:13px">Kolkata, India</div>
+          <p style="font-size:.88rem; color:#93A2B5; line-height:1.6">8+ years across Amazon, HSBC, and Foundever. Owns client communication and the numbers behind it.</p>
+        </div>
+      </div>
+      <div data-reveal data-delay="180" style="border:1px solid rgba(201,214,232,.12); border-radius:12px; overflow:hidden; background:#0E1724; transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s" style-hover="transform:translateY(-6px); border-color:rgba(227,169,63,.45)">
+        <div style="height:120px; display:flex; align-items:center; justify-content:center; background:repeating-linear-gradient(135deg,#16212F 0 10px,#111C29 10px 20px); border-bottom:1px solid rgba(201,214,232,.12)">
+          <div style="width:58px; height:58px; border-radius:50%; background:#0A1018; border:1px solid rgba(227,169,63,.4); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; color:var(--accent,#E3A93F)">BM</div>
+        </div>
+        <div style="padding:22px">
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.08rem; font-weight:600">Bhuvanesh Meethal</h3>
+          <span style="display:block; font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--accent,#E3A93F); margin:6px 0 4px">Delivery &amp; Client Ops</span>
+          <div style="font-size:.78rem; color:#6E7F94; margin-bottom:13px">Hyderabad, India</div>
+          <p style="font-size:.88rem; color:#93A2B5; line-height:1.6">5 years in finance and healthcare operations with a 98%+ client satisfaction record. Keeps delivery on schedule.</p>
+        </div>
+      </div>
+      <div data-reveal data-delay="270" style="border:1px solid rgba(201,214,232,.12); border-radius:12px; overflow:hidden; background:#0E1724; transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s" style-hover="transform:translateY(-6px); border-color:rgba(227,169,63,.45)">
+        <div style="height:120px; display:flex; align-items:center; justify-content:center; background:repeating-linear-gradient(135deg,#16212F 0 10px,#111C29 10px 20px); border-bottom:1px solid rgba(201,214,232,.12)">
+          <div style="width:58px; height:58px; border-radius:50%; background:#0A1018; border:1px solid rgba(227,169,63,.4); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; color:var(--accent,#E3A93F)">C</div>
+        </div>
+        <div style="padding:22px">
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.08rem; font-weight:600">Chandan Jha</h3>
+          <span style="display:block; font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--accent,#E3A93F); margin:6px 0 4px">Engineering</span>
+          <div style="font-size:.78rem; color:#6E7F94; margin-bottom:13px">Paris, France</div>
+          <p style="font-size:.88rem; color:#93A2B5; line-height:1.6">Ruby developer in the Paris tech scene. Leads the build — first line of code to what ships in production.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="packages" style="border-bottom:1px solid rgba(201,214,232,.10); padding:104px 0; background:#0C1420">
+  <div style="max-width:1180px; margin:0 auto; padding:0 28px">
+    <div data-reveal style="max-width:46ch; margin-bottom:20px">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent,#E3A93F); display:block; margin-bottom:16px">07 — Packages</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-.03em; font-size:clamp(1.8rem,3.6vw,2.7rem); line-height:1.12; margin-bottom:16px">Simple pricing, built around care.</h2>
+      <p style="color:#93A2B5; font-size:1.02rem; line-height:1.6; text-wrap:pretty">Every plan includes monitoring and a real person to call. Start with a build, or bring an existing site under care.</p>
+    </div>
+    <p data-reveal style="font-family:'IBM Plex Mono',monospace; font-size:.74rem; color:#6E7F94; margin-bottom:32px">/ care-plan rates, billed monthly. Website builds quoted separately, from ₹35,000.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; align-items:stretch">
+      <div data-reveal data-delay="0" style="border:1px solid rgba(201,214,232,.12); border-radius:12px; background:#0E1724; padding:32px 28px; display:flex; flex-direction:column; transition:transform .35s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-6px)">
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:1.06rem; font-weight:600; margin-bottom:8px">Starter</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:2.3rem; font-weight:700; letter-spacing:-.03em">₹1,999<span style="font-family:'Manrope',sans-serif; font-size:.88rem; font-weight:400; color:#93A2B5"> /mo care</span></div>
+        <p style="font-size:.88rem; color:#93A2B5; margin:10px 0 22px; line-height:1.6">For a single small-business site that needs to stay up and current.</p>
+        <ul style="list-style:none; flex-grow:1; display:flex; flex-direction:column; gap:10px; margin-bottom:24px; font-size:.88rem">
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>Uptime &amp; security monitoring</li>
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>Monthly backups</li>
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>2 content updates / month</li>
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>Quarterly report</li>
+        </ul>
+        <a href="#contact" style="text-align:center; padding:12px; border-radius:3px; border:1px solid rgba(201,214,232,.2); color:#EEF2F7; font-size:.9rem; font-weight:600; transition:border-color .2s, background .2s" style-hover="border-color:rgba(201,214,232,.45); background:rgba(201,214,232,.05); color:#EEF2F7">Get started</a>
+      </div>
+      <div data-reveal data-delay="90" style="position:relative; border:1px solid rgba(227,169,63,.5); border-radius:12px; background:linear-gradient(180deg,#16212F,#101B29); padding:32px 28px; display:flex; flex-direction:column; box-shadow:0 30px 70px -34px rgba(227,169,63,.5); transition:transform .35s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-8px)">
+        <span style="position:absolute; top:-11px; left:26px; background:var(--accent,#E3A93F); color:#140E02; font-family:'IBM Plex Mono',monospace; font-size:.66rem; text-transform:uppercase; letter-spacing:.06em; padding:4px 11px; border-radius:2px; font-weight:600">Most common</span>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:1.06rem; font-weight:600; margin-bottom:8px">Growth</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:2.3rem; font-weight:700; letter-spacing:-.03em">₹4,999<span style="font-family:'Manrope',sans-serif; font-size:.88rem; font-weight:400; color:#93A2B5"> /mo care</span></div>
+        <p style="font-size:.88rem; color:#93A2B5; margin:10px 0 22px; line-height:1.6">For a business that is actively growing and wants the site to keep pace.</p>
+        <ul style="list-style:none; flex-grow:1; display:flex; flex-direction:column; gap:10px; margin-bottom:24px; font-size:.88rem">
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>Everything in Starter</li>
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>Weekly backups</li>
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>6 content updates / month</li>
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>Monthly report</li>
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>Direct line to your delivery lead</li>
+        </ul>
+        <a href="#contact" style="text-align:center; padding:12px; border-radius:3px; background:var(--accent,#E3A93F); color:#140E02; font-size:.9rem; font-weight:700; transition:box-shadow .2s" style-hover="box-shadow:0 10px 26px rgba(227,169,63,.35); color:#140E02">Get started</a>
+      </div>
+      <div data-reveal data-delay="180" style="border:1px solid rgba(201,214,232,.12); border-radius:12px; background:#0E1724; padding:32px 28px; display:flex; flex-direction:column; transition:transform .35s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-6px)">
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:1.06rem; font-weight:600; margin-bottom:8px">Scale</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:2.3rem; font-weight:700; letter-spacing:-.03em">Custom</div>
+        <p style="font-size:.88rem; color:#93A2B5; margin:10px 0 22px; line-height:1.6">For multiple sites, e-commerce, or automation layered on top of the site.</p>
+        <ul style="list-style:none; flex-grow:1; display:flex; flex-direction:column; gap:10px; margin-bottom:24px; font-size:.88rem">
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>Everything in Growth</li>
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>Multi-site coverage</li>
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>Priority turnaround</li>
+          <li style="display:flex; gap:10px"><span style="color:#5FBF95">✓</span>Workflow &amp; automation add-ons</li>
+        </ul>
+        <a href="#contact" style="text-align:center; padding:12px; border-radius:3px; border:1px solid rgba(201,214,232,.2); color:#EEF2F7; font-size:.9rem; font-weight:600; transition:border-color .2s, background .2s" style-hover="border-color:rgba(201,214,232,.45); background:rgba(201,214,232,.05); color:#EEF2F7">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding:104px 0 84px; position:relative; overflow:hidden">
+  <div style="position:absolute; bottom:-260px; left:50%; width:760px; height:520px; margin-left:-380px; background:radial-gradient(ellipse, rgba(227,169,63,.12), rgba(227,169,63,0) 65%); pointer-events:none"></div>
+  <div style="position:relative; max-width:1180px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:56px">
+    <div data-reveal>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent,#E3A93F); display:block; margin-bottom:16px">08 — Get in touch</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-.03em; font-size:clamp(1.9rem,3.8vw,2.9rem); line-height:1.1; margin-bottom:16px">Tell us about your project.</h2>
+      <p style="color:#93A2B5; font-size:1.02rem; line-height:1.6; max-width:42ch; margin-bottom:32px; text-wrap:pretty">Whether you need a new site or someone to take maintenance off your plate, we would like to hear from you.</p>
+      <div style="display:flex; align-items:center; gap:14px; padding-bottom:14px; margin-bottom:14px; border-bottom:1px solid rgba(201,214,232,.10); font-size:.94rem"><span style="font-family:'IBM Plex Mono',monospace; font-size:.7rem; color:#6E7F94; text-transform:uppercase; width:78px">Email</span><a href="mailto:hello@fernbridgedigital.com">hello@fernbridgedigital.com</a></div>
+      <div style="display:flex; align-items:center; gap:14px; padding-bottom:14px; margin-bottom:14px; border-bottom:1px solid rgba(201,214,232,.10); font-size:.94rem"><span style="font-family:'IBM Plex Mono',monospace; font-size:.7rem; color:#6E7F94; text-transform:uppercase; width:78px">Based in</span>India &amp; France</div>
+      <div style="display:flex; align-items:center; gap:14px; font-size:.94rem"><span style="font-family:'IBM Plex Mono',monospace; font-size:.7rem; color:#6E7F94; text-transform:uppercase; width:78px">Response</span>Within 1–2 business days</div>
+    </div>
+    <form data-form data-reveal data-delay="120" style="display:flex; flex-direction:column; gap:16px; border:1px solid rgba(201,214,232,.12); border-radius:12px; background:#0E1724; padding:30px 28px">
+      <div>
+        <label for="fb-name" style="display:block; font-family:'IBM Plex Mono',monospace; font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; color:#93A2B5; margin-bottom:8px">Name</label>
+        <input id="fb-name" name="name" type="text" required style="width:100%; background:#0A1018; border:1px solid rgba(201,214,232,.16); border-radius:4px; padding:13px 14px; color:#EEF2F7; font-size:.95rem; outline:none; transition:border-color .2s" style-focus="border-color:var(--accent,#E3A93F)">
+      </div>
+      <div>
+        <label for="fb-email" style="display:block; font-family:'IBM Plex Mono',monospace; font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; color:#93A2B5; margin-bottom:8px">Email</label>
+        <input id="fb-email" name="email" type="email" required style="width:100%; background:#0A1018; border:1px solid rgba(201,214,232,.16); border-radius:4px; padding:13px 14px; color:#EEF2F7; font-size:.95rem; outline:none; transition:border-color .2s" style-focus="border-color:var(--accent,#E3A93F)">
+      </div>
+      <div>
+        <label for="fb-msg" style="display:block; font-family:'IBM Plex Mono',monospace; font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; color:#93A2B5; margin-bottom:8px">What do you need help with?</label>
+        <textarea id="fb-msg" name="message" required style="width:100%; min-height:120px; resize:vertical; background:#0A1018; border:1px solid rgba(201,214,232,.16); border-radius:4px; padding:13px 14px; color:#EEF2F7; font-size:.95rem; outline:none; transition:border-color .2s" style-focus="border-color:var(--accent,#E3A93F)"></textarea>
+      </div>
+      <button data-submit type="submit" style="align-self:flex-start; margin-top:4px; background:var(--accent,#E3A93F); color:#140E02; border:none; padding:14px 26px; border-radius:3px; font-weight:700; font-size:.95rem; cursor:pointer; transition:transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s" style-hover="transform:translateY(-2px); box-shadow:0 12px 28px rgba(227,169,63,.3)">Send message</button>
+      <p data-status style="font-size:.82rem; color:#6E7F94; min-height:1.2em; transition:color .2s">We reply within 1–2 business days.</p>
+    </form>
+  </div>
+</section>
+
+<footer style="border-top:1px solid rgba(201,214,232,.10); padding:34px 28px; max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; color:#6E7F94; font-size:.84rem">
+  <div style="display:flex; align-items:center; gap:11px; font-family:'Space Grotesk',sans-serif; font-weight:700; color:#EEF2F7; font-size:.98rem">
+    <span style="width:22px; height:22px; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:2px">
+      <span style="background:var(--accent,#E3A93F); border-radius:1px"></span>
+      <span style="background:#5FBF95; border-radius:1px"></span>
+      <span style="background:#93A2B5; border-radius:1px"></span>
+      <span style="background:#16212F; border:1px solid rgba(201,214,232,.16); border-radius:1px"></span>
+    </span>
+    Fernbridge Digital
+  </div>
+  <div>© 2026 Fernbridge Digital — websites, built to last.</div>
+</footer>
+
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#E3A93F&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#E3A93F&quot;,&quot;#5FBF95&quot;,&quot;#6FA8F5&quot;,&quot;#E0705A&quot;],&quot;section&quot;:&quot;Brand&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;full&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;full&quot;,&quot;subtle&quot;,&quot;off&quot;],&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  componentDidMount(){ this.apply(); this.wire(); }
+  componentDidUpdate(){ this.apply(); }
+
+  apply(){
+    const root = document.documentElement;
+    root.style.setProperty('--accent', this.props.accentColor || '#E3A93F');
+    const m = this.props.motion || 'full';
+    if (m === 'off') root.style.setProperty('--fb-motion', '0');
+    document.querySelectorAll('[data-spot]').forEach(el => { el.style.display = (m === 'full') ? '' : 'none'; });
+  }
+
+  wire(){
+    if (this._wired) return;
+    this._wired = true;
+    const motion = () => this.props.motion || 'full';
+
+    // scroll reveals
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+        setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; }, motion() === 'off' ? 0 : d);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      if (motion() !== 'off') {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(22px)';
+      }
+      el.style.transition = 'opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)';
+      io.observe(el);
+    });
+
+    // count-up stats
+    const cio = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseFloat(el.getAttribute('data-count'));
+        const dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+        const t0 = performance.now(), dur = 1200;
+        const tick = now => {
+          const p = Math.min(1, (now - t0) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = (target * eased).toFixed(dec);
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        cio.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+    // scroll progress
+    const bar = document.querySelector('[data-progress]');
+    const onScroll = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar) bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // pointer spotlight + magnetic buttons + panel tilt
+    const spot = document.querySelector('[data-spot]');
+    window.addEventListener('pointermove', ev => {
+      if (motion() !== 'full') return;
+      if (spot) spot.style.transform = 'translate(' + ev.clientX + 'px,' + ev.clientY + 'px)';
+      document.querySelectorAll('[data-magnet]').forEach(btn => {
+        const r = btn.getBoundingClientRect();
+        const dx = ev.clientX - (r.left + r.width / 2);
+        const dy = ev.clientY - (r.top + r.height / 2);
+        const dist = Math.hypot(dx, dy);
+        if (dist < 130) btn.style.transform = 'translate(' + dx * 0.16 + 'px,' + dy * 0.16 + 'px)';
+        else btn.style.transform = '';
+      });
+      document.querySelectorAll('[data-tilt]').forEach(p => {
+        const r = p.getBoundingClientRect();
+        if (ev.clientX < r.left || ev.clientX > r.right || ev.clientY < r.top || ev.clientY > r.bottom) { p.style.transform = ''; return; }
+        const px = (ev.clientX - r.left) / r.width - 0.5;
+        const py = (ev.clientY - r.top) / r.height - 0.5;
+        p.style.transform = 'perspective(1000px) rotateY(' + px * 5 + 'deg) rotateX(' + (-py * 5) + 'deg)';
+      });
+    }, { passive: true });
+
+    // Contact form → posts straight to your inbox via Web3Forms (free, unlimited).
+    // SETUP: get a free access key at web3forms.com (just enter your email), paste it below.
+    const WEB3FORMS_KEY = 'YOUR_ACCESS_KEY';
+    const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
+
+    const form = document.querySelector('[data-form]');
+    if (form) form.addEventListener('submit', async ev => {
+      ev.preventDefault();
+      const status = document.querySelector('[data-status]');
+      const btn = document.querySelector('[data-submit]');
+      const say = (msg, color) => { if (status) { status.textContent = msg; status.style.color = color; } };
+      const v = id => (document.getElementById(id) || {}).value.trim() || '';
+
+      if (!v('fb-name') || !v('fb-email') || !v('fb-msg')) { say('Please fill in all three fields.', '#E0705A'); return; }
+
+      if (WEB3FORMS_KEY === 'YOUR_ACCESS_KEY') {
+        say('Form not connected yet — paste your Web3Forms access key in the code.', '#E3A93F');
+        return;
+      }
+
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; btn.style.opacity = '.7'; }
+      say('Sending…', '#93A2B5');
+
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject: 'New project enquiry from ' + v('fb-name'),
+            from_name: 'Fernbridge Digital website',
+            name: v('fb-name'),
+            email: v('fb-email'),
+            message: v('fb-msg')
+          })
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error('bad response');
+        form.reset();
+        say('Thanks — your message is with us. We reply within 1–2 business days.', '#5FBF95');
+      } catch (err) {
+        say('Something went wrong. Email us directly at hello@fernbridgedigital.com', '#E0705A');
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = 'Send message'; btn.style.opacity = '1'; }
+      }
+    });
+  }
+
+  renderVals(){ return {}; }
+}
+</script>
+</body>
+</html>

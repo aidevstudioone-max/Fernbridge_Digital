@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #F6F1E7; color: #1A1714; font-family: "Instrument Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #B4341F; text-decoration: none; }
+  a:hover { color: #1A1714; }
+  ::selection { background: #E4D9C3; }
+  @keyframes pm-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes pm-steam { 0% { transform: translateY(0) scaleX(1); opacity: 0; } 30% { opacity: 0.55; } 100% { transform: translateY(-28px) scaleX(1.6); opacity: 0; } }
+  @keyframes pm-pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(2.2); opacity: 0; } }
+  @keyframes pm-fadeup { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  [data-reveal] { opacity: 0; }
+  [data-reveal].pm-in { animation: pm-fadeup .85s cubic-bezier(.2,.7,.3,1) both; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } [data-reveal] { opacity: 1 !important; transform: none !important; } }
+</style>
+</helmet>
+<div style="max-width:100%;overflow-x:hidden">
+
+  <header style="position:sticky;top:0;z-index:50;background:rgba(246,241,231,0.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(26,23,20,0.1)">
+    <div data-header="" style="max-width:1180px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px;transition:height .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s">
+      <a href="#home" style="display:flex;align-items:baseline;gap:10px;color:#1A1714">
+        <span style="font-family:'Instrument Serif',serif;font-size:26px;letter-spacing:-0.01em">Pav Mantra</span>
+        <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#8A8078">Madhapur</span>
+      </a>
+      <nav style="display:flex;align-items:center;gap:30px;font-size:14px;color:#57504A">
+        <a href="#menu" style="color:#57504A">Menu</a>
+        <a href="#story" style="color:#57504A">Our story</a>
+        <a href="#signatures" style="color:#57504A">Signatures</a>
+        <a href="#reviews" style="color:#57504A">Reviews</a>
+        <a href="#visit" style="color:#57504A">Visit</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:14px">
+        <a href="tel:+918977629720" style="font-size:14px;color:#57504A">+91 89776 29720</a>
+        <a href="https://www.zomato.com/hyderabad/pav-mantra-3-madhapur/order" target="_blank" rel="noopener" style="background:#1A1714;color:#F6F1E7;font-size:13px;letter-spacing:0.02em;padding:11px 20px;border-radius:999px;transition:background-color .35s,transform .3s cubic-bezier(.2,.7,.3,1)" style-hover="background-color:#B4341F;color:#F6F1E7;transform:translateY(-1px)">Order online</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="home" style="max-width:1180px;margin:0 auto;padding:88px 32px 72px;display:grid;grid-template-columns:1.25fr 0.75fr;gap:64px;align-items:end">
+    <div>
+      <div data-reveal="" style="display:flex;align-items:center;gap:10px;margin-bottom:28px">
+        <span style="position:relative;width:6px;height:6px;border-radius:50%;background:#B4341F">
+          <span style="position:absolute;inset:0;border-radius:50%;background:#B4341F;animation:pm-pulse 2.4s ease-out infinite"></span>
+        </span>
+        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#8A8078">Est. street food · 100 Feet Road</span>
+      </div>
+      <h1 data-reveal="" data-reveal-delay="90" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:82px;line-height:0.98;letter-spacing:-0.02em;margin:0;text-wrap:balance">
+        Mumbai's streets,<br /><em style="font-style:italic;color:#B4341F">served fresh</em> in Madhapur.
+      </h1>
+      <p data-reveal="" data-reveal-delay="180" style="margin:28px 0 0;max-width:520px;font-size:18px;line-height:1.6;color:#57504A;text-wrap:pretty">
+        Masalas ground in-house. Pav baked on-site, every single morning. Vada Pav, Misal, Dabeli — built the way it's done on the street: quick, honest, unmistakable.
+      </p>
+      <div data-reveal="" data-reveal-delay="260" style="display:flex;gap:12px;margin-top:36px;flex-wrap:wrap">
+        <a href="#menu" style="background:#B4341F;color:#F6F1E7;font-size:15px;padding:14px 26px;border-radius:999px;transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s" style-hover="transform:translateY(-2px);box-shadow:0 12px 28px rgba(180,52,31,0.28);color:#F6F1E7">View the menu</a>
+        <a href="https://www.swiggy.com/city/hyderabad/pav-mantra-madhapur-rest492474" target="_blank" rel="noopener" style="border:1px solid rgba(26,23,20,0.2);color:#1A1714;font-size:15px;padding:14px 26px;border-radius:999px;transition:transform .3s cubic-bezier(.2,.7,.3,1),border-color .3s" style-hover="transform:translateY(-2px);border-color:#1A1714;color:#1A1714">Order on Swiggy ↗</a>
+      </div>
+      <div data-reveal="" data-reveal-delay="340" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:rgba(26,23,20,0.12);border-top:1px solid rgba(26,23,20,0.12);border-bottom:1px solid rgba(26,23,20,0.12)">
+        <div style="background:#F6F1E7;padding:20px 20px 20px 0">
+          <div style="font-family:'Instrument Serif',serif;font-size:32px;line-height:1">4.5 ★</div>
+          <div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8A8078;margin-top:6px">1,000+ ratings</div>
+        </div>
+        <div style="background:#F6F1E7;padding:20px">
+          <div style="font-family:'Instrument Serif',serif;font-size:32px;line-height:1">₹300–500</div>
+          <div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8A8078;margin-top:6px">For two</div>
+        </div>
+        <div style="background:#F6F1E7;padding:20px">
+          <div style="font-family:'Instrument Serif',serif;font-size:32px;line-height:1">10 – 10:30</div>
+          <div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8A8078;margin-top:6px">Open daily</div>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal="" data-reveal-delay="200" style="border:1px solid rgba(26,23,20,0.14);background:#FBF8F2;padding:14px">
+      <div style="position:relative;height:260px;overflow:hidden;background-image:repeating-linear-gradient(135deg,#EFE7D8 0 10px,#F6F1E7 10px 20px);display:flex;align-items:flex-end;justify-content:flex-start;padding:14px">
+        <span style="position:absolute;left:36%;bottom:58%;width:12px;height:36px;border-radius:999px;background:rgba(255,255,255,0.75);filter:blur(9px);animation:pm-steam 4.2s ease-out infinite"></span>
+        <span style="position:absolute;left:50%;bottom:56%;width:12px;height:36px;border-radius:999px;background:rgba(255,255,255,0.65);filter:blur(9px);animation:pm-steam 4.2s ease-out 1.4s infinite"></span>
+        <span style="position:relative;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#8A8078;background:#FBF8F2;padding:4px 8px">hero shot — vada pav, close crop</span>
+      </div>
+      <div style="padding:20px 8px 8px">
+        <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B4341F">Today's pick</div>
+        <div style="font-family:'Instrument Serif',serif;font-size:30px;margin-top:8px;line-height:1.1">VIP Vada Pav</div>
+        <p style="margin:10px 0 0;font-size:15px;line-height:1.55;color:#57504A">Crisp vada, soft house-baked pav, three secret chutneys.</p>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid rgba(26,23,20,0.12)">
+          <span style="font-size:13px;color:#8A8078">From</span>
+          <span style="font-family:'Instrument Serif',serif;font-size:26px">₹60</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="border-top:1px solid rgba(26,23,20,0.12);background:#1A1714;color:#E9E1D3;overflow:hidden;padding:18px 0">
+    <div style="display:flex;width:max-content;animation:pm-marquee 34s linear infinite">
+      <div style="display:flex;gap:56px;padding-right:56px;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap">
+        <span>100% pure veg</span><span style="color:#B4341F">✳</span>
+        <span>In-house ground masalas</span><span style="color:#B4341F">✳</span>
+        <span>Pav baked fresh daily</span><span style="color:#B4341F">✳</span>
+        <span>Dine-in · takeaway · delivery</span><span style="color:#B4341F">✳</span>
+        <span>Open 10am – 10:30pm</span><span style="color:#B4341F">✳</span>
+      </div>
+      <div style="display:flex;gap:56px;padding-right:56px;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap">
+        <span>100% pure veg</span><span style="color:#B4341F">✳</span>
+        <span>In-house ground masalas</span><span style="color:#B4341F">✳</span>
+        <span>Pav baked fresh daily</span><span style="color:#B4341F">✳</span>
+        <span>Dine-in · takeaway · delivery</span><span style="color:#B4341F">✳</span>
+        <span>Open 10am – 10:30pm</span><span style="color:#B4341F">✳</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="menu" style="max-width:1180px;margin:0 auto;padding:96px 32px 40px">
+    <div data-reveal="" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#8A8078">The menu</div>
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:56px;line-height:1.02;letter-spacing:-0.015em;margin:14px 0 0">What we're cooking</h2>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="5">
+          <button onClick="{{ cat.select }}" style="{{ cat.style }}">{{ cat.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;border-top:1px solid rgba(26,23,20,0.12)">
+      <sc-for list="{{ items }}" as="item" hint-placeholder-count="6">
+        <div data-reveal="" data-reveal-stagger="" style="display:grid;grid-template-columns:56px 1fr auto;gap:24px;align-items:baseline;padding:26px 16px;margin:0 -16px;border-bottom:1px solid rgba(26,23,20,0.12);transition:background-color .35s,padding-left .35s" style-hover="background-color:rgba(26,23,20,0.04);padding-left:28px">
+          <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#B0A79B">{{ item.num }}</span>
+          <div>
+            <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+              <span style="font-family:'Instrument Serif',serif;font-size:26px;line-height:1.15">{{ item.name }}</span>
+              <span style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#B4341F">{{ item.tag }}</span>
+            </div>
+            <p style="margin:8px 0 0;font-size:15px;line-height:1.55;color:#57504A;max-width:560px">{{ item.desc }}</p>
+          </div>
+          <span style="{{ item.priceStyle }}">{{ item.price }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="story" style="border-top:1px solid rgba(26,23,20,0.12);margin-top:56px;background:#EFE9DC">
+    <div style="max-width:1180px;margin:0 auto;padding:96px 32px;display:grid;grid-template-columns:0.9fr 1.1fr;gap:72px;align-items:center">
+      <div data-parallax="26" style="height:440px;background-image:repeating-linear-gradient(135deg,#E4DCC9 0 10px,#EFE9DC 10px 20px);display:flex;align-items:flex-end;padding:16px;will-change:transform">
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#8A8078;background:#EFE9DC;padding:4px 8px">portrait — kitchen, pav coming out of the oven</span>
+      </div>
+      <div data-reveal="" >
+        <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#8A8078">Our story</div>
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:48px;line-height:1.08;letter-spacing:-0.015em;margin:16px 0 0;text-wrap:balance">One mission — real Mumbai flavour, <em style="color:#B4341F">no shortcuts</em>.</h2>
+        <p style="margin:24px 0 0;font-size:17px;line-height:1.65;color:#57504A;max-width:560px;text-wrap:pretty">
+          Every masala is ground in-house. Every pav is baked on-site. Every plate is assembled the way it's done on the streets of Mumbai — quick, honest, packed with flavour. It's a small, self-service kind of place, but the taste travels far.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:36px;background:rgba(26,23,20,0.14)">
+          <div style="background:#EFE9DC;padding:18px 20px 18px 0;font-size:15px;color:#1A1714">Masalas ground in-house</div>
+          <div style="background:#EFE9DC;padding:18px 20px;font-size:15px;color:#1A1714">Pav baked every morning</div>
+          <div style="background:#EFE9DC;padding:18px 20px 18px 0;font-size:15px;color:#1A1714">Quick, pocket-friendly service</div>
+          <div style="background:#EFE9DC;padding:18px 20px;font-size:15px;color:#1A1714">Dine-in, takeaway & delivery</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="signatures" style="max-width:1180px;margin:0 auto;padding:96px 32px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#8A8078">On the counter</div>
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:56px;line-height:1.02;letter-spacing:-0.015em;margin:14px 0 0">Six dishes people come back for</h2>
+      </div>
+      <a href="https://www.zomato.com/hyderabad/pav-mantra-3-madhapur/order" target="_blank" rel="noopener" style="font-size:15px;border-bottom:1px solid rgba(180,52,31,0.4);padding-bottom:2px">Order all six ↗</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px">
+      <sc-for list="{{ signatures }}" as="dish" hint-placeholder-count="6">
+        <div data-reveal="" data-reveal-stagger="" >
+          <div style="height:230px;overflow:hidden;background-image:repeating-linear-gradient(135deg,#EFE7D8 0 10px,#F6F1E7 10px 20px);background-size:200% 200%;display:flex;align-items:flex-end;padding:12px;transition:transform .6s cubic-bezier(.2,.7,.3,1),background-position 1.2s ease" style-hover="transform:scale(1.02);background-position:100% 100%">
+            <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#8A8078;background:#F6F1E7;padding:4px 8px">{{ dish.slot }}</span>
+          </div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-top:16px;padding-bottom:14px;border-bottom:1px solid rgba(26,23,20,0.12)">
+            <span style="font-family:'Instrument Serif',serif;font-size:24px">{{ dish.name }}</span>
+            <span style="font-size:14px;color:#8A8078">{{ dish.price }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="reviews" style="border-top:1px solid rgba(26,23,20,0.12);background:#1A1714;color:#F1EADC">
+    <div style="max-width:1180px;margin:0 auto;padding:96px 32px;display:grid;grid-template-columns:0.7fr 1.3fr;gap:72px">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#9A9084">Word on the street</div>
+        <div data-reveal="" style="font-family:'Instrument Serif',serif;font-size:96px;line-height:1;margin-top:24px">4.5</div>
+        <div style="color:#E0A33C;font-size:20px;letter-spacing:0.1em;margin-top:8px">★★★★★</div>
+        <p style="margin:18px 0 0;font-size:15px;line-height:1.6;color:#B7AE9F">1,000+ ratings on Zomato, aggregated with Swiggy.</p>
+        <a href="https://www.zomato.com/hyderabad/pav-mantra-3-madhapur" target="_blank" rel="noopener" style="display:inline-block;margin-top:20px;color:#F1EADC;border-bottom:1px solid rgba(241,234,220,0.35);padding-bottom:2px;font-size:15px">Read all reviews ↗</a>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#9A9084">What guests mention most</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(241,234,220,0.16);margin-top:24px">
+          <sc-for list="{{ highlights }}" as="h" hint-placeholder-count="6">
+            <div data-reveal="" data-reveal-stagger="" style="background:#1A1714;padding:28px 28px 28px 0;font-family:'Instrument Serif',serif;font-size:30px;line-height:1.2;transition:color .35s" style-hover="color:#E0A33C">{{ h }}</div>
+          </sc-for>
+        </div>
+        <p style="margin:28px 0 0;font-size:14px;line-height:1.6;color:#9A9084;max-width:520px">Highlights aggregated from Zomato &amp; Swiggy listings. Individual guest quotes can be dropped in once you've picked the ones you want to feature.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" style="max-width:1180px;margin:0 auto;padding:96px 32px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
+      <div data-reveal="" >
+        <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#8A8078">Visit us</div>
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:56px;line-height:1.02;letter-spacing:-0.015em;margin:14px 0 0">100 Feet Road,<br />opposite the YSR Statue.</h2>
+        <div style="margin-top:40px;border-top:1px solid rgba(26,23,20,0.12)">
+          <div style="padding:20px 0;border-bottom:1px solid rgba(26,23,20,0.12);display:grid;grid-template-columns:120px 1fr;gap:20px">
+            <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8078">Address</span>
+            <span style="font-size:16px;line-height:1.5">Plot 326, Ayyappa Society, 100 Feet Road, opp. YSR Statue, Mega Hills, Madhapur, Hyderabad – 500081</span>
+          </div>
+          <div style="padding:20px 0;border-bottom:1px solid rgba(26,23,20,0.12);display:grid;grid-template-columns:120px 1fr;gap:20px">
+            <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8078">Hours</span>
+            <span style="font-size:16px">Monday – Sunday, 10:00 AM – 10:30 PM</span>
+          </div>
+          <div style="padding:20px 0;border-bottom:1px solid rgba(26,23,20,0.12);display:grid;grid-template-columns:120px 1fr;gap:20px">
+            <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8078">Contact</span>
+            <a href="tel:+918977629720" style="font-size:16px">+91 89776 29720</a>
+          </div>
+        </div>
+      </div>
+      <div style="border:1px solid rgba(26,23,20,0.14);padding:10px;background:#FBF8F2">
+        <iframe src="https://maps.google.com/maps?q=Pav%20Mantra%20100%20Feet%20Road%20Madhapur%20Hyderabad&t=&z=15&ie=UTF8&iwloc=&output=embed" title="Map to Pav Mantra, Madhapur" loading="lazy" style="width:100%;height:460px;border:0;filter:grayscale(1) contrast(1.05)"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid rgba(26,23,20,0.12);background:#B4341F;color:#FBF3E4">
+    <div style="max-width:1180px;margin:0 auto;padding:88px 32px;display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap">
+      <h2 data-reveal="" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:60px;line-height:1.02;letter-spacing:-0.02em;margin:0;max-width:640px;text-wrap:balance">Craving a vada pav right now?</h2>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="https://www.zomato.com/hyderabad/pav-mantra-3-madhapur/order" target="_blank" rel="noopener" style="background:#FBF3E4;color:#B4341F;font-size:15px;padding:15px 28px;border-radius:999px">Order on Zomato ↗</a>
+        <a href="https://www.swiggy.com/city/hyderabad/pav-mantra-madhapur-rest492474" target="_blank" rel="noopener" style="border:1px solid rgba(251,243,228,0.5);color:#FBF3E4;font-size:15px;padding:15px 28px;border-radius:999px">Order on Swiggy ↗</a>
+        <a href="tel:+918977629720" style="border:1px solid rgba(251,243,228,0.5);color:#FBF3E4;font-size:15px;padding:15px 28px;border-radius:999px">Call us</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#F6F1E7">
+    <div style="max-width:1180px;margin:0 auto;padding:64px 32px 40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px">
+      <div>
+        <div style="font-family:'Instrument Serif',serif;font-size:28px">Pav Mantra</div>
+        <p style="margin:12px 0 0;font-size:15px;line-height:1.6;color:#57504A;max-width:280px">Authentic Maharashtrian street food in the heart of Madhapur, Hyderabad.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8078;margin-bottom:4px">Explore</div>
+        <a href="#menu" style="color:#57504A;font-size:15px">Menu</a>
+        <a href="#story" style="color:#57504A;font-size:15px">Our story</a>
+        <a href="#signatures" style="color:#57504A;font-size:15px">Signatures</a>
+        <a href="#reviews" style="color:#57504A;font-size:15px">Reviews</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8078;margin-bottom:4px">Order</div>
+        <a href="https://www.zomato.com/hyderabad/pav-mantra-3-madhapur/order" target="_blank" rel="noopener" style="color:#57504A;font-size:15px">Zomato</a>
+        <a href="https://www.swiggy.com/city/hyderabad/pav-mantra-madhapur-rest492474" target="_blank" rel="noopener" style="color:#57504A;font-size:15px">Swiggy</a>
+        <a href="https://www.google.com/search?q=pav+mantra+madhapur" target="_blank" rel="noopener" style="color:#57504A;font-size:15px">Google</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8078;margin-bottom:4px">Visit</div>
+        <span style="color:#57504A;font-size:15px;line-height:1.55">Plot 326, Ayyappa Society, 100 Feet Road, Madhapur – 500081</span>
+        <a href="tel:+918977629720" style="color:#57504A;font-size:15px">+91 89776 29720</a>
+      </div>
+    </div>
+    <div style="max-width:1180px;margin:0 auto;padding:20px 32px 48px;border-top:1px solid rgba(26,23,20,0.12);font-size:12px;color:#8A8078;line-height:1.6">
+      © Pav Mantra. Unofficial fan-made concept site — not affiliated with the restaurant's official ownership. Ordering happens on Zomato or Swiggy.
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { cat: "All" };
+
+  componentDidMount() {
+    this.reveal();
+    this.parallax = () => {
+      const y = window.scrollY || 0;
+      document.querySelectorAll("[data-parallax]").forEach(el => {
+        const r = el.getBoundingClientRect();
+        const amt = parseFloat(el.getAttribute("data-parallax")) || 20;
+        const p = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+        el.style.transform = "translateY(" + (-p * amt).toFixed(1) + "px)";
+      });
+      const h = document.querySelector("[data-header]");
+      if (h) {
+        h.style.height = y > 40 ? "60px" : "72px";
+        h.style.boxShadow = y > 40 ? "0 1px 24px rgba(26,23,20,0.08)" : "none";
+      }
+    };
+    window.addEventListener("scroll", this.parallax, { passive: true });
+    this.parallax();
+    this.safety = setTimeout(() => {
+      document.querySelectorAll("[data-reveal]").forEach(el => this.show(el));
+    }, 2200);
+  }
+
+  componentDidUpdate() { this.reveal(); if (this.parallax) this.parallax(); }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.parallax);
+    clearTimeout(this.safety);
+    if (this.io) this.io.disconnect();
+  }
+
+  show(el) { el.classList.add("pm-in"); }
+
+  reveal() {
+    if (!this.io) {
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const group = el.parentElement ? Array.from(el.parentElement.children).indexOf(el) : 0;
+          const base = parseInt(el.getAttribute("data-reveal-delay") || "0", 10);
+          const stagger = el.hasAttribute("data-reveal-stagger") ? Math.min(group, 8) * 70 : 0;
+          setTimeout(() => this.show(el), base + stagger);
+          this.io.unobserve(el);
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    }
+    requestAnimationFrame(() => {
+      document.querySelectorAll("[data-reveal]").forEach(el => {
+        if (el.classList.contains("pm-in")) return;
+        this.io.observe(el);
+      });
+    });
+  }
+
+  get data() {
+    return [
+      { cat: "Pav", name: "VIP Vada Pav", tag: "Today's pick", desc: "Crisp vada, soft house-baked pav, three secret chutneys.", price: "₹60" },
+      { cat: "Pav", name: "Misal Pav", tag: "", desc: "Sprouted usal with farsan, onion and lime.", price: "add price" },
+      { cat: "Pav", name: "Dabeli", tag: "", desc: "Sweet-spicy potato filling with pomegranate and sev.", price: "add price" },
+      { cat: "Pav", name: "Pav Bhaji", tag: "", desc: "Buttered bhaji with griddled pav, onion and lime.", price: "add price" },
+      { cat: "Drinks", name: "Mango Mastani", tag: "", desc: "Thick mango shake, Pune style.", price: "add price" },
+      { cat: "Drinks", name: "Ginger Chai", tag: "", desc: "Cutting chai with fresh ginger.", price: "add price" }
+    ];
+  }
+
+  renderVals() {
+    const cats = ["All", "Pav", "Drinks"];
+    const active = this.state.cat;
+    const items = this.data
+      .filter(d => active === "All" || d.cat === active)
+      .map((d, i) => ({
+        ...d,
+        num: String(i + 1).padStart(2, "0"),
+        priceStyle: d.price.startsWith("₹")
+          ? { fontFamily: "'Instrument Serif', serif", fontSize: 24 }
+          : { fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "#B0A79B" }
+      }));
+
+    return {
+      items,
+      categories: cats.map(label => ({
+        label,
+        select: () => this.setState({ cat: label }),
+        style: {
+          font: "inherit",
+          fontSize: 13,
+          letterSpacing: "0.02em",
+          padding: "9px 16px",
+          borderRadius: 999,
+          cursor: "pointer",
+          border: "1px solid " + (label === active ? "#1A1714" : "rgba(26,23,20,0.2)"),
+          background: label === active ? "#1A1714" : "transparent",
+          color: label === active ? "#F6F1E7" : "#57504A"
+        }
+      })),
+      signatures: [
+        { name: "VIP Vada Pav", price: "₹60", slot: "photo — vada pav" },
+        { name: "Misal Pav", price: "", slot: "photo — misal pav" },
+        { name: "Dabeli", price: "", slot: "photo — dabeli" },
+        { name: "Pav Bhaji", price: "", slot: "photo — pav bhaji" },
+        { name: "Mango Mastani", price: "", slot: "photo — mastani" },
+        { name: "Ginger Chai", price: "", slot: "photo — cutting chai" }
+      ],
+      highlights: ["Authentic taste", "Fresh, soft pav", "Quick service", "Pocket friendly", "In-house masalas", "Great for groups"]
+    };
+  }
+}
+
+</script>
+</body>
+</html>
