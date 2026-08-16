@@ -5,10 +5,7 @@ import Reveal from './Reveal.jsx'
 import successCheck from '../lottie/success-check.json'
 import { IconWhatsapp, IconPhone, IconMail } from './Icons.jsx'
 
-// SETUP: get a free access key at web3forms.com (just enter your email),
-// paste it below to receive real submissions. Same integration pattern the
-// site already used, just with the richer PDF-recommended field set.
-const WEB3FORMS_KEY = 'YOUR_ACCESS_KEY'
+const WEB3FORMS_KEY = 'fdfb11bc-7730-4553-8e45-d661c0e86318'
 const FORM_ENDPOINT = 'https://api.web3forms.com/submit'
 
 const BUSINESS_TYPES = ['Restaurant', 'Retail', 'Professional Services', 'Startup', 'Real Estate', 'Other']
