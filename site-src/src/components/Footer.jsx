@@ -1,8 +1,13 @@
+import LogoMark from './LogoMark.jsx'
+
 export default function Footer() {
   return (
     <footer className="py-14">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center">
-        <a href="#top" className="font-display text-[1rem] font-bold text-fg">Fernbridge Digital</a>
+        <a href="#top" className="flex items-center gap-[11px] font-display text-[1rem] font-bold text-fg">
+          <LogoMark size={24} />
+          Fernbridge Digital
+        </a>
         <p className="max-w-[52ch] text-[.86rem] leading-relaxed text-muted">
           We build professional websites, custom web applications, AI-powered solutions and business automation for startups and growing businesses.
         </p>

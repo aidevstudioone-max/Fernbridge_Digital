@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { IconMenu, IconClose } from './Icons.jsx'
+import LogoMark from './LogoMark.jsx'
 
 const LINKS = [
   { href: '#services', label: 'Services' },
@@ -9,17 +10,6 @@ const LINKS = [
   { href: '#pricing', label: 'Pricing' },
   { href: '#faq', label: 'FAQ' },
 ]
-
-function LogoMark() {
-  return (
-    <span className="relative grid h-[26px] w-[26px] grid-cols-2 grid-rows-2 gap-[3px] transition-transform duration-500 group-hover:rotate-90">
-      <span className="rounded-[1px] bg-accent" />
-      <span className="rounded-[1px] bg-green" />
-      <span className="rounded-[1px] bg-muted" />
-      <span className="rounded-[1px] border border-line bg-panel-alt" />
-    </span>
-  )
-}
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
