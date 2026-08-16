@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --color-ink: #0a1018;
+  --color-ink-alt: #0c1420;
+  --color-panel: #0e1724;
+  --color-panel-alt: #101b29;
+  --color-line: rgba(201, 214, 232, 0.12);
+  --color-fg: #eef2f7;
+  --color-muted: #93a2b5;
+  --color-muted-dim: #6e7f94;
+  --color-accent: #e3a93f;
+  --color-accent-soft: #f5d8a0;
+  --color-green: #5fbf95;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #140e02;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+.text-pretty {
+  text-wrap: pretty;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 1.1s step-end infinite;
+}
