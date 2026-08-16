@@ -30,10 +30,10 @@ export default function FinalCTA() {
             Start a Conversation <IconArrowRight width={17} height={17} />
           </a>
           <div className="relative mt-8 flex flex-wrap items-center justify-center gap-6 font-mono text-[.82rem] text-muted">
-            <a href="https://wa.me/910000000000" target="_blank" rel="noopener" className="inline-flex items-center gap-2 transition-colors hover:text-fg">
+            <a href="https://wa.me/919022683699" target="_blank" rel="noopener" className="inline-flex items-center gap-2 transition-colors hover:text-fg">
               <IconWhatsapp width={16} height={16} /> WhatsApp
             </a>
-            <a href="tel:+910000000000" className="inline-flex items-center gap-2 transition-colors hover:text-fg">
+            <a href="tel:+919022683699" className="inline-flex items-center gap-2 transition-colors hover:text-fg">
               <IconPhone width={16} height={16} /> Call
             </a>
             <a href="mailto:hello@fernbridgedigital.com" className="inline-flex items-center gap-2 transition-colors hover:text-fg">

@@ -62,10 +62,10 @@ export default function ContactForm() {
             Tell us about your business and we'll suggest the right digital solution for you — no obligation.
           </p>
           <div className="flex flex-col gap-4 font-mono text-[.9rem]">
-            <a href="https://wa.me/910000000000" target="_blank" rel="noopener" className="inline-flex items-center gap-3 transition-colors hover:text-accent">
+            <a href="https://wa.me/919022683699" target="_blank" rel="noopener" className="inline-flex items-center gap-3 transition-colors hover:text-accent">
               <IconWhatsapp width={18} height={18} /> WhatsApp Us
             </a>
-            <a href="tel:+910000000000" className="inline-flex items-center gap-3 transition-colors hover:text-accent">
+            <a href="tel:+919022683699" className="inline-flex items-center gap-3 transition-colors hover:text-accent">
               <IconPhone width={18} height={18} /> Call Us
             </a>
             <a href="mailto:hello@fernbridgedigital.com" className="inline-flex items-center gap-3 transition-colors hover:text-accent">
