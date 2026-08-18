@@ -22,7 +22,7 @@ export default function Team() {
         <Reveal className="mb-[52px] max-w-[28ch]">
           <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">07 — Team</span>
           <h2 className="mb-4 font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">
-            Ex-Amazon, HSBC and Yext operators, now building for smaller businesses.
+            Experts from Amazon, HSBC and Yext, now building for smaller businesses.
           </h2>
           <p className="max-w-[56ch] text-[1.02rem] leading-relaxed text-muted">
             We spent our careers on the operations, data, and engineering side of companies you already know. Now we build for smaller ones.

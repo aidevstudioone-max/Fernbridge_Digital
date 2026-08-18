@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { IconWhatsapp } from './Icons.jsx'
 
 // Single floating action, bottom-right — per PDF guidance, one is enough.
-export default function WhatsAppButton({ phone = '919022683699', message = "Hi Fernbridge Digital, I'd like to know more about your services." }) {
+export default function WhatsAppButton({ phone = '919022683699', message = "Hi Thikaana, I'd like to know more about your services." }) {
   const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
   return (
     <motion.a

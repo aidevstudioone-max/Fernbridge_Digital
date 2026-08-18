@@ -47,7 +47,7 @@ export default function Nav() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-7 py-[15px]">
           <a href="#top" className="flex items-center gap-[11px] font-display text-[1.08rem] font-bold text-ink">
             <LogoMark />
-            Fernbridge Digital
+            Thikaana
           </a>
 
           <ul className="hidden items-center gap-7 text-[.9rem] text-muted md:flex">
