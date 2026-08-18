@@ -33,27 +33,27 @@ export default function Nav() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="h-[2px] w-full bg-transparent">
+      <div className="h-[3px] w-full bg-transparent">
         <div
-          className="h-full bg-gradient-to-r from-accent to-green shadow-[0_0_14px_rgba(227,169,63,0.55)] transition-[width] duration-150"
+          className="h-full bg-gradient-to-r from-accent to-gold transition-[width] duration-150"
           style={{ width: `${progress}%` }}
         />
       </div>
       <nav
-        className={`border-b transition-colors duration-300 ${
-          scrolled ? 'border-line bg-ink/80 backdrop-blur-md' : 'border-transparent bg-transparent'
+        className={`mt-[3px] border-b transition-colors duration-300 ${
+          scrolled ? 'border-ink/12 bg-paper/90 shadow-[0_8px_30px_-18px_rgba(26,24,15,0.25)] backdrop-blur-md' : 'border-transparent bg-transparent'
         }`}
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
-          <a href="#top" className="group flex items-center gap-[11px] font-display text-[1.05rem] font-bold tracking-tight text-fg">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-7 py-[15px]">
+          <a href="#top" className="flex items-center gap-[11px] font-display text-[1.08rem] font-bold text-ink">
             <LogoMark />
             Fernbridge Digital
           </a>
 
-          <ul className="hidden items-center gap-7 text-sm text-muted md:flex">
+          <ul className="hidden items-center gap-7 text-[.9rem] text-muted md:flex">
             {LINKS.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="transition-colors hover:text-fg">
+                <a href={l.href} className="transition-colors hover:text-ink">
                   {l.label}
                 </a>
               </li>
@@ -63,14 +63,14 @@ export default function Nav() {
           <div className="flex items-center gap-3">
             <a
               href="#contact"
-              className="hidden rounded-[3px] bg-accent px-5 py-2.5 text-sm font-bold text-[#140e02] shadow-[0_0_0_rgba(0,0,0,0)] transition-all duration-300 hover:shadow-[0_10px_26px_rgba(227,169,63,0.32)] md:inline-block"
+              className="hidden items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-[.86rem] font-semibold text-paper transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-dark md:inline-flex"
             >
               Get a Free Consultation
             </a>
             <button
               aria-label="Toggle menu"
               onClick={() => setOpen((o) => !o)}
-              className="grid h-10 w-10 place-items-center rounded-md border border-line text-fg md:hidden"
+              className="grid h-10 w-10 place-items-center rounded-full border border-ink/15 text-ink md:hidden"
             >
               {open ? <IconClose /> : <IconMenu />}
             </button>
@@ -85,12 +85,12 @@ export default function Nav() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.28, ease: [0.2, 0.7, 0.2, 1] }}
-            className="overflow-hidden border-b border-line bg-ink md:hidden"
+            className="overflow-hidden border-b border-ink/12 bg-paper md:hidden"
           >
-            <ul className="flex flex-col gap-1 px-6 py-4">
+            <ul className="flex flex-col gap-1 px-7 py-4">
               {LINKS.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} onClick={closeAnd} className="block py-2 text-muted transition-colors hover:text-fg">
+                  <a href={l.href} onClick={closeAnd} className="block py-2 text-muted transition-colors hover:text-ink">
                     {l.label}
                   </a>
                 </li>
@@ -99,7 +99,7 @@ export default function Nav() {
                 <a
                   href="#contact"
                   onClick={closeAnd}
-                  className="mt-2 block rounded-[3px] bg-accent px-5 py-3 text-center text-sm font-bold text-[#140e02]"
+                  className="mt-2 block rounded-full bg-accent px-5 py-3 text-center text-[.86rem] font-semibold text-paper"
                 >
                   Get a Free Consultation
                 </a>

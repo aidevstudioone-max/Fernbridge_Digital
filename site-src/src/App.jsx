@@ -1,6 +1,8 @@
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
+import Marquee from './components/Marquee.jsx'
 import Services from './components/Services.jsx'
+import AIInProduction from './components/AIInProduction.jsx'
 import WhoWeHelp from './components/WhoWeHelp.jsx'
 import WhyUs from './components/WhyUs.jsx'
 import Work from './components/Work.jsx'
@@ -20,7 +22,9 @@ export default function App() {
       <Nav />
       <main className="relative z-[2]">
         <Hero />
+        <Marquee />
         <Services />
+        <AIInProduction />
         <WhoWeHelp />
         <WhyUs />
         <Work />

@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-import { motion, useScroll, useSpring } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Reveal from './Reveal.jsx'
 
 const STEPS = [
@@ -12,43 +11,45 @@ const STEPS = [
 ]
 
 export default function HowWeWork() {
-  const trackRef = useRef(null)
-  const { scrollYProgress } = useScroll({ target: trackRef, offset: ['start 80%', 'end 60%'] })
-  const scaleX = useSpring(scrollYProgress, { stiffness: 90, damping: 22 })
-
   return (
-    <section id="how-we-work" className="border-b border-line bg-ink-alt py-24 md:py-28">
-      <div className="mx-auto max-w-6xl px-6">
-        <Reveal className="mb-16 max-w-[46ch]">
-          <span className="mb-4 block font-mono text-[.72rem] uppercase tracking-[.12em] text-accent">05 — How we work</span>
-          <h2 className="font-display text-[clamp(1.8rem,3.6vw,2.7rem)] font-semibold leading-[1.12] tracking-tight">
+    <section id="how-we-work" className="bg-paper-alt py-[104px]">
+      <div className="mx-auto max-w-6xl px-7">
+        <Reveal className="mb-[52px] max-w-[26ch]">
+          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">06 — How we work</span>
+          <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">
             From first call to a site that runs itself.
           </h2>
         </Reveal>
 
-        <div ref={trackRef} className="relative">
-          <div className="absolute left-0 right-0 top-[9px] hidden h-[2px] bg-line md:block" />
-          <motion.div
-            style={{ scaleX }}
-            className="absolute left-0 right-0 top-[9px] hidden h-[2px] origin-left bg-gradient-to-r from-accent to-green md:block"
-          />
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-6">
-            {STEPS.map((s, i) => (
-              <motion.div
-                key={s.n}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="relative pt-6"
-              >
-                <span className="absolute left-0 top-0 h-[9px] w-[9px] -translate-y-1/2 rounded-full bg-accent md:block" />
-                <span className="mb-3 block font-mono text-[.74rem] text-accent">STEP {s.n}</span>
-                <h3 className="mb-2 font-display text-[1.05rem] font-semibold">{s.title}</h3>
-                <p className="text-[.88rem] leading-relaxed text-muted">{s.body}</p>
-              </motion.div>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 gap-9 sm:grid-cols-2 lg:grid-cols-6">
+          {STEPS.map((s, i) => (
+            <div key={s.n}>
+              <div className="mb-4 flex items-center gap-3.5">
+                <motion.span
+                  initial={{ borderColor: 'rgba(26,24,15,.25)', backgroundColor: 'rgba(0,0,0,0)', color: '#6F6A59' }}
+                  whileInView={{ borderColor: '#1D5C3C', backgroundColor: '#1D5C3C', color: '#F6F3EA' }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.4, delay: i * 0.38 }}
+                  className="grid h-9 w-9 flex-none place-items-center rounded-full border-2 font-mono text-[.74rem] font-semibold"
+                >
+                  {s.n}
+                </motion.span>
+                <span className="block h-0.5 flex-1 overflow-hidden rounded-full bg-ink/12">
+                  <motion.i
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 0.5, delay: i * 0.38 + 0.1, ease: [0.2, 0.7, 0.2, 1] }}
+                    style={{ transformOrigin: 'left' }}
+                    className="block h-full bg-gradient-to-r from-accent to-gold"
+                  />
+                </span>
+              </div>
+              <span className="mb-2 block font-mono text-[.7rem] uppercase tracking-[.08em] text-gold">Step {s.n}</span>
+              <h3 className="mb-2 font-display text-[1.1rem] font-semibold">{s.title}</h3>
+              <p className="max-w-[34ch] text-[.88rem] text-muted">{s.body}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

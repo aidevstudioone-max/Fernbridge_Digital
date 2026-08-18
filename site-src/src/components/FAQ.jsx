@@ -13,13 +13,10 @@ const FAQS = [
 
 function FaqItem({ item, isOpen, onToggle }) {
   return (
-    <div className="border-b border-line">
-      <button
-        onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 py-6 text-left"
-      >
-        <span className="font-display text-[1.02rem] font-semibold">{item.q}</span>
-        <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }} className="shrink-0 text-accent">
+    <div className="border-b border-ink/16">
+      <button onClick={onToggle} className="flex min-h-11 w-full items-center justify-between gap-4 py-[22px] text-left">
+        <span className="font-display text-[1.05rem] font-semibold">{item.q}</span>
+        <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }} className="shrink-0 text-gold">
           <IconChevronDown />
         </motion.span>
       </button>
@@ -32,7 +29,7 @@ function FaqItem({ item, isOpen, onToggle }) {
             transition={{ duration: 0.3, ease: [0.2, 0.7, 0.2, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-6 pr-8 text-[.94rem] leading-relaxed text-muted">{item.a}</p>
+            <p className="pb-[22px] pr-8 text-[.94rem] leading-relaxed text-muted">{item.a}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -44,15 +41,13 @@ export default function FAQ() {
   const [open, setOpen] = useState(0)
 
   return (
-    <section id="faq" className="border-b border-line py-24 md:py-28">
-      <div className="mx-auto max-w-3xl px-6">
+    <section id="faq" className="bg-paper-alt py-[104px]">
+      <div className="mx-auto max-w-[820px] px-7">
         <Reveal className="mb-10">
-          <span className="mb-4 block font-mono text-[.72rem] uppercase tracking-[.12em] text-accent">09 — FAQ</span>
-          <h2 className="font-display text-[clamp(1.8rem,3.6vw,2.7rem)] font-semibold leading-[1.12] tracking-tight">
-            Common questions.
-          </h2>
+          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">10 — FAQ</span>
+          <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">Common questions.</h2>
         </Reveal>
-        <Reveal delay={0.1} className="border-t border-line">
+        <Reveal delay={0.1} className="border-t border-ink/16">
           {FAQS.map((item, i) => (
             <FaqItem key={item.q} item={item} isOpen={open === i} onToggle={() => setOpen(open === i ? -1 : i)} />
           ))}

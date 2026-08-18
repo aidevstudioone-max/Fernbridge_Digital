@@ -12,7 +12,7 @@ const BUSINESS_TYPES = ['Restaurant', 'Retail', 'Professional Services', 'Startu
 const NEEDS = ['Website', 'Web Application', 'AI Solution', 'Automation', 'Dashboard', 'Other']
 
 const inputCls =
-  'w-full rounded-md border border-line bg-ink px-4 py-3 text-[.95rem] text-fg outline-none transition-colors focus:border-accent'
+  'w-full rounded-[10px] border border-ink/18 bg-paper px-[15px] py-3 text-[.95rem] text-ink outline-none transition-colors focus:border-accent'
 
 export default function ContactForm() {
   const [status, setStatus] = useState('idle') // idle | sending | sent | error | unconfigured
@@ -48,30 +48,30 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contact" className="border-b border-line py-24 md:py-28">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-14 px-6 lg:grid-cols-[1fr_1.3fr]">
+    <section id="contact" className="py-0 pb-[104px]">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-[52px] px-7 lg:grid-cols-[1fr_1.3fr]">
         <Reveal>
-          <span className="mb-4 block font-mono text-[.72rem] uppercase tracking-[.12em] text-accent">10 — Contact</span>
-          <h2 className="mb-4 font-display text-[clamp(1.8rem,3.6vw,2.7rem)] font-semibold leading-[1.12] tracking-tight">
+          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">11 — Contact</span>
+          <h2 className="mb-4 max-w-[20ch] font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">
             Want to Improve Your Business Online?
           </h2>
           <p className="mb-8 max-w-[42ch] text-[1.02rem] leading-relaxed text-muted text-pretty">
             Tell us about your business and we'll suggest the right digital solution for you — no obligation.
           </p>
-          <div className="flex flex-col gap-4 font-mono text-[.9rem]">
-            <a href="https://wa.me/919022683699" target="_blank" rel="noopener" className="inline-flex items-center gap-3 transition-colors hover:text-accent">
-              <IconWhatsapp width={18} height={18} /> WhatsApp Us
+          <div className="grid gap-3.5 font-mono text-[.9rem]">
+            <a href="https://wa.me/919022683699" target="_blank" rel="noopener" className="inline-flex min-h-11 items-center gap-3 text-ink transition-colors hover:text-accent">
+              → WhatsApp Us
             </a>
-            <a href="tel:+919022683699" className="inline-flex items-center gap-3 transition-colors hover:text-accent">
-              <IconPhone width={18} height={18} /> Call Us
+            <a href="tel:+919022683699" className="inline-flex min-h-11 items-center gap-3 text-ink transition-colors hover:text-accent">
+              → Call Us
             </a>
-            <a href="mailto:hello@fernbridgedigital.com" className="inline-flex items-center gap-3 transition-colors hover:text-accent">
-              <IconMail width={18} height={18} /> hello@fernbridgedigital.com
+            <a href="mailto:hello@fernbridgedigital.com" className="inline-flex min-h-11 items-center gap-3 text-ink transition-colors hover:text-accent">
+              → hello@fernbridgedigital.com
             </a>
           </div>
         </Reveal>
 
-        <Reveal delay={0.12} className="relative rounded-2xl border border-line bg-panel p-7 md:p-9">
+        <Reveal delay={0.12} className="relative rounded-[20px] border border-ink/12 bg-surface p-7 md:p-8">
           <AnimatePresence mode="wait">
             {status === 'sent' ? (
               <motion.div
@@ -87,25 +87,25 @@ export default function ContactForm() {
                 <p className="max-w-[32ch] text-[.92rem] text-muted">We'll get back to you shortly. You can also reach us on WhatsApp for a faster reply.</p>
               </motion.div>
             ) : (
-              <motion.form key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onSubmit={onSubmit} className="flex flex-col gap-5">
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <motion.form key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onSubmit={onSubmit} className="grid gap-[18px]">
+                <div className="grid grid-cols-1 gap-[18px] sm:grid-cols-2">
                   <div>
                     <label className="mb-1.5 block text-[.85rem] text-muted" htmlFor="name">Name</label>
-                    <input id="name" name="name" type="text" required className={inputCls} />
+                    <input id="name" name="name" type="text" autoComplete="name" required className={inputCls} />
                   </div>
                   <div>
                     <label className="mb-1.5 block text-[.85rem] text-muted" htmlFor="business">Business Name</label>
-                    <input id="business" name="business" type="text" className={inputCls} />
+                    <input id="business" name="business" type="text" autoComplete="organization" className={inputCls} />
                   </div>
                 </div>
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-[18px] sm:grid-cols-2">
                   <div>
                     <label className="mb-1.5 block text-[.85rem] text-muted" htmlFor="phone">Phone / WhatsApp</label>
-                    <input id="phone" name="phone" type="tel" required className={inputCls} />
+                    <input id="phone" name="phone" type="tel" autoComplete="tel" required className={inputCls} />
                   </div>
                   <div>
                     <label className="mb-1.5 block text-[.85rem] text-muted" htmlFor="email">Email</label>
-                    <input id="email" name="email" type="email" required className={inputCls} />
+                    <input id="email" name="email" type="email" autoComplete="email" required className={inputCls} />
                   </div>
                 </div>
                 <div>
@@ -126,8 +126,8 @@ export default function ContactForm() {
                           type="button"
                           key={n}
                           onClick={() => toggleNeed(n)}
-                          className={`rounded-full border px-3.5 py-1.5 text-[.82rem] transition-colors ${
-                            active ? 'border-accent bg-accent/15 text-accent' : 'border-line text-muted hover:border-muted/40'
+                          className={`min-h-10 rounded-full border px-[15px] py-[9px] text-[.82rem] transition-all ${
+                            active ? 'border-accent bg-accent/12 text-accent-dark' : 'border-ink/20 text-muted hover:border-ink/40'
                           }`}
                         >
                           {n}
@@ -138,24 +138,24 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <label className="mb-1.5 block text-[.85rem] text-muted" htmlFor="message">Tell us about your requirement</label>
-                  <textarea id="message" name="message" rows={4} required className={`${inputCls} resize-y`} />
+                  <textarea id="message" name="message" rows={4} required className={`${inputCls} min-h-[110px] resize-y`} />
                 </div>
 
                 <button
                   type="submit"
                   disabled={status === 'sending'}
-                  className="mt-1 rounded-[3px] bg-accent py-3.5 font-bold text-[#140e02] transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+                  className="mt-1 flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent py-[15px] font-bold text-paper transition-colors hover:bg-accent-dark disabled:opacity-60"
                 >
                   {status === 'sending' ? 'Sending…' : 'Request a Free Consultation'}
                 </button>
 
                 {status === 'unconfigured' && (
-                  <p className="text-center text-[.82rem] text-accent">
+                  <p className="text-center text-[.82rem] text-gold">
                     Form not connected yet — add a real Web3Forms access key in ContactForm.jsx before this goes live.
                   </p>
                 )}
                 {status === 'error' && (
-                  <p className="text-center text-[.82rem] text-red-400">Something went wrong — please try WhatsApp or email instead.</p>
+                  <p className="text-center text-[.82rem] text-red-500">Something went wrong — please try WhatsApp or email instead.</p>
                 )}
               </motion.form>
             )}

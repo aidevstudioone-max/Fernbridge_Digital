@@ -2,9 +2,9 @@ import LogoMark from './LogoMark.jsx'
 
 export default function Footer() {
   return (
-    <footer className="py-14">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center">
-        <a href="#top" className="flex items-center gap-[11px] font-display text-[1rem] font-bold text-fg">
+    <footer className="border-t border-ink/12 py-14">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-7 text-center">
+        <a href="#top" className="flex items-center gap-[11px] font-display text-[1.05rem] font-bold text-ink">
           <LogoMark size={24} />
           Fernbridge Digital
         </a>
@@ -12,12 +12,12 @@ export default function Footer() {
           We build professional websites, custom web applications, AI-powered solutions and business automation for startups and growing businesses.
         </p>
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 font-mono text-[.8rem] text-muted">
-          <a href="#services" className="hover:text-fg">Services</a>
-          <a href="#work" className="hover:text-fg">Work</a>
-          <a href="#pricing" className="hover:text-fg">Pricing</a>
-          <a href="#contact" className="hover:text-fg">Contact</a>
+          <a href="#services" className="hover:text-ink">Services</a>
+          <a href="#work" className="hover:text-ink">Work</a>
+          <a href="#pricing" className="hover:text-ink">Pricing</a>
+          <a href="#contact" className="hover:text-ink">Contact</a>
         </div>
-        <p className="mt-4 text-[.76rem] text-muted-dim">© 2026 Fernbridge Digital. All rights reserved.</p>
+        <p className="mt-2 text-[.76rem] text-muted-dim">© {new Date().getFullYear()} Fernbridge Digital. All rights reserved.</p>
       </div>
     </footer>
   )
