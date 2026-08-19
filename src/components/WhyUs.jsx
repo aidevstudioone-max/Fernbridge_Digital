@@ -16,7 +16,7 @@ export default function WhyUs() {
       <div className="mx-auto max-w-6xl px-7">
         <Reveal className="mb-[52px] max-w-[46ch]">
           <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">04 — Why us</span>
-          <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">Why Choose Thikaana?</h2>
+          <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">Why Choose ठिkaana?</h2>
         </Reveal>
 
         <RevealStagger className="grid grid-cols-1 gap-[18px] sm:grid-cols-2 lg:grid-cols-5">

@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-7 text-center">
         <a href="#top" className="flex items-center gap-[11px] font-display text-[1.05rem] font-bold text-ink">
           <LogoMark size={24} />
-          Thikaana
+          ठिkaana
         </a>
         <p className="max-w-[52ch] text-[.86rem] leading-relaxed text-muted">
           We build professional websites, custom web applications, AI-powered solutions and business automation for startups and growing businesses.
@@ -17,7 +17,7 @@ export default function Footer() {
           <a href="#pricing" className="hover:text-ink">Pricing</a>
           <a href="#contact" className="hover:text-ink">Contact</a>
         </div>
-        <p className="mt-2 text-[.76rem] text-muted-dim">© {new Date().getFullYear()} Thikaana. All rights reserved.</p>
+        <p className="mt-2 text-[.76rem] text-muted-dim">© {new Date().getFullYear()} ठिkaana. All rights reserved.</p>
       </div>
     </footer>
   )

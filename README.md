@@ -1,4 +1,4 @@
-# Thikaana — marketing site
+# ठिkaana — marketing site
 
 Single-page React site (Vite + Tailwind v4).
 

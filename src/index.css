@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Bricolage Grotesque", sans-serif;
+  /* Devanagari falls back per-glyph: only the ठि in the wordmark uses Noto. */
+  --font-display: "Bricolage Grotesque", "Noto Sans Devanagari", sans-serif;
   --font-sans: "Instrument Sans", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
 
