@@ -13,6 +13,8 @@ const PRODUCTS = [
   { name: 'Staffly', url: 'https://aidevstudioone-max.github.io/Staffly/', host: 'aidevstudioone-max.github.io/Staffly/', desc: 'Employee management — directory, attendance, and leave requests in one dashboard.' },
   { name: 'Orderly', url: 'https://aidevstudioone-max.github.io/Orderly/', host: 'aidevstudioone-max.github.io/Orderly/', desc: 'Restaurant point of sale — billing, tables, reservations, and daily reports in one dashboard.' },
   { name: 'Fernbridge Commerce AI', url: 'https://aidevstudioone-max.github.io/commerce-ai/', host: 'aidevstudioone-max.github.io/commerce-ai/', desc: 'AI-powered product listing tool — generates optimized titles & descriptions and scores every listing, alongside sales, review and health analytics.' },
+  { name: 'Sri Ram Gift Emporium', url: 'https://aidevstudioone-max.github.io/shree_gift_hub/', host: 'aidevstudioone-max.github.io/shree_gift_hub/', desc: 'Gift & home décor retailer — collections, store story, visit planning and reviews for a Mughalsarai storefront.' },
+  { name: 'Shibpur Hindu Girls High School', url: 'https://aidevstudioone-max.github.io/ShibpurHinduGirlsHighSchool/', host: 'aidevstudioone-max.github.io/ShibpurHinduGirlsHighSchool/', desc: 'School information site — about, school life, facilities and contact with maps and directions for a Howrah institution.' },
 ]
 
 function Card({ item, indigo }) {
