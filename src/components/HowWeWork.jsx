@@ -15,7 +15,7 @@ export default function HowWeWork() {
     <section id="how-we-work" className="bg-paper-alt py-[104px]">
       <div className="mx-auto max-w-6xl px-7">
         <Reveal className="mb-[52px] max-w-[26ch]">
-          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">06 — How we work</span>
+          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">07 — How we work</span>
           <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">
             From first call to a site that runs itself.
           </h2>

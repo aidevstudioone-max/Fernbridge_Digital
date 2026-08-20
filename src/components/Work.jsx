@@ -6,6 +6,8 @@ const CLIENTS = [
   { name: 'Apoorva Auto Parts', url: 'https://aidevstudioone-max.github.io/apoorva-auto-parts-site/', host: 'aidevstudioone-max.github.io/apoorva-auto-parts-site/', desc: 'Auto parts supplier — catalogue, coverage, and a direct enquiry line.', chips: ['Catalogue', 'Coverage area', 'Enquiries'] },
   { name: 'Hangout Cafe', url: 'https://aidevstudioone-max.github.io/hangout-cafe/', host: 'aidevstudioone-max.github.io/hangout-cafe/', desc: 'Cafe & restaurant site — menu, location, and veg / non-veg dine-in details.', chips: ['Menu', 'Location', 'Dine-in info'] },
   { name: 'Srima Diagnostic & Medical', url: 'https://aidevstudioone-max.github.io/Srima/', host: 'aidevstudioone-max.github.io/Srima/', desc: 'Diagnostic centre & pharmacy — testing, reports, and prescription counsel.', chips: ['Test listings', 'Reports', 'Pharmacy'] },
+  { name: 'Sri Ram Gift Emporium', url: 'https://aidevstudioone-max.github.io/shree_gift_hub/', host: 'aidevstudioone-max.github.io/shree_gift_hub/', desc: 'Gift & home décor retailer — collections, store story, and visit planning for a Mughalsarai storefront.', chips: ['Collections', 'Store story', 'Visit info'] },
+  { name: 'Shibpur Hindu Girls High School', url: 'https://aidevstudioone-max.github.io/ShibpurHinduGirlsHighSchool/', host: 'aidevstudioone-max.github.io/ShibpurHinduGirlsHighSchool/', desc: 'School information site — about, school life, facilities, and contact with maps and directions.', chips: ['About', 'School life', 'Directions'] },
 ]
 
 const PRODUCTS = [
@@ -13,8 +15,6 @@ const PRODUCTS = [
   { name: 'Staffly', url: 'https://aidevstudioone-max.github.io/Staffly/', host: 'aidevstudioone-max.github.io/Staffly/', desc: 'Employee management — directory, attendance, and leave requests in one dashboard.' },
   { name: 'Orderly', url: 'https://aidevstudioone-max.github.io/Orderly/', host: 'aidevstudioone-max.github.io/Orderly/', desc: 'Restaurant point of sale — billing, tables, reservations, and daily reports in one dashboard.' },
   { name: 'Fernbridge Commerce AI', url: 'https://aidevstudioone-max.github.io/commerce-ai/', host: 'aidevstudioone-max.github.io/commerce-ai/', desc: 'AI-powered product listing tool — generates optimized titles & descriptions and scores every listing, alongside sales, review and health analytics.' },
-  { name: 'Sri Ram Gift Emporium', url: 'https://aidevstudioone-max.github.io/shree_gift_hub/', host: 'aidevstudioone-max.github.io/shree_gift_hub/', desc: 'Gift & home décor retailer — collections, store story, visit planning and reviews for a Mughalsarai storefront.' },
-  { name: 'Shibpur Hindu Girls High School', url: 'https://aidevstudioone-max.github.io/ShibpurHinduGirlsHighSchool/', host: 'aidevstudioone-max.github.io/ShibpurHinduGirlsHighSchool/', desc: 'School information site — about, school life, facilities and contact with maps and directions for a Howrah institution.' },
 ]
 
 function Card({ item, indigo }) {
@@ -66,34 +66,46 @@ function Card({ item, indigo }) {
 
 export default function Work() {
   return (
-    <section id="work" className="py-[104px]">
-      <div className="mx-auto max-w-6xl px-7">
-        <Reveal className="mb-[52px] max-w-[52ch]">
-          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">05 — Our work</span>
-          <h2 className="mb-4 max-w-[26ch] font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">
-            Sites we build and look after, and products we sell.
-          </h2>
-          <p className="max-w-[56ch] text-[1.02rem] leading-relaxed text-muted">
-            Every client project below is live and under an active care plan. Every product below is running — try it yourself.
-          </p>
-        </Reveal>
+    <>
+      <section id="work" className="py-[104px]">
+        <div className="mx-auto max-w-6xl px-7">
+          <Reveal className="mb-[52px] max-w-[52ch]">
+            <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">05 — Sites we build and maintain</span>
+            <h2 className="mb-4 max-w-[26ch] font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">
+              Sites we build and look after.
+            </h2>
+            <p className="max-w-[56ch] text-[1.02rem] leading-relaxed text-muted">
+              Every client project below is live and under an active care plan.
+            </p>
+          </Reveal>
 
-        <RevealStagger className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {CLIENTS.map((c) => (
-            <Card key={c.name} item={c} />
-          ))}
-        </RevealStagger>
+          <RevealStagger className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {CLIENTS.map((c) => (
+              <Card key={c.name} item={c} />
+            ))}
+          </RevealStagger>
+        </div>
+      </section>
 
-        <Reveal className="mb-6 mt-16">
-          <span className="mb-3 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">Products we've built</span>
-          <h3 className="font-display text-[1.5rem] font-semibold tracking-tight">Software we've built — and sell.</h3>
-        </Reveal>
-        <RevealStagger className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {PRODUCTS.map((p) => (
-            <Card key={p.name} item={p} indigo />
-          ))}
-        </RevealStagger>
-      </div>
-    </section>
+      <section id="products" className="py-[104px]">
+        <div className="mx-auto max-w-6xl px-7">
+          <Reveal className="mb-[52px] max-w-[52ch]">
+            <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">06 — Products we sell</span>
+            <h2 className="mb-4 max-w-[26ch] font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">
+              Software we've built — and sell.
+            </h2>
+            <p className="max-w-[56ch] text-[1.02rem] leading-relaxed text-muted">
+              Every product below is running — try it yourself.
+            </p>
+          </Reveal>
+
+          <RevealStagger className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {PRODUCTS.map((p) => (
+              <Card key={p.name} item={p} indigo />
+            ))}
+          </RevealStagger>
+        </div>
+      </section>
+    </>
   )
 }

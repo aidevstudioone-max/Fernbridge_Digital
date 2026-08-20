@@ -44,7 +44,7 @@ export default function FAQ() {
     <section id="faq" className="bg-paper-alt py-[104px]">
       <div className="mx-auto max-w-[820px] px-7">
         <Reveal className="mb-10">
-          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">10 — FAQ</span>
+          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">11 — FAQ</span>
           <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">Common questions.</h2>
         </Reveal>
         <Reveal delay={0.1} className="border-t border-ink/16">

@@ -53,7 +53,7 @@ export default function ContactForm() {
     <section id="contact" className="py-0 pb-[104px]">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-[52px] px-7 lg:grid-cols-[1fr_1.3fr]">
         <Reveal>
-          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">11 — Contact</span>
+          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">12 — Contact</span>
           <h2 className="mb-4 max-w-[20ch] font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">
             Want to Improve Your Business Online?
           </h2>

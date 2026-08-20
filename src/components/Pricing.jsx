@@ -37,7 +37,7 @@ export default function Pricing() {
     <section id="pricing" className="py-[104px]">
       <div className="mx-auto max-w-6xl px-7">
         <Reveal className="mb-4 max-w-[26ch]">
-          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">09 — Pricing</span>
+          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">10 — Pricing</span>
           <h2 className="mb-4 font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">
             Simple pricing, built around care.
           </h2>

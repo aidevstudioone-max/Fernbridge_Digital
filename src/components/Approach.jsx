@@ -26,7 +26,7 @@ export default function Approach() {
     <section id="approach" className="bg-paper-alt py-[104px]">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-[52px] px-7 lg:grid-cols-2">
         <Reveal>
-          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">08 — Our approach</span>
+          <span className="mb-3.5 block font-mono text-[.72rem] uppercase tracking-[.12em] text-gold">09 — Our approach</span>
           <h2 className="mb-4 max-w-[24ch] font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.1] tracking-tight">
             A website that is actually looked after.
           </h2>
