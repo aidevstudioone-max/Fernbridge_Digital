@@ -1,20 +1,31 @@
 import { motion } from 'framer-motion'
 import Reveal, { RevealStagger, staggerItem } from './Reveal.jsx'
 
+import pavMantraShot from '../assets/previews/pav-mantra.webp'
+import apoorvaShot from '../assets/previews/apoorva.webp'
+import hangoutShot from '../assets/previews/hangout-cafe.webp'
+import srimaShot from '../assets/previews/srima.webp'
+import shreeGiftShot from '../assets/previews/shree-gift.webp'
+import shibpurShot from '../assets/previews/shibpur-school.webp'
+import roomlyShot from '../assets/previews/roomly.webp'
+import stafflyShot from '../assets/previews/staffly.webp'
+import orderlyShot from '../assets/previews/orderly.webp'
+import commerceAiShot from '../assets/previews/commerce-ai.webp'
+
 const CLIENTS = [
-  { name: 'Pav Mantra', url: 'https://aidevstudioone-max.github.io/pav-mantra-site/', host: 'aidevstudioone-max.github.io/pav-mantra-site/', desc: 'Food brand site — menu, story, and ordering enquiries in one place.', chips: ['Menu', 'Brand story', 'Enquiries'] },
-  { name: 'Apoorva Auto Parts', url: 'https://aidevstudioone-max.github.io/apoorva-auto-parts-site/', host: 'aidevstudioone-max.github.io/apoorva-auto-parts-site/', desc: 'Auto parts supplier — catalogue, coverage, and a direct enquiry line.', chips: ['Catalogue', 'Coverage area', 'Enquiries'] },
-  { name: 'Hangout Cafe', url: 'https://aidevstudioone-max.github.io/hangout-cafe/', host: 'aidevstudioone-max.github.io/hangout-cafe/', desc: 'Cafe & restaurant site — menu, location, and veg / non-veg dine-in details.', chips: ['Menu', 'Location', 'Dine-in info'] },
-  { name: 'Srima Diagnostic & Medical', url: 'https://aidevstudioone-max.github.io/Srima/', host: 'aidevstudioone-max.github.io/Srima/', desc: 'Diagnostic centre & pharmacy — testing, reports, and prescription counsel.', chips: ['Test listings', 'Reports', 'Pharmacy'] },
-  { name: 'Sri Ram Gift Emporium', url: 'https://aidevstudioone-max.github.io/shree_gift_hub/', host: 'aidevstudioone-max.github.io/shree_gift_hub/', desc: 'Gift & home décor retailer — collections, store story, and visit planning for a Mughalsarai storefront.', chips: ['Collections', 'Store story', 'Visit info'] },
-  { name: 'Shibpur Hindu Girls High School', url: 'https://aidevstudioone-max.github.io/ShibpurHinduGirlsHighSchool/', host: 'aidevstudioone-max.github.io/ShibpurHinduGirlsHighSchool/', desc: 'School information site — about, school life, facilities, and contact with maps and directions.', chips: ['About', 'School life', 'Directions'] },
+  { name: 'Pav Mantra', shot: pavMantraShot, url: 'https://aidevstudioone-max.github.io/pav-mantra-site/', host: 'aidevstudioone-max.github.io/pav-mantra-site/', desc: 'Food brand site — menu, story, and ordering enquiries in one place.', chips: ['Menu', 'Brand story', 'Enquiries'] },
+  { name: 'Apoorva Auto Parts', shot: apoorvaShot, url: 'https://aidevstudioone-max.github.io/apoorva-auto-parts-site/', host: 'aidevstudioone-max.github.io/apoorva-auto-parts-site/', desc: 'Auto parts supplier — catalogue, coverage, and a direct enquiry line.', chips: ['Catalogue', 'Coverage area', 'Enquiries'] },
+  { name: 'Hangout Cafe', shot: hangoutShot, url: 'https://aidevstudioone-max.github.io/hangout-cafe/', host: 'aidevstudioone-max.github.io/hangout-cafe/', desc: 'Cafe & restaurant site — menu, location, and veg / non-veg dine-in details.', chips: ['Menu', 'Location', 'Dine-in info'] },
+  { name: 'Srima Diagnostic & Medical', shot: srimaShot, url: 'https://aidevstudioone-max.github.io/Srima/', host: 'aidevstudioone-max.github.io/Srima/', desc: 'Diagnostic centre & pharmacy — testing, reports, and prescription counsel.', chips: ['Test listings', 'Reports', 'Pharmacy'] },
+  { name: 'Sri Ram Gift Emporium', shot: shreeGiftShot, url: 'https://aidevstudioone-max.github.io/shree_gift_hub/', host: 'aidevstudioone-max.github.io/shree_gift_hub/', desc: 'Gift & home décor retailer — collections, store story, and visit planning for a Mughalsarai storefront.', chips: ['Collections', 'Store story', 'Visit info'] },
+  { name: 'Shibpur Hindu Girls High School', shot: shibpurShot, url: 'https://aidevstudioone-max.github.io/ShibpurHinduGirlsHighSchool/', host: 'aidevstudioone-max.github.io/ShibpurHinduGirlsHighSchool/', desc: 'School information site — about, school life, facilities, and contact with maps and directions.', chips: ['About', 'School life', 'Directions'] },
 ]
 
 const PRODUCTS = [
-  { name: 'Roomly', url: 'https://aidevstudioone-max.github.io/Roomly/', host: 'aidevstudioone-max.github.io/Roomly/', desc: 'Hotel room booking & management — real-time availability, instant bookings, occupancy dashboard.' },
-  { name: 'Staffly', url: 'https://aidevstudioone-max.github.io/Staffly/', host: 'aidevstudioone-max.github.io/Staffly/', desc: 'Employee management — directory, attendance, and leave requests in one dashboard.' },
-  { name: 'Orderly', url: 'https://aidevstudioone-max.github.io/Orderly/', host: 'aidevstudioone-max.github.io/Orderly/', desc: 'Restaurant point of sale — billing, tables, reservations, and daily reports in one dashboard.' },
-  { name: 'Fernbridge Commerce AI', url: 'https://aidevstudioone-max.github.io/commerce-ai/', host: 'aidevstudioone-max.github.io/commerce-ai/', desc: 'AI-powered product listing tool — generates optimized titles & descriptions and scores every listing, alongside sales, review and health analytics.' },
+  { name: 'Roomly', shot: roomlyShot, url: 'https://aidevstudioone-max.github.io/Roomly/', host: 'aidevstudioone-max.github.io/Roomly/', desc: 'Hotel room booking & management — real-time availability, instant bookings, occupancy dashboard.' },
+  { name: 'Staffly', shot: stafflyShot, url: 'https://aidevstudioone-max.github.io/Staffly/', host: 'aidevstudioone-max.github.io/Staffly/', desc: 'Employee management — directory, attendance, and leave requests in one dashboard.' },
+  { name: 'Orderly', shot: orderlyShot, url: 'https://aidevstudioone-max.github.io/Orderly/', host: 'aidevstudioone-max.github.io/Orderly/', desc: 'Restaurant point of sale — billing, tables, reservations, and daily reports in one dashboard.' },
+  { name: 'Fernbridge Commerce AI', shot: commerceAiShot, url: 'https://aidevstudioone-max.github.io/commerce-ai/', host: 'aidevstudioone-max.github.io/commerce-ai/', desc: 'AI-powered product listing tool — generates optimized titles & descriptions and scores every listing, alongside sales, review and health analytics.' },
 ]
 
 function Card({ item, indigo }) {
@@ -30,17 +41,21 @@ function Card({ item, indigo }) {
       }`}
     >
       <div
-        className="relative h-[150px] overflow-hidden border-b border-ink/10 p-4"
+        className="relative aspect-[16/10] overflow-hidden border-b border-ink/10"
         style={{ background: indigo ? 'linear-gradient(135deg, #2A2670 0%, #16150E 90%)' : 'linear-gradient(135deg, #1D5C3C 0%, #16150E 90%)' }}
       >
-        <div className="mb-3 h-[18px] rounded bg-paper/12" />
-        <div
-          className="mb-2.5 h-[30px] rounded"
-          style={{ width: indigo ? '58%' : '62%', background: indigo ? 'linear-gradient(90deg, rgba(139,132,245,.6), rgba(139,132,245,.08))' : 'linear-gradient(90deg, rgba(196,136,26,.55), rgba(196,136,26,.08))' }}
+        <img
+          src={item.shot}
+          alt={`${item.name} homepage`}
+          width={800}
+          height={500}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover object-top"
         />
-        <div className="mb-[7px] h-2 rounded-sm bg-paper/14" style={{ width: indigo ? '82%' : '86%' }} />
-        <div className="h-2 rounded-sm bg-paper/14" style={{ width: indigo ? '58%' : '64%' }} />
-        <span className="absolute bottom-2.5 left-4 font-mono text-[.64rem] text-paper/80">{item.host}</span>
+        <span className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/80 to-transparent px-4 pb-2.5 pt-8 font-mono text-[.64rem] text-paper/90">
+          {item.host}
+        </span>
       </div>
       <div className="p-6">
         <span className={`mb-2.5 inline-flex items-center gap-2 font-mono text-[.66rem] uppercase tracking-[.08em] ${indigo ? 'text-indigo' : 'text-accent'}`}>
