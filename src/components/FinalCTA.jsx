@@ -39,7 +39,7 @@ export default function FinalCTA() {
             <a href="tel:+919022683699" className="inline-flex items-center gap-2 transition-colors hover:text-dark-fg">
               <IconPhone width={16} height={16} /> Call
             </a>
-            <a href="mailto:hello@thikaana.com" className="inline-flex items-center gap-2 transition-colors hover:text-dark-fg">
+            <a href="mailto:support@thikaana.co" className="inline-flex items-center gap-2 transition-colors hover:text-dark-fg">
               <IconMail width={16} height={16} /> Email
             </a>
           </div>

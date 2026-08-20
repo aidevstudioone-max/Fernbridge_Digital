@@ -65,8 +65,8 @@ export default function ContactForm() {
             <a href="tel:+919022683699" className="inline-flex min-h-11 items-center gap-3 text-ink transition-colors hover:text-accent">
               → Call Us
             </a>
-            <a href="mailto:hello@thikaana.com" className="inline-flex min-h-11 items-center gap-3 text-ink transition-colors hover:text-accent">
-              → hello@thikaana.com
+            <a href="mailto:support@thikaana.co" className="inline-flex min-h-11 items-center gap-3 text-ink transition-colors hover:text-accent">
+              → support@thikaana.co
             </a>
           </div>
         </Reveal>
