@@ -6,10 +6,10 @@ import bhuvaneshPhoto from '../assets/team/bhuvanesh.jpg'
 import chandanPhoto from '../assets/team/chandan.jpg'
 
 const TEAM = [
-  { name: 'Ankit Prakash', role: 'Operations & Data', bio: '11 years in operations and data across Yext and Amazon. Builds the dashboards and automation behind the scenes.', color: '#1D5C3C', photo: ankitPhoto },
-  { name: 'Irfan Azmi', role: 'Client Success', bio: '8+ years across Amazon, HSBC, and Foundever. Owns client communication and the numbers behind it.', color: '#C4881A', photo: irfanPhoto },
-  { name: 'Bhuvanesh Meethal', role: 'Delivery', bio: '5 years in finance and healthcare operations with a 98%+ client satisfaction record. Keeps delivery on schedule.', color: '#4F46E5', photo: bhuvaneshPhoto },
-  { name: 'Chandan Jha', role: 'Engineering Lead', bio: '10+ years building Ruby on Rails platforms across Munich, Stuttgart, and Bengaluru. Leads the build — first line of code to what ships in production.', color: '#16150E', photo: chandanPhoto },
+  { name: 'Ankit Prakash', role: 'Founder', bio: '11 years in operations and data across Yext and Amazon. Builds the dashboards and automation behind the scenes.', color: '#1D5C3C', photo: ankitPhoto },
+  { name: 'Irfan Azmi', role: 'Director – Customer Success', bio: '8+ years across Amazon, HSBC, and Foundever. Owns client communication and the numbers behind it.', color: '#C4881A', photo: irfanPhoto },
+  { name: 'Bhuvanesh Meethal', role: 'Director – Client Relations', bio: '5 years in finance and healthcare operations with a 98%+ client satisfaction record. Keeps delivery on schedule.', color: '#4F46E5', photo: bhuvaneshPhoto },
+  { name: 'Chandan Jha', role: 'Chief Technology Officer', bio: '10+ years building Ruby on Rails platforms across Munich, Stuttgart, and Bengaluru. Leads the build — first line of code to what ships in production.', color: '#16150E', photo: chandanPhoto },
 ]
 
 function initials(name) {
