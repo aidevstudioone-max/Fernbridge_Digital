@@ -5,7 +5,8 @@ import Reveal from './Reveal.jsx'
 import successCheck from '../lottie/success-check.json'
 import { IconWhatsapp, IconPhone, IconMail } from './Icons.jsx'
 
-const WEB3FORMS_KEY = 'fdfb11bc-7730-4553-8e45-d661c0e86318'
+// Bound to support@thikaana.co — the key is the delivery address.
+const WEB3FORMS_KEY = '304a7442-2694-4a4e-81c6-4bedd4cce531'
 const FORM_ENDPOINT = 'https://api.web3forms.com/submit'
 
 const BUSINESS_TYPES = ['Restaurant', 'Retail', 'Professional Services', 'Startup', 'Real Estate', 'Other']
@@ -31,6 +32,7 @@ export default function ContactForm() {
     const data = new FormData(form)
     data.append('access_key', WEB3FORMS_KEY)
     data.append('what_they_need', needs.join(', '))
+    data.append('replyto', data.get('email') || '')
     data.append('subject', `New enquiry from ${data.get('name') || 'website visitor'}`)
     try {
       const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: data })
