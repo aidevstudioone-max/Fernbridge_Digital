@@ -83,9 +83,9 @@ export const CLIENTS = [
 ]
 
 export const PRODUCTS = [
-  { name: 'Roomly', shot: roomlyShot, url: 'https://aidevstudioone-max.github.io/Roomly/', host: 'Roomly', desc: 'Hotel room booking & management — real-time availability, instant bookings, occupancy dashboard.' },
-  { name: 'Staffly', shot: stafflyShot, url: 'https://aidevstudioone-max.github.io/Staffly/', host: 'Staffly', desc: 'Employee management — directory, attendance, and leave requests in one dashboard.' },
-  { name: 'Orderly', shot: orderlyShot, url: 'https://aidevstudioone-max.github.io/Orderly/', host: 'Orderly', desc: 'Restaurant point of sale — billing, tables, reservations, and daily reports in one dashboard.' },
+  { name: 'Stayloop', shot: roomlyShot, url: 'https://aidevstudioone-max.github.io/Roomly/', host: 'Stayloop', desc: 'Hotel room booking & management — real-time availability, instant bookings, occupancy dashboard.' },
+  { name: 'Teamloom', shot: stafflyShot, url: 'https://aidevstudioone-max.github.io/Staffly/', host: 'Teamloom', desc: 'Employee management — directory, attendance, and leave requests in one dashboard.' },
+  { name: 'Servemint', shot: orderlyShot, url: 'https://aidevstudioone-max.github.io/Orderly/', host: 'Servemint', desc: 'Restaurant point of sale — billing, tables, reservations, and daily reports in one dashboard.' },
   { name: 'Fernbridge Commerce AI', shot: commerceAiShot, url: 'https://aidevstudioone-max.github.io/commerce-ai/', host: 'commerce-ai', desc: 'AI-powered product listing tool — generates optimised titles & descriptions and scores every listing.' },
 ]
 
