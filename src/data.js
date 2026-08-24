@@ -29,7 +29,7 @@ export const NAV = [
 ]
 
 export const STATS = [
-  { label: 'Team experience', value: '24+', unit: 'yrs' },
+  { label: 'Team experience', value: '34+', unit: 'yrs' },
   { label: 'Uptime we hold', value: '99.9', unit: '%' },
   { label: 'Live client sites', value: '6', unit: '' },
   { label: 'Products we built', value: '6', unit: '' },

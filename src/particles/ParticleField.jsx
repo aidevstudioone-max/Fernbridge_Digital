@@ -90,12 +90,12 @@ function pickColor(r) {
   return new THREE.Color(PALETTE[0][0])
 }
 
-export default function ParticleField({ count = 42000, formation = 0, pointerForce = 0.55, pointSize = 1, shiftX = 1.6, faceFront = false }) {
+export default function ParticleField({ count = 42000, formation = 0, pointerForce = 0.55, pointSize = 1, shiftX = 1.6, faceFront = false, rebuildKey = '' }) {
   const points = useRef()
   const mat = useRef()
   const { viewport } = useThree()
 
-  const targets = useMemo(() => FORMATIONS.map((f) => f.build(count)), [count])
+  const targets = useMemo(() => FORMATIONS.map((f) => f.build(count)), [count, rebuildKey])
 
   const geo = useMemo(() => {
     const g = new THREE.BufferGeometry()
@@ -147,6 +147,15 @@ export default function ParticleField({ count = 42000, formation = 0, pointerFor
     s.morph = 0
     uniforms.uMorph.value = 0
   }, [formation, geo, targets, uniforms])
+
+  // when the logo finishes decoding, swap whatever is showing for the new cloud
+  useEffect(() => {
+    const s = state.current
+    geo.attributes.aPos.array.set(targets[s.shown])
+    geo.attributes.bPos.array.set(targets[s.shown])
+    geo.attributes.aPos.needsUpdate = true
+    geo.attributes.bPos.needsUpdate = true
+  }, [targets, geo])
 
   useEffect(() => { uniforms.uMouseForce.value = pointerForce }, [pointerForce, uniforms])
   useEffect(() => { uniforms.uSize.value = pointSize }, [pointSize, uniforms])

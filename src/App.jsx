@@ -94,7 +94,7 @@ function Nav() {
     <header className={`nav ${stuck ? 'stuck' : ''}`}>
       <div className="wrap nav-in">
         <a href="#top" className="brand">
-          <span className="brand-mark"><img src={logoIcon} alt="" /></span>
+          <span className="brand-logo" style={{ "--logo": `url(${logoIcon})` }} aria-hidden="true"><span className="brand-mark" /></span>
           ठिkaana
         </a>
         <nav className="nav-links">
@@ -334,27 +334,9 @@ function WhyUs() {
   )
 }
 
-function WorkCard({ item, i, interactive3d }) {
-  const ref = useRef(null)
-
-  function handleMove(e) {
-    const el = ref.current
-    const r = el.getBoundingClientRect()
-    const px = (e.clientX - r.left) / r.width - 0.5
-    const py = (e.clientY - r.top) / r.height - 0.5
-    const rx = (-py * 10).toFixed(2)
-    const ry = (px * 10).toFixed(2)
-    el.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px) scale(1.02)`
-    el.style.boxShadow = `${(-px * 26).toFixed(0)}px ${(22 - py * 12).toFixed(0)}px 40px -16px rgba(0,0,0,0.55)`
-  }
-  function handleLeave() {
-    const el = ref.current
-    el.style.transform = ''
-    el.style.boxShadow = ''
-  }
-
-  const body = (
-    <>
+function WorkCard({ item, i }) {
+  return (
+    <Rv as="a" className="card" href={item.url} target="_blank" rel="noopener" delay={i * 60}>
       <div className="shot">
         <img src={item.shot} alt={`${item.name} homepage`} loading="lazy" width={800} height={500} />
         <span className="host">{item.host}</span>
@@ -364,100 +346,119 @@ function WorkCard({ item, i, interactive3d }) {
       <p>{item.desc}</p>
       {item.chips && <div className="chips">{item.chips.map((c) => <span key={c}>{c}</span>)}</div>}
       <span className="visit">Visit site <i>→</i></span>
-    </>
-  )
-
-  if (interactive3d) {
-    return (
-      <Rv as="div" className="card-3d-outer" delay={i * 60}>
-        <a ref={ref} className="card card-3d" href={item.url} target="_blank" rel="noopener"
-          onMouseMove={handleMove} onMouseLeave={handleLeave}>
-          {body}
-        </a>
-      </Rv>
-    )
-  }
-
-  return (
-    <Rv as="a" className="card" href={item.url} target="_blank" rel="noopener" delay={i * 60}>
-      {body}
     </Rv>
   )
 }
 
-const CAROUSEL_INTERVAL_MS = 3000
+const STRIP_MS = 4200
 
-function Carousel({ items, sectionId, tint, n: sectionNum, kicker, title, lede, navLabel }) {
-  const firstCardRef = useRef(null)
-  const count = items.length
-  const trackItems = [...items, ...items, ...items]
-  const [pos, setPos] = useState(count)
-  const [instant, setInstant] = useState(false)
+/**
+ * A set of sites in one fixed-height band instead of a multi-row grid.
+ * The active panel expands to show the screenshot and detail; the rest
+ * collapse to a spine. Advances on its own, pauses whenever the visitor is
+ * actually looking at it (hover / keyboard focus), and can be pinned by click.
+ */
+function Strip({ items, badge = 'Live', indigo = false }) {
+  const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
-  const [step, setStep] = useState(400)
+  const [pinned, setPinned] = useState(false)
+  const [visible, setVisible] = useState(false)
+  const ref = useRef(null)
+  const narrow = useIsNarrow(820)
 
+  // don't run the timer while the section is off screen
   useEffect(() => {
-    function measure() {
-      if (firstCardRef.current) setStep(firstCardRef.current.getBoundingClientRect().width + 20)
-    }
-    measure()
-    window.addEventListener('resize', measure)
-    return () => window.removeEventListener('resize', measure)
+    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.2 })
+    if (ref.current) io.observe(ref.current)
+    return () => io.disconnect()
   }, [])
 
-  function go(dir) {
-    setPos((p) => p + dir)
+  const running = visible && !paused && !pinned && !narrow
+  useEffect(() => {
+    if (!running) return
+    const id = setInterval(() => setActive((i) => (i + 1) % items.length), STRIP_MS)
+    return () => clearInterval(id)
+  }, [running, items.length])
+
+  // keep the active index valid if the item list ever changes length
+  useEffect(() => { setActive((i) => (i < items.length ? i : 0)) }, [items.length])
+
+  if (narrow) {
+    return (
+      <div className="rail" ref={ref}>
+        {items.map((c, i) => <WorkCard item={c} i={i} key={c.name} />)}
+      </div>
+    )
   }
 
-  useEffect(() => {
-    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const id = setInterval(() => setPos((p) => p + 1), CAROUSEL_INTERVAL_MS)
-    return () => clearInterval(id)
-  }, [paused])
+  return (
+    <div
+      className={`strip ${indigo ? 'strip-indigo' : ''}`}
+      ref={ref}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {items.map((c, i) => {
+        const on = i === active
+        return (
+          <button
+            key={c.name}
+            className={`panel ${on ? 'on' : ''}`}
+            aria-expanded={on}
+            onMouseEnter={() => setActive(i)}
+            onFocus={() => { setActive(i); setPaused(true) }}
+            onBlur={() => setPaused(false)}
+            onClick={() => (on ? setPinned((x) => !x) : setActive(i))}
+          >
+            <img src={c.shot} alt="" loading="lazy" width={800} height={500} />
+            <span className="scrim" />
 
-  useEffect(() => {
-    if (!instant) return
-    const id = setTimeout(() => setInstant(false), 20)
-    return () => clearTimeout(id)
-  }, [instant])
+            <span className="spine">
+              <b>{String(i + 1).padStart(2, '0')}</b>
+              <em>{c.name}</em>
+            </span>
 
-  useEffect(() => {
-    if (pos > 0 && pos < 2 * count) return
-    const id = setTimeout(() => {
-      setInstant(true)
-      setPos((p) => (p >= 2 * count ? p - count : p + count))
-    }, 720)
-    return () => clearTimeout(id)
-  }, [pos, count])
+            <span className="detail">
+              <span className="live"><i />{badge}</span>
+              <h3>{c.name}</h3>
+              <p>{c.desc}</p>
+              {c.chips && <span className="chips">{c.chips.map((x) => <span key={x}>{x}</span>)}</span>}
+              <a href={c.url} target="_blank" rel="noopener" className="visit" onClick={(e) => e.stopPropagation()}>
+                Visit site <i>→</i>
+              </a>
+              {/* Mounts only once this panel is the active one, so the bar
+                  restarts from zero on every advance instead of having run to
+                  completion back when all panels first rendered. Holding the
+                  cycle freezes it mid-fill rather than hiding it. */}
+              {on && (
+                <span
+                  className="tick"
+                  style={{
+                    animationDuration: `${STRIP_MS}ms`,
+                    animationPlayState: running ? 'running' : 'paused',
+                  }}
+                />
+              )}
+            </span>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
 
+function StripSection({ items, sectionId, tint, n, kicker, title, lede, hint, badge, indigo }) {
+  const narrow = useIsNarrow(820)
   return (
     <section id={sectionId} className={tint ? 'tint' : undefined}>
       <div className="wrap">
-        <div className="sec-head-row">
-          <SecHead n={sectionNum} kicker={kicker} title={title} lede={lede} />
-          <div className="carousel-nav">
-            <button type="button" aria-label={`Previous ${navLabel}`} onClick={() => go(-1)}><Chevron style={{ transform: 'rotate(90deg)' }} /></button>
-            <button type="button" aria-label={`Next ${navLabel}`} onClick={() => go(1)}><Chevron style={{ transform: 'rotate(-90deg)' }} /></button>
-          </div>
-        </div>
-        <div
-          className="carousel-viewport"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onTouchStart={() => setPaused(true)}
-          onTouchEnd={() => setPaused(false)}
-        >
-          <div
-            className="carousel-track"
-            style={{ transform: `translateX(-${pos * step}px)`, transition: instant ? 'none' : undefined }}
-          >
-            {trackItems.map((p, i) => (
-              <div className="carousel-slide" ref={i === 0 ? firstCardRef : null} key={p.name + '-' + i}>
-                <WorkCard item={p} i={i} interactive3d />
-              </div>
-            ))}
-          </div>
-        </div>
+        <SecHead
+          n={n}
+          kicker={kicker}
+          title={title}
+          lede={`${lede} ${narrow ? 'Swipe to browse.' : hint}`}
+        />
+        <Strip items={items} badge={badge} indigo={indigo} />
       </div>
     </section>
   )
@@ -465,29 +466,31 @@ function Carousel({ items, sectionId, tint, n: sectionNum, kicker, title, lede, 
 
 function Work() {
   return (
-    <Carousel
+    <StripSection
       items={D.CLIENTS}
       sectionId="work"
       n="05"
       kicker="Sites we build and maintain"
       title="Sites we build and look after."
       lede="Every client project below is live and under an active care plan."
-      navLabel="site"
+      hint="Hover to hold, click to pin."
     />
   )
 }
 
 function Products() {
   return (
-    <Carousel
+    <StripSection
       items={D.PRODUCTS}
       sectionId="products"
       tint
       n="06"
       kicker="Products we sell"
-      title="Software we've built — and sell."
-      lede="Every product below is running — try it yourself."
-      navLabel="product"
+      title="Products we've built — and sell."
+      lede="Every product below is running — try one yourself."
+      hint="Hover to hold, click to pin."
+      badge="Live demo"
+      indigo
     />
   )
 }
@@ -522,72 +525,24 @@ function HowWeWork() {
   )
 }
 
-function teamOffset(i, active, n) {
-  let d = i - active
-  if (d > n / 2) d -= n
-  if (d < -n / 2) d += n
-  return d
-}
-
-function TeamSlide({ m, offset, onSelect }) {
-  const active = offset === 0
-  const far = Math.abs(offset) > 1
-  const style = { '--offset': offset, '--abs-offset': Math.abs(offset), pointerEvents: far ? 'none' : 'auto' }
-  return (
-    <div
-      className={`team-slide${active ? ' active' : ''}`}
-      style={style}
-      onClick={active ? undefined : onSelect}
-      aria-hidden={!active}
-    >
-      <div className="card member">
-        <img src={m.photo} alt={m.name} loading="lazy" />
-        <h3>{m.name}</h3>
-        <p className="role">{m.role}</p>
-        {active && <p style={{ marginTop: 0 }}>{m.bio}</p>}
-      </div>
-    </div>
-  )
-}
-
 function Team() {
-  const [active, setActive] = useState(0)
-  const [paused, setPaused] = useState(false)
-  const n = D.TEAM.length
-
-  function go(dir) {
-    setActive((i) => ((i + dir) % n + n) % n)
-  }
-
-  useEffect(() => {
-    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const id = setInterval(() => go(1), CAROUSEL_INTERVAL_MS)
-    return () => clearInterval(id)
-  }, [paused])
-
   return (
     <section id="team" className="tint">
       <div className="wrap">
-        <SecHead n="08" kicker="Team" title="Experts from Amazon, HSBC and Yext, now building for smaller businesses."
-          lede="We spent our careers on the operations, data, and engineering side of companies you already know. Now we build for smaller ones." />
-        <div
-          className="team-slider"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onTouchStart={() => setPaused(true)}
-          onTouchEnd={() => setPaused(false)}
-        >
-          <button type="button" className="slider-arrow left" aria-label="Previous team member" onClick={() => go(-1)}><Chevron style={{ transform: 'rotate(90deg)' }} /></button>
-          <div className="team-stage">
-            {D.TEAM.map((m, i) => (
-              <TeamSlide m={m} offset={teamOffset(i, active, n)} onSelect={() => setActive(i)} key={m.name} />
-            ))}
-          </div>
-          <button type="button" className="slider-arrow right" aria-label="Next team member" onClick={() => go(1)}><Chevron style={{ transform: 'rotate(-90deg)' }} /></button>
-        </div>
-        <div className="slider-dots">
+        <SecHead
+          n="08"
+          kicker="Team"
+          title="Amazon, HSBC and Yext taught us how systems fail. That's how we know to build yours."
+          lede="Thirty-four years running production systems at scale — engineering from Munich, Stuttgart and Bengaluru, operations and data, and client success with a 98%+ satisfaction record across finance and healthcare."
+        />
+        <div className="grid-4">
           {D.TEAM.map((m, i) => (
-            <button type="button" key={m.name} className={i === active ? 'on' : ''} aria-label={`Show ${m.name}`} onClick={() => setActive(i)} />
+            <Rv as="article" className="card member" key={m.name} delay={i * 60}>
+              <img src={m.photo} alt={m.name} loading="lazy" />
+              <h3>{m.name}</h3>
+              <p className="role">{m.role}</p>
+              <p style={{ marginTop: 0 }}>{m.bio}</p>
+            </Rv>
           ))}
         </div>
       </div>
@@ -794,7 +749,7 @@ function Footer() {
     <footer className="foot">
       <div className="wrap">
         <a href="#top" className="brand" style={{ justifyContent: 'center' }}>
-          <span className="brand-mark"><img src={logoIcon} alt="" /></span>ठिkaana
+          <span className="brand-logo" style={{ "--logo": `url(${logoIcon})` }} aria-hidden="true"><span className="brand-mark" /></span>ठिkaana
         </a>
         <p className="lede" style={{ margin: '14px auto 0', textAlign: 'center' }}>
           We build professional websites, custom web applications, AI-powered solutions and

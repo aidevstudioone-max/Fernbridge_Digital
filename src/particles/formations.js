@@ -147,6 +147,52 @@ export function nebula(count, spread = 5.5) {
 }
 
 /**
+ * Sample an image's opaque pixels into a point cloud.
+ * Used for the brand mark: the logo PNG is white-on-transparent, so alpha
+ * is the ink channel.
+ */
+export function imageCloud(count, img, { worldWidth = 3.8, alphaCut = 110 } = {}) {
+  const out = new Float32Array(count * 3)
+
+  // downscale first — we only need enough resolution to scatter points over
+  const W = 360
+  const H = Math.max(1, Math.round((img.naturalHeight / img.naturalWidth) * W))
+  const cv = document.createElement('canvas')
+  cv.width = W
+  cv.height = H
+  const ctx = cv.getContext('2d', { willReadFrequently: true })
+  ctx.drawImage(img, 0, 0, W, H)
+
+  const data = ctx.getImageData(0, 0, W, H).data
+  const inked = []
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      if (data[(y * W + x) * 4 + 3] > alphaCut) inked.push(x, y)
+    }
+  }
+  const hits = inked.length / 2
+  if (hits === 0) return nebula(count)
+
+  const r = rand(83)
+  const scale = worldWidth / W
+  for (let i = 0; i < count; i++) {
+    const j = Math.floor(r() * hits) * 2
+    const x = inked[j] + (r() - 0.5) * 1.35
+    const y = inked[j + 1] + (r() - 0.5) * 1.35
+    out[i * 3] = (x - W / 2) * scale
+    out[i * 3 + 1] = -(y - H / 2) * scale
+    out[i * 3 + 2] = (r() - 0.5) * 0.2
+  }
+  return out
+}
+
+// The brand mark is an image, so it can only be sampled once the file has
+// decoded. Until then the mark formation falls back to the abstract tiles.
+let logoImg = null
+export function setLogoImage(img) { logoImg = img }
+export function hasLogoImage() { return !!logoImg }
+
+/**
  * Sample the glyphs of `lines` into a point cloud.
  * Draws the text to an offscreen canvas, then scatters particles across the
  * pixels that got inked — so any string becomes a formation.
@@ -210,7 +256,7 @@ const SERVICES = [
 ]
 
 export const FORMATIONS = [
-  { key: 'mark', label: 'Brand mark', build: (n) => logoMark(n) },
+  { key: 'mark', label: 'Brand mark', build: (n) => (logoImg ? imageCloud(n, logoImg) : logoMark(n)) },
   ...SERVICES.map((lines, i) => ({
     key: `svc${i}`,
     label: lines.join(' '),
