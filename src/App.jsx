@@ -264,7 +264,7 @@ function AiSection() {
           </Rv>
           <Rv delay={120}>
             <div className="terminal">
-              <div className="bar"><i /><i /><i /><b>commerce-ai — listing agent</b></div>
+              <div className="bar"><i /><i /><i /><b>sellsight — listing agent</b></div>
               <div className="body">
                 <div>
                   <span className="k">Input — what the client typed</span>
