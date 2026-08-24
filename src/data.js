@@ -5,7 +5,6 @@ import pavMantraShot from './assets/previews/pav-mantra.webp'
 import apoorvaShot from './assets/previews/apoorva.webp'
 import hangoutShot from './assets/previews/hangout-cafe.webp'
 import srimaShot from './assets/previews/srima.webp'
-import shreeGiftShot from './assets/previews/shree-gift.webp'
 import shibpurShot from './assets/previews/shibpur-school.webp'
 import roomlyShot from './assets/previews/roomly.webp'
 import stafflyShot from './assets/previews/staffly.webp'
@@ -80,7 +79,6 @@ export const CLIENTS = [
   { name: 'Apoorva Auto Parts', shot: apoorvaShot, url: 'https://aidevstudioone-max.github.io/apoorva-auto-parts-site/', host: 'apoorva-auto-parts-site', desc: 'Auto parts supplier — catalogue, coverage, and a direct enquiry line.', chips: ['Catalogue', 'Coverage area', 'Enquiries'] },
   { name: 'Hangout Cafe', shot: hangoutShot, url: 'https://aidevstudioone-max.github.io/hangout-cafe/', host: 'hangout-cafe', desc: 'Cafe & restaurant site — menu, location, and veg / non-veg dine-in details.', chips: ['Menu', 'Location', 'Dine-in info'] },
   { name: 'Srima Diagnostic & Medical', shot: srimaShot, url: 'https://aidevstudioone-max.github.io/Srima/', host: 'Srima', desc: 'Diagnostic centre & pharmacy — testing, reports, and prescription counsel.', chips: ['Test listings', 'Reports', 'Pharmacy'] },
-  { name: 'Sri Ram Gift Emporium', shot: shreeGiftShot, url: 'https://aidevstudioone-max.github.io/shree_gift_hub/', host: 'shree_gift_hub', desc: 'Gift & home décor retailer — collections, store story, and visit planning.', chips: ['Collections', 'Store story', 'Visit info'] },
   { name: 'Shibpur Hindu Girls High School', shot: shibpurShot, url: 'https://aidevstudioone-max.github.io/ShibpurHinduGirlsHighSchool/', host: 'ShibpurHinduGirlsHighSchool', desc: 'School information site — about, school life, facilities, and directions.', chips: ['About', 'School life', 'Directions'] },
 ]
 
