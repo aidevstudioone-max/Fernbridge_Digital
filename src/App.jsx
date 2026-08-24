@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, lazy, Suspense } from 'react'
 
 const Field = lazy(() => import('./particles/Field.jsx'))
 import * as D from './data.js'
+import logoIcon from './assets/logo-icon-white.png'
 import './index.css'
 
 /* ------------------------------------------------------------------ utils */
@@ -93,7 +94,7 @@ function Nav() {
     <header className={`nav ${stuck ? 'stuck' : ''}`}>
       <div className="wrap nav-in">
         <a href="#top" className="brand">
-          <span className="brand-mark"><i /><i /><i /><i /></span>
+          <span className="brand-mark"><img src={logoIcon} alt="" /></span>
           ठिkaana
         </a>
         <nav className="nav-links">
@@ -333,9 +334,27 @@ function WhyUs() {
   )
 }
 
-function WorkCard({ item, i }) {
-  return (
-    <Rv as="a" className="card" href={item.url} target="_blank" rel="noopener" delay={i * 60}>
+function WorkCard({ item, i, interactive3d }) {
+  const ref = useRef(null)
+
+  function handleMove(e) {
+    const el = ref.current
+    const r = el.getBoundingClientRect()
+    const px = (e.clientX - r.left) / r.width - 0.5
+    const py = (e.clientY - r.top) / r.height - 0.5
+    const rx = (-py * 10).toFixed(2)
+    const ry = (px * 10).toFixed(2)
+    el.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px) scale(1.02)`
+    el.style.boxShadow = `${(-px * 26).toFixed(0)}px ${(22 - py * 12).toFixed(0)}px 40px -16px rgba(0,0,0,0.55)`
+  }
+  function handleLeave() {
+    const el = ref.current
+    el.style.transform = ''
+    el.style.boxShadow = ''
+  }
+
+  const body = (
+    <>
       <div className="shot">
         <img src={item.shot} alt={`${item.name} homepage`} loading="lazy" width={800} height={500} />
         <span className="host">{item.host}</span>
@@ -345,35 +364,131 @@ function WorkCard({ item, i }) {
       <p>{item.desc}</p>
       {item.chips && <div className="chips">{item.chips.map((c) => <span key={c}>{c}</span>)}</div>}
       <span className="visit">Visit site <i>→</i></span>
+    </>
+  )
+
+  if (interactive3d) {
+    return (
+      <Rv as="div" className="card-3d-outer" delay={i * 60}>
+        <a ref={ref} className="card card-3d" href={item.url} target="_blank" rel="noopener"
+          onMouseMove={handleMove} onMouseLeave={handleLeave}>
+          {body}
+        </a>
+      </Rv>
+    )
+  }
+
+  return (
+    <Rv as="a" className="card" href={item.url} target="_blank" rel="noopener" delay={i * 60}>
+      {body}
     </Rv>
+  )
+}
+
+const CAROUSEL_INTERVAL_MS = 3000
+
+function Carousel({ items, sectionId, tint, n: sectionNum, kicker, title, lede, navLabel }) {
+  const firstCardRef = useRef(null)
+  const count = items.length
+  const trackItems = [...items, ...items, ...items]
+  const [pos, setPos] = useState(count)
+  const [instant, setInstant] = useState(false)
+  const [paused, setPaused] = useState(false)
+  const [step, setStep] = useState(400)
+
+  useEffect(() => {
+    function measure() {
+      if (firstCardRef.current) setStep(firstCardRef.current.getBoundingClientRect().width + 20)
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [])
+
+  function go(dir) {
+    setPos((p) => p + dir)
+  }
+
+  useEffect(() => {
+    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const id = setInterval(() => setPos((p) => p + 1), CAROUSEL_INTERVAL_MS)
+    return () => clearInterval(id)
+  }, [paused])
+
+  useEffect(() => {
+    if (!instant) return
+    const id = setTimeout(() => setInstant(false), 20)
+    return () => clearTimeout(id)
+  }, [instant])
+
+  useEffect(() => {
+    if (pos > 0 && pos < 2 * count) return
+    const id = setTimeout(() => {
+      setInstant(true)
+      setPos((p) => (p >= 2 * count ? p - count : p + count))
+    }, 720)
+    return () => clearTimeout(id)
+  }, [pos, count])
+
+  return (
+    <section id={sectionId} className={tint ? 'tint' : undefined}>
+      <div className="wrap">
+        <div className="sec-head-row">
+          <SecHead n={sectionNum} kicker={kicker} title={title} lede={lede} />
+          <div className="carousel-nav">
+            <button type="button" aria-label={`Previous ${navLabel}`} onClick={() => go(-1)}><Chevron style={{ transform: 'rotate(90deg)' }} /></button>
+            <button type="button" aria-label={`Next ${navLabel}`} onClick={() => go(1)}><Chevron style={{ transform: 'rotate(-90deg)' }} /></button>
+          </div>
+        </div>
+        <div
+          className="carousel-viewport"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+        >
+          <div
+            className="carousel-track"
+            style={{ transform: `translateX(-${pos * step}px)`, transition: instant ? 'none' : undefined }}
+          >
+            {trackItems.map((p, i) => (
+              <div className="carousel-slide" ref={i === 0 ? firstCardRef : null} key={p.name + '-' + i}>
+                <WorkCard item={p} i={i} interactive3d />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 
 function Work() {
   return (
-    <section id="work">
-      <div className="wrap">
-        <SecHead n="05" kicker="Sites we build and maintain" title="Sites we build and look after."
-          lede="Every client project below is live and under an active care plan." />
-        <div className="grid-3">
-          {D.CLIENTS.map((c, i) => <WorkCard item={c} i={i} key={c.name} />)}
-        </div>
-      </div>
-    </section>
+    <Carousel
+      items={D.CLIENTS}
+      sectionId="work"
+      n="05"
+      kicker="Sites we build and maintain"
+      title="Sites we build and look after."
+      lede="Every client project below is live and under an active care plan."
+      navLabel="site"
+    />
   )
 }
 
 function Products() {
   return (
-    <section id="products" className="tint">
-      <div className="wrap">
-        <SecHead n="06" kicker="Products we sell" title="Software we've built — and sell."
-          lede="Every product below is running — try it yourself." />
-        <div className="grid-2">
-          {D.PRODUCTS.map((p, i) => <WorkCard item={p} i={i} key={p.name} />)}
-        </div>
-      </div>
-    </section>
+    <Carousel
+      items={D.PRODUCTS}
+      sectionId="products"
+      tint
+      n="06"
+      kicker="Products we sell"
+      title="Software we've built — and sell."
+      lede="Every product below is running — try it yourself."
+      navLabel="product"
+    />
   )
 }
 
@@ -407,20 +522,72 @@ function HowWeWork() {
   )
 }
 
+function teamOffset(i, active, n) {
+  let d = i - active
+  if (d > n / 2) d -= n
+  if (d < -n / 2) d += n
+  return d
+}
+
+function TeamSlide({ m, offset, onSelect }) {
+  const active = offset === 0
+  const far = Math.abs(offset) > 1
+  const style = { '--offset': offset, '--abs-offset': Math.abs(offset), pointerEvents: far ? 'none' : 'auto' }
+  return (
+    <div
+      className={`team-slide${active ? ' active' : ''}`}
+      style={style}
+      onClick={active ? undefined : onSelect}
+      aria-hidden={!active}
+    >
+      <div className="card member">
+        <img src={m.photo} alt={m.name} loading="lazy" />
+        <h3>{m.name}</h3>
+        <p className="role">{m.role}</p>
+        {active && <p style={{ marginTop: 0 }}>{m.bio}</p>}
+      </div>
+    </div>
+  )
+}
+
 function Team() {
+  const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const n = D.TEAM.length
+
+  function go(dir) {
+    setActive((i) => ((i + dir) % n + n) % n)
+  }
+
+  useEffect(() => {
+    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const id = setInterval(() => go(1), CAROUSEL_INTERVAL_MS)
+    return () => clearInterval(id)
+  }, [paused])
+
   return (
     <section id="team" className="tint">
       <div className="wrap">
         <SecHead n="08" kicker="Team" title="Experts from Amazon, HSBC and Yext, now building for smaller businesses."
           lede="We spent our careers on the operations, data, and engineering side of companies you already know. Now we build for smaller ones." />
-        <div className="grid-4">
+        <div
+          className="team-slider"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+        >
+          <button type="button" className="slider-arrow left" aria-label="Previous team member" onClick={() => go(-1)}><Chevron style={{ transform: 'rotate(90deg)' }} /></button>
+          <div className="team-stage">
+            {D.TEAM.map((m, i) => (
+              <TeamSlide m={m} offset={teamOffset(i, active, n)} onSelect={() => setActive(i)} key={m.name} />
+            ))}
+          </div>
+          <button type="button" className="slider-arrow right" aria-label="Next team member" onClick={() => go(1)}><Chevron style={{ transform: 'rotate(-90deg)' }} /></button>
+        </div>
+        <div className="slider-dots">
           {D.TEAM.map((m, i) => (
-            <Rv as="article" className="card member" key={m.name} delay={i * 60}>
-              <img src={m.photo} alt={m.name} loading="lazy" />
-              <h3>{m.name}</h3>
-              <p className="role">{m.role}</p>
-              <p style={{ marginTop: 0 }}>{m.bio}</p>
-            </Rv>
+            <button type="button" key={m.name} className={i === active ? 'on' : ''} aria-label={`Show ${m.name}`} onClick={() => setActive(i)} />
           ))}
         </div>
       </div>
@@ -627,12 +794,18 @@ function Footer() {
     <footer className="foot">
       <div className="wrap">
         <a href="#top" className="brand" style={{ justifyContent: 'center' }}>
-          <span className="brand-mark"><i /><i /><i /><i /></span>ठिkaana
+          <span className="brand-mark"><img src={logoIcon} alt="" /></span>ठिkaana
         </a>
         <p className="lede" style={{ margin: '14px auto 0', textAlign: 'center' }}>
           We build professional websites, custom web applications, AI-powered solutions and
           business automation for startups and growing businesses.
         </p>
+        <address className="foot-address">
+          <strong>Contact Us</strong><br />
+          144/2, Mahatma Gandhi Road<br />
+          Thakurpukur, Kolkata – 700063<br />
+          West Bengal, India
+        </address>
         <div className="links">
           {D.NAV.map((l) => <a key={l.href} href={l.href}>{l.label}</a>)}
           <a href="#contact">Contact</a>

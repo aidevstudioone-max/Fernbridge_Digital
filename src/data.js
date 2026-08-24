@@ -11,6 +11,8 @@ import roomlyShot from './assets/previews/roomly.webp'
 import stafflyShot from './assets/previews/staffly.webp'
 import orderlyShot from './assets/previews/orderly.webp'
 import commerceAiShot from './assets/previews/commerce-ai.webp'
+import eduviaShot from './assets/previews/eduvia.webp'
+import medicoreShot from './assets/previews/medicore.webp'
 
 import ankitPhoto from './assets/team/ankit.jpg'
 import irfanPhoto from './assets/team/irfan.jpg'
@@ -30,7 +32,7 @@ export const STATS = [
   { label: 'Team experience', value: '24+', unit: 'yrs' },
   { label: 'Uptime we hold', value: '99.9', unit: '%' },
   { label: 'Live client sites', value: '6', unit: '' },
-  { label: 'Products we built', value: '4', unit: '' },
+  { label: 'Products we built', value: '6', unit: '' },
 ]
 
 export const MARQUEE = ['Websites', 'Web Applications', 'AI Agents', 'Automation', 'Dashboards', 'Care Plans', 'E-commerce', 'MVP Builds']
@@ -87,6 +89,8 @@ export const PRODUCTS = [
   { name: 'Teamloom', shot: stafflyShot, url: 'https://aidevstudioone-max.github.io/Staffly/', host: 'Teamloom', desc: 'Employee management — directory, attendance, and leave requests in one dashboard.' },
   { name: 'Servemint', shot: orderlyShot, url: 'https://aidevstudioone-max.github.io/Orderly/', host: 'Servemint', desc: 'Restaurant point of sale — billing, tables, reservations, and daily reports in one dashboard.' },
   { name: 'Fernbridge Commerce AI', shot: commerceAiShot, url: 'https://aidevstudioone-max.github.io/commerce-ai/', host: 'commerce-ai', desc: 'AI-powered product listing tool — generates optimised titles & descriptions and scores every listing.' },
+  { name: 'Eduvia', shot: eduviaShot, url: 'https://aidevstudioone-max.github.io/eduvia-school-management/', host: 'eduvia-school-management', desc: 'School management — admissions, attendance, fee collection and transport, always in sync.' },
+  { name: 'MediCore', shot: medicoreShot, url: 'https://aidevstudioone-max.github.io/medicore-hospital-management/', host: 'medicore-hospital-management', desc: 'Hospital & clinic management — real-time bed occupancy, unified OPD/IPD workflow, and billing that reconciles itself.' },
 ]
 
 export const STEPS = [
@@ -130,7 +134,7 @@ export const BUSINESS_TYPES = ['Restaurant', 'Retail', 'Professional Services', 
 export const NEEDS = ['Website', 'Web Application', 'AI Solution', 'Automation', 'Dashboard', 'Other']
 
 export const CONTACT = {
-  email: 'support@thikaana.co',
+  email: 'hello@thikaana.co',
   phone: '+919022683699',
   whatsapp: '919022683699',
 }
