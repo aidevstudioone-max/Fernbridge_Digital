@@ -86,7 +86,7 @@ export const CLIENTS = [
 
 export const PRODUCTS = [
   { name: 'Stayloop', shot: roomlyShot, url: 'https://aidevstudioone-max.github.io/Roomly/', host: 'Stayloop', desc: 'Hotel room booking & management — real-time availability, instant bookings, occupancy dashboard.' },
-  { name: 'Teamloom', shot: stafflyShot, url: 'https://aidevstudioone-max.github.io/Staffly/', host: 'Teamloom', desc: 'Employee management — directory, attendance, and leave requests in one dashboard.' },
+  { name: 'Teamloom', shot: stafflyShot, url: 'https://aidevstudioone-max.github.io/Teamloom/', host: 'Teamloom', desc: 'Employee management — directory, attendance, and leave requests in one dashboard.' },
   { name: 'Servemint', shot: orderlyShot, url: 'https://aidevstudioone-max.github.io/Orderly/', host: 'Servemint', desc: 'Restaurant point of sale — billing, tables, reservations, and daily reports in one dashboard.' },
   { name: 'SellSight', shot: sellSightShot, url: 'https://aidevstudioone-max.github.io/SellSight/', host: 'SellSight', desc: 'AI-powered product listing tool — generates optimised titles & descriptions and scores every listing.' },
   { name: 'Eduvia', shot: eduviaShot, url: 'https://aidevstudioone-max.github.io/eduvia-school-management/', host: 'eduvia-school-management', desc: 'School management — admissions, attendance, fee collection and transport, always in sync.' },
