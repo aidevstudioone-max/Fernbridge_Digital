@@ -10,7 +10,7 @@ import shibpurShot from './assets/previews/shibpur-school.webp'
 import roomlyShot from './assets/previews/roomly.webp'
 import stafflyShot from './assets/previews/staffly.webp'
 import orderlyShot from './assets/previews/orderly.webp'
-import sellSightShot from './assets/previews/commerce-ai.webp'
+import sellSightShot from './assets/previews/sellsight.webp'
 import eduviaShot from './assets/previews/eduvia.webp'
 import medicoreShot from './assets/previews/medicore.webp'
 
