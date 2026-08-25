@@ -7,53 +7,44 @@ import './index.css'
 
 /* ------------------------------------------------------------------ utils */
 
-function useReveal() {
+/**
+ * Reveal-on-scroll.
+ *
+ * The revealed flag lives in React state, not in a class added to the DOM.
+ * An earlier version added `.in` imperatively, which React silently wiped on
+ * the next re-render — clicking a FAQ question made the whole list vanish.
+ */
+function Rv({ as: Tag = 'div', delay = 0, className = '', children, ...rest }) {
+  const ref = useRef(null)
+  const [shown, setShown] = useState(false)
+
   useEffect(() => {
-    const els = [...document.querySelectorAll('.rv')]
+    if (shown) return
+    const el = ref.current
+    if (!el) return
+
+    // already on screen (direct #anchor load, short page) — show immediately
+    const box = el.getBoundingClientRect()
+    if (box.top < window.innerHeight && box.bottom > 0) {
+      setShown(true)
+      return
+    }
+
     const io = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return
-          e.target.classList.add('in')
-          io.unobserve(e.target)
-        }),
+      ([e]) => { if (e.isIntersecting) setShown(true) },
       { rootMargin: '0px 0px -40px 0px', threshold: 0 },
     )
-    els.forEach((el) => io.observe(el))
+    io.observe(el)
+    return () => io.disconnect()
+  }, [shown])
 
-    // ponytail: fast scrolling and #anchor jumps can outrun the observer —
-    // sweep anything already on screen so nothing is left invisible.
-    const sweep = () => {
-      for (const el of els) {
-        if (el.classList.contains('in')) continue
-        const r = el.getBoundingClientRect()
-        if (r.top < window.innerHeight && r.bottom > 0) {
-          el.classList.add('in')
-          io.unobserve(el)
-        }
-      }
-    }
-    let tick
-    const onScroll = () => {
-      clearTimeout(tick)
-      tick = setTimeout(sweep, 90)
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    sweep()
-
-    return () => {
-      io.disconnect()
-      clearTimeout(tick)
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-    }
-  }, [])
-}
-
-function Rv({ as: Tag = 'div', delay = 0, className = '', children, ...rest }) {
   return (
-    <Tag className={`rv ${className}`} style={{ transitionDelay: `${delay}ms` }} {...rest}>
+    <Tag
+      ref={ref}
+      className={`rv${shown ? ' in' : ''}${className ? ' ' + className : ''}`}
+      style={{ transitionDelay: `${delay}ms` }}
+      {...rest}
+    >
       {children}
     </Tag>
   )
@@ -774,7 +765,6 @@ function Footer() {
 /* -------------------------------------------------------------------- app */
 
 export default function App() {
-  useReveal()
   return (
     <>
       <Nav />
