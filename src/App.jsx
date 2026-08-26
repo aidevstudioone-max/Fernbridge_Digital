@@ -91,7 +91,10 @@ function Nav() {
         <nav className="nav-links">
           {D.NAV.map((l) => <a key={l.href} href={l.href}>{l.label}</a>)}
         </nav>
-        <a href="#contact" className="btn btn-solid">Get a Free Consultation</a>
+        <div className="nav-actions">
+          <a href={D.PORTAL.url} target="_blank" rel="noopener" className="btn btn-portal btn-sm">Client Portal</a>
+          <a href="#contact" className="btn btn-solid">Get a Free Consultation</a>
+        </div>
       </div>
     </header>
   )
@@ -486,6 +489,52 @@ function Products() {
   )
 }
 
+function Portal() {
+  const P = D.PORTAL
+  return (
+    <section id="portal">
+      <div className="wrap portal-grid">
+        <Rv>
+          <span className="eyebrow">07 — Manage it yourself</span>
+          <h2>Change your own website, whenever you want.</h2>
+          <p className="lede">
+            Log in and update your photos, prices and text yourself — from your phone or your
+            laptop. No coding, nothing to install, and no need to message anyone first.
+          </p>
+
+          <ul className="editable" aria-label="What you can change yourself">
+            {P.editable.map((thing) => <li key={thing}>{thing}</li>)}
+          </ul>
+
+          <ul className="checks">
+            {P.points.map((t) => <li key={t}><Check />{t}</li>)}
+          </ul>
+
+          <div className="portal-cta">
+            <a className="btn btn-portal btn-lg" href={P.url} target="_blank" rel="noopener">
+              Open the live demo <i aria-hidden="true">→</i>
+            </a>
+            <p className="portal-note">{P.note}</p>
+          </div>
+        </Rv>
+
+        <Rv delay={120}>
+          <a className="card portal-shot" href={P.url} target="_blank" rel="noopener" aria-label="Open the client portal live demo">
+            <div className="shot">
+              <img src={P.shot} alt="The portal where clients update their own site content" loading="lazy" width={800} height={500} />
+              <span className="host">{P.host}</span>
+            </div>
+            <span className="live"><i />Live demo</span>
+            <h3>Your control panel</h3>
+            <p>The same panel we hand over with every site — try it with the sample account.</p>
+            <span className="visit">Open it <i>→</i></span>
+          </a>
+        </Rv>
+      </div>
+    </section>
+  )
+}
+
 function HowWeWork() {
   const [on, setOn] = useState(-1)
   const ref = useRef(null)
@@ -501,7 +550,7 @@ function HowWeWork() {
   return (
     <section id="how-we-work">
       <div className="wrap">
-        <SecHead n="07" kicker="How we work" title="From first call to a site that runs itself." />
+        <SecHead n="08" kicker="How we work" title="From first call to a site that runs itself." />
         <div className="steps" ref={ref}>
           {D.STEPS.map((s, i) => (
             <div className={`step ${i <= on ? 'on' : ''}`} key={s.n}>
@@ -521,7 +570,7 @@ function Team() {
     <section id="team" className="tint">
       <div className="wrap">
         <SecHead
-          n="08"
+          n="09"
           kicker="Team"
           title="Amazon, HSBC and Yext taught us how systems fail. That's how we know to build yours."
           lede="Thirty-four years running production systems at scale — engineering from Munich, Stuttgart and Bengaluru, operations and data, and client success with a 98%+ satisfaction record across finance and healthcare."
@@ -546,7 +595,7 @@ function Approach() {
     <section id="approach">
       <div className="wrap contact-grid" style={{ alignItems: 'center' }}>
         <Rv>
-          <span className="eyebrow">09 — Our approach</span>
+          <span className="eyebrow">10 — Our approach</span>
           <h2>A website that is actually looked after.</h2>
           <p className="lede">
             We work closely with our clients to understand their requirements and build practical
@@ -582,9 +631,13 @@ function Pricing() {
   return (
     <section id="pricing" className="tint">
       <div className="wrap">
-        <SecHead n="10" kicker="Pricing" title="Simple pricing, built around care."
-          lede="Builds are quoted per project. Care plans keep what we build healthy after launch." />
-        <div className="grid-3">
+        <SecHead
+          n="11"
+          kicker="Pricing"
+          title="Four ways to start."
+          lede="Fixed scope, fixed price, agreed before we begin. Every plan includes free SSL and the first year of hosting. Prices exclude 18% GST."
+        />
+        <div className="grid-4 plans">
           {D.PLANS.map((p, i) => (
             <Rv as="article" className={`card plan ${p.featured ? 'featured' : ''}`} key={p.name} delay={i * 70} style={{ position: 'relative' }}>
               {p.featured && <span className="tagline">Most chosen</span>}
@@ -606,7 +659,7 @@ function Faq() {
   return (
     <section id="faq">
       <div className="wrap" style={{ maxWidth: 820 }}>
-        <SecHead n="11" kicker="FAQ" title="Common questions." />
+        <SecHead n="12" kicker="FAQ" title="Common questions." />
         {D.FAQS.map((f, i) => (
           <Rv className={`faq-item ${open === i ? 'open' : ''}`} key={f.q} delay={i * 40}>
             <button className="faq-q" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i}>
@@ -671,7 +724,7 @@ function Contact() {
     <section id="contact" className="tint">
       <div className="wrap contact-grid">
         <Rv>
-          <span className="eyebrow">12 — Contact</span>
+          <span className="eyebrow">13 — Contact</span>
           <h2>Want to improve your business online?</h2>
           <p className="lede">
             Tell us about your business and we'll suggest the right digital solution for you —
@@ -777,6 +830,7 @@ export default function App() {
         <WhyUs />
         <Work />
         <Products />
+        <Portal />
         <HowWeWork />
         <Team />
         <Approach />

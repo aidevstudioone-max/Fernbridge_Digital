@@ -1,5 +1,4 @@
-// Content for the redesign demo. Copied from the live components so the demo
-// shows real copy — no lorem, nothing invented.
+// All copy and content for the site, kept out of the components.
 
 import pavMantraShot from './assets/previews/pav-mantra.webp'
 import apoorvaShot from './assets/previews/apoorva.webp'
@@ -13,6 +12,7 @@ import orderlyShot from './assets/previews/orderly.webp'
 import sellSightShot from './assets/previews/sellsight.webp'
 import eduviaShot from './assets/previews/eduvia.webp'
 import medicoreShot from './assets/previews/medicore.webp'
+import portalShot from './assets/previews/portal.webp'
 
 import ankitPhoto from './assets/team/ankit.jpg'
 import irfanPhoto from './assets/team/irfan.jpg'
@@ -93,6 +93,22 @@ export const PRODUCTS = [
   { name: 'MediCore', shot: medicoreShot, url: 'https://aidevstudioone-max.github.io/medicore-hospital-management/', host: 'medicore-hospital-management', desc: 'Hospital & clinic management — real-time bed occupancy, unified OPD/IPD workflow, and billing that reconciles itself.' },
 ]
 
+export const PORTAL = {
+  url: 'https://aidevstudioone-max.github.io/Project-Management-Suite/',
+  shot: portalShot,
+  host: 'Project-Management-Suite',
+  // What a shop owner can change without asking anyone
+  editable: ['Text', 'Photos', 'Prices', 'Offers', 'Opening hours'],
+  points: [
+    'Change your text and swap your photos in a few clicks — a new menu, a new offer, a new price.',
+    'Works on your phone, so you can update something while the shop is open.',
+    'You look after the content. We look after everything underneath it.',
+    'Would rather we did it? Raise a request and we pick it up.',
+  ],
+  note: 'Demo logins are on the sign-in screen — have a click around before you commit to anything.',
+}
+
+
 export const STEPS = [
   { n: '01', title: 'Discovery', body: 'We understand your business, requirements and goals.' },
   { n: '02', title: 'Planning', body: 'We define the solution, features, timeline and cost.' },
@@ -117,15 +133,69 @@ export const CARE_CHECKS = [
 ]
 
 export const PLANS = [
-  { name: 'Starter', price: '₹1,999', unit: '/mo care', desc: 'For a single small-business site that needs to stay up and current.', features: ['Website build quoted separately, from ₹35,000', 'Uptime & performance monitoring', 'Security updates & backups', 'Monthly plain-language report'], cta: 'Get a Free Consultation' },
-  { name: 'Growth', price: '₹4,999', unit: '/mo care', desc: 'For a business that is actively growing and wants the site to keep pace.', features: ['Everything in Starter', 'Faster turnaround on content edits', 'Quarterly performance review call', 'Priority support'], cta: 'Get a Free Consultation', featured: true },
-  { name: 'Scale', price: 'Custom', unit: '', desc: 'For multiple sites, e-commerce, custom applications, or automation layered on top of the site.', features: ['Everything in Growth', 'Custom web apps & dashboards', 'AI & automation add-ons', 'Dedicated point of contact'], cta: "Let's discuss your requirements" },
+  {
+    name: 'Basic',
+    price: '₹4,999',
+    unit: 'one-time',
+    desc: 'For a local business that needs to be found, called and trusted.',
+    features: [
+      'Single-page site, mobile first',
+      'WhatsApp and click-to-call buttons',
+      'Enquiry form straight to your inbox',
+      'Free SSL and first year of hosting',
+      'Google Business Profile set up',
+    ],
+    cta: 'Get a Free Consultation',
+  },
+  {
+    name: 'Starter',
+    price: '₹9,999',
+    unit: 'one-time',
+    desc: 'For small local businesses and professional portfolios.',
+    features: [
+      '5 to 7 pages — home, about, services, gallery, contact',
+      'Responsive, minimalist design',
+      'Basic on-page SEO setup',
+      'Free SSL and first year of hosting',
+      'Access to the support and tracking portal',
+    ],
+    cta: 'Get a Free Consultation',
+  },
+  {
+    name: 'Professional',
+    price: '₹18,999',
+    unit: 'one-time',
+    desc: 'For growing agencies, SMEs and first-time e-commerce.',
+    features: [
+      'Up to 15 dynamic pages',
+      'Content management system with admin panel',
+      'E-commerce for up to 30 products',
+      'WhatsApp, social and payment gateway setup',
+      'Track progress live in the operations portal',
+    ],
+    cta: 'Get a Free Consultation',
+    featured: true,
+  },
+  {
+    name: 'Premium',
+    price: '₹25,000+',
+    unit: 'custom quote',
+    desc: 'For established brands needing unique UX and complex architecture.',
+    features: [
+      '20+ pages or unlimited dynamic categories',
+      'Custom build — no themes, no page builders',
+      'Advanced interactive and 3D components',
+      'Advanced SEO and performance work',
+      'Priority lifecycle management, dedicated contact',
+    ],
+    cta: "Let's discuss your requirements",
+  },
 ]
 
 export const FAQS = [
-  { q: 'How much does a website cost?', a: 'Website builds start from ₹35,000, depending on the number of pages, functionality and integrations required. Ongoing care plans start from ₹1,999/month. Contact us for a free consultation and an exact quote.' },
+  { q: 'How much does a website cost?', a: 'A single-page site starts at ₹4,999, a 5–7 page site at ₹9,999, and a CMS build with e-commerce at ₹18,999. Larger or custom projects are quoted from ₹25,000. All prices exclude 18% GST — contact us for an exact quote.' },
   { q: 'How long does a website take?', a: 'Most business websites are completed within a few weeks, depending on requirements and how quickly content and feedback come back to us.' },
-  { q: 'Do you provide maintenance?', a: 'Yes. Every project can go under one of our care plans — monitoring, backups, security updates and a monthly report, so nothing goes stale after launch.' },
+  { q: 'Do you provide maintenance?', a: 'Yes. Every build includes free SSL and the first year of hosting, and you get access to our support portal to raise queries and follow the work. Ongoing maintenance is arranged to suit the project after launch.' },
   { q: 'Can you redesign my existing website?', a: 'Yes. We can redesign existing websites and improve their performance, usability and appearance without starting from zero.' },
   { q: 'Do you build custom software?', a: 'Yes. Beyond websites, we build custom web applications, dashboards, AI tools and business automation — see our Custom Web Applications and AI & Automation services above.' },
 ]
