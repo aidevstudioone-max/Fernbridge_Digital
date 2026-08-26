@@ -1,0 +1,189 @@
+/* Immersive 3D hero — adapted from the shadcn/Tailwind original to this
+   project's stack (plain JSX + CSS). Palette stays thikaana's so the concept
+   reads as the brand with a cosmic hero, not a different company. */
+:root {
+  --bg:      #05050a;
+  --surface: #0e0e14;
+  --line:    rgba(237, 235, 230, 0.10);
+  --line-2:  rgba(237, 235, 230, 0.22);
+  --fg:      #edebe6;
+  --fg-2:    #a5a19a;
+  --fg-3:    #6f6c66;
+  --gold:    #e0b45c;
+  --gold-dp: #c4881a;
+  --indigo:  #8b84f5;
+  --mint:    #5fbf95;
+  --display: "Space Grotesk", "Noto Sans Devanagari", system-ui, sans-serif;
+  --sans:    "Inter", system-ui, sans-serif;
+  --mono:    "IBM Plex Mono", ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: clamp(18px, 4vw, 40px); }
+
+/* ---------- nav ---------- */
+.gnav {
+  position: fixed; inset: 0 0 auto 0; z-index: 30;
+  background: rgba(10, 10, 16, 0.42);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.gnav-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 66px; }
+.gbrand { font-family: var(--display); font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
+.gbrand b { color: var(--gold); font-weight: 700; }
+.gnav-links { display: none; gap: 26px; }
+@media (min-width: 900px) { .gnav-links { display: flex; } }
+.gnav-links a { font-size: 0.88rem; color: var(--fg-2); transition: color .18s ease; }
+.gnav-links a:hover { color: var(--fg); }
+
+.gbtn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 12px 22px; border-radius: 999px; cursor: pointer;
+  font-family: var(--sans); font-size: 0.92rem; font-weight: 600;
+  border: 1px solid transparent; white-space: nowrap;
+  transition: transform .2s cubic-bezier(.2,.7,.2,1), background .2s ease, border-color .2s ease;
+}
+.gbtn:hover { transform: translateY(-2px); }
+.gbtn-solid { background: var(--gold-dp); color: #17150d; }
+.gbtn-solid:hover { background: var(--gold); }
+.gbtn-glass {
+  background: rgba(139, 132, 245, 0.14); border-color: rgba(139, 132, 245, 0.42);
+  color: #cbc7ff; backdrop-filter: blur(8px);
+}
+.gbtn-glass:hover { background: rgba(139, 132, 245, 0.26); border-color: var(--indigo); }
+.gbtn-ghost { border-color: var(--line-2); color: var(--fg); }
+.gbtn-ghost:hover { border-color: var(--fg-3); background: rgba(237,235,230,.05); }
+
+/* ---------- hero stage ---------- */
+.stage { position: relative; min-height: 100svh; }
+.spline-wrap { position: absolute; inset: 0; overflow: hidden; }
+.spline-wrap > div, .spline-wrap canvas { width: 100% !important; height: 100% !important; }
+
+/* vignette so type stays readable over whatever the scene is doing */
+.scrim {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to right, rgba(5,5,10,.94) 0%, rgba(5,5,10,.80) 30%, rgba(5,5,10,.28) 52%, rgba(5,5,10,.72) 100%),
+    linear-gradient(to bottom, rgba(5,5,10,.5) 0%, transparent 38%, rgba(5,5,10,.96) 100%);
+}
+
+.hero-copy {
+  position: absolute; inset: 0; z-index: 10;
+  display: flex; align-items: center;
+  pointer-events: none;
+}
+.hero-copy > .wrap { width: 100%; }   /* flex child must span, or margin:auto centres it */
+.hero-copy .inner { max-width: 44rem; }
+.kicker {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: var(--mono); font-size: .66rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid rgba(224,180,92,.3); background: rgba(224,180,92,.08);
+  border-radius: 999px; padding: 7px 14px; margin-bottom: 24px;
+  backdrop-filter: blur(6px);
+}
+.kicker i { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); }
+.hero-copy h1 {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(2.4rem, 6.4vw, 4.6rem); line-height: 1.02; letter-spacing: -.04em;
+  margin: 0 0 20px; text-wrap: balance;
+}
+.hero-copy h1 span { color: var(--gold); }
+.hero-copy p {
+  font-size: clamp(1rem, 1.3vw, 1.12rem); line-height: 1.6; color: var(--fg-2);
+  max-width: 44ch; margin: 0 0 30px;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; pointer-events: auto; }
+
+/* skip control — the immersive pattern requires an escape for impatient users */
+.skip {
+  position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%);
+  z-index: 12; pointer-events: auto;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg-3); background: rgba(5,5,10,.5); border: 1px solid var(--line);
+  border-radius: 999px; padding: 9px 16px; min-height: 40px; cursor: pointer;
+  backdrop-filter: blur(6px); transition: color .2s ease, border-color .2s ease;
+}
+.skip:hover { color: var(--fg); border-color: var(--line-2); }
+.skip i { font-style: normal; animation: nudge 1.8s ease-in-out infinite; }
+@keyframes nudge { 0%,100% { transform: translateY(0) } 50% { transform: translateY(3px) } }
+
+/* loading + fallback states */
+.stage-fallback {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(58% 52% at 68% 42%, rgba(139,132,245,.20), transparent 66%),
+    radial-gradient(46% 44% at 26% 68%, rgba(224,180,92,.14), transparent 68%),
+    var(--bg);
+}
+.loading {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 11;
+  font-family: var(--mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--fg-3); display: flex; align-items: center; gap: 10px;
+}
+.loading i {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--indigo);
+  animation: pulse 1.1s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity:.25; transform: scale(.8) } 50% { opacity:1; transform: scale(1) } }
+
+/* ---------- panel below the fold ---------- */
+.after { position: relative; z-index: 10; background: var(--bg); margin-top: -8vh; }
+.frame {
+  border: 1px solid var(--line-2); border-radius: 16px; overflow: hidden;
+  background: var(--surface); box-shadow: 0 40px 90px -50px rgba(0,0,0,.95);
+  will-change: transform;
+}
+.frame img { width: 100%; height: auto; }
+.frame-bar {
+  display: flex; align-items: center; gap: 7px; padding: 12px 16px;
+  border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: .7rem; color: var(--fg-3);
+}
+.frame-bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(237,235,230,.18); }
+.frame-bar b { font-weight: 400; margin-left: 8px; }
+
+.sec { padding-block: clamp(64px, 9vw, 120px); }
+.sec-head { max-width: 620px; margin-bottom: 46px; }
+.eyebrow {
+  font-family: var(--mono); font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 14px;
+}
+.sec h2 {
+  font-family: var(--display); font-weight: 700; font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  letter-spacing: -.03em; line-height: 1.08; margin: 0; text-wrap: balance;
+}
+.sec h2 + p { color: var(--fg-2); margin: 16px 0 0; max-width: 56ch; }
+
+.grid { display: grid; gap: 18px; }
+@media (min-width: 700px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+.tile {
+  border: 1px solid var(--line); border-radius: 14px; background: var(--surface);
+  padding: 26px; transition: transform .3s cubic-bezier(.2,.7,.2,1), border-color .3s ease;
+}
+.tile:hover { transform: translateY(-4px); border-color: var(--line-2); }
+.tile .n { font-family: var(--mono); font-size: .68rem; color: var(--gold); display: block; margin-bottom: 12px; }
+.tile h3 { font-family: var(--display); font-size: 1.1rem; margin: 0 0 8px; letter-spacing: -.015em; }
+.tile p { margin: 0; color: var(--fg-2); font-size: .92rem; line-height: 1.55; }
+
+.gfoot { border-top: 1px solid var(--line); padding-block: 30px; color: var(--fg-3); font-size: .82rem; }
+
+.flag {
+  position: fixed; left: 0; bottom: 0; z-index: 90;
+  background: var(--indigo); color: #0b0b12;
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+  padding: 7px 14px; border-radius: 0 8px 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .frame { transform: none !important; }
+}
