@@ -565,37 +565,12 @@ function HowWeWork() {
   )
 }
 
-function Team() {
-  return (
-    <section id="team" className="tint">
-      <div className="wrap">
-        <SecHead
-          n="09"
-          kicker="Team"
-          title="Amazon, HSBC and Yext taught us how systems fail. That's how we know to build yours."
-          lede="Thirty-four years running production systems at scale — engineering from Munich, Stuttgart and Bengaluru, operations and data, and client success with a 98%+ satisfaction record across finance and healthcare."
-        />
-        <div className="grid-4">
-          {D.TEAM.map((m, i) => (
-            <Rv as="article" className="card member" key={m.name} delay={i * 60}>
-              <img src={m.photo} alt={m.name} loading="lazy" />
-              <h3>{m.name}</h3>
-              <p className="role">{m.role}</p>
-              <p style={{ marginTop: 0 }}>{m.bio}</p>
-            </Rv>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function Approach() {
   return (
     <section id="approach">
       <div className="wrap contact-grid" style={{ alignItems: 'center' }}>
         <Rv>
-          <span className="eyebrow">10 — Our approach</span>
+          <span className="eyebrow">09 — Our approach</span>
           <h2>A website that is actually looked after.</h2>
           <p className="lede">
             We work closely with our clients to understand their requirements and build practical
@@ -632,7 +607,7 @@ function Pricing() {
     <section id="pricing" className="tint">
       <div className="wrap">
         <SecHead
-          n="11"
+          n="10"
           kicker="Pricing"
           title="Four ways to start."
           lede="Fixed scope, fixed price, agreed before we begin. Every plan includes free SSL and the first year of hosting. Prices exclude 18% GST."
@@ -659,7 +634,7 @@ function Faq() {
   return (
     <section id="faq">
       <div className="wrap" style={{ maxWidth: 820 }}>
-        <SecHead n="12" kicker="FAQ" title="Common questions." />
+        <SecHead n="11" kicker="FAQ" title="Common questions." />
         {D.FAQS.map((f, i) => (
           <Rv className={`faq-item ${open === i ? 'open' : ''}`} key={f.q} delay={i * 40}>
             <button className="faq-q" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i}>
@@ -724,7 +699,7 @@ function Contact() {
     <section id="contact" className="tint">
       <div className="wrap contact-grid">
         <Rv>
-          <span className="eyebrow">13 — Contact</span>
+          <span className="eyebrow">12 — Contact</span>
           <h2>Want to improve your business online?</h2>
           <p className="lede">
             Tell us about your business and we'll suggest the right digital solution for you —
@@ -792,23 +767,33 @@ function Footer() {
   return (
     <footer className="foot">
       <div className="wrap">
-        <a href="#top" className="brand" style={{ justifyContent: 'center' }}>
-          <span className="brand-logo" style={{ "--logo": `url(${logoIcon})` }} aria-hidden="true"><span className="brand-mark" /></span>ठिkaana
-        </a>
-        <p className="lede" style={{ margin: '14px auto 0', textAlign: 'center' }}>
-          We build professional websites, custom web applications, AI-powered solutions and
-          business automation for startups and growing businesses.
-        </p>
-        <address className="foot-address">
-          <strong>Contact Us</strong><br />
-          144/2, Mahatma Gandhi Road<br />
-          Thakurpukur, Kolkata – 700063<br />
-          West Bengal, India
-        </address>
-        <div className="links">
-          {D.NAV.map((l) => <a key={l.href} href={l.href}>{l.label}</a>)}
-          <a href="#contact">Contact</a>
+        <div className="foot-top">
+          <a href="#top" className="brand">
+            <span className="brand-logo" style={{ "--logo": `url(${logoIcon})` }} aria-hidden="true"><span className="brand-mark" /></span>ठिkaana
+          </a>
+          <p className="foot-blurb">
+            We build professional websites, custom web applications, AI-powered solutions and
+            business automation for startups and growing businesses.
+          </p>
         </div>
+
+        <div className="foot-cols">
+          <nav className="foot-links" aria-label="Footer">
+            {D.FOOTER_LINKS.map((l) =>
+              l.external
+                ? <a key={l.label} href={l.href} target="_blank" rel="noopener">{l.label}</a>
+                : <a key={l.label} href={l.href}>{l.label}</a>
+            )}
+          </nav>
+
+          <address className="foot-address">
+            <strong>Contact Us</strong>
+            144/2, Mahatma Gandhi Road<br />
+            Thakurpukur, Kolkata – 700063<br />
+            West Bengal, India
+          </address>
+        </div>
+
         <small>© {new Date().getFullYear()} ठिkaana. All rights reserved.</small>
       </div>
     </footer>
@@ -832,7 +817,6 @@ export default function App() {
         <Products />
         <Portal />
         <HowWeWork />
-        <Team />
         <Approach />
         <Pricing />
         <Faq />
