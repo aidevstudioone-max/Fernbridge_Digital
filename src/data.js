@@ -23,7 +23,6 @@ export const NAV = [
   { href: '#services', label: 'Services' },
   { href: '#work', label: 'Work' },
   { href: '#products', label: 'Products' },
-  { href: '#team', label: 'Team' },
   { href: '#pricing', label: 'Pricing' },
   { href: '#faq', label: 'FAQ' },
 ]
@@ -108,6 +107,19 @@ export const PORTAL = {
   note: 'Demo logins are on the sign-in screen — have a click around before you commit to anything.',
 }
 
+// Left-hand link grid in the footer (2 columns x 4 rows).
+// `external` links open in a new tab; the rest are in-page anchors.
+export const FOOTER_LINKS = [
+  { label: 'Services', href: '#services' },
+  { label: 'Work', href: '#work' },
+  { label: 'Products', href: '#products' },
+  { label: 'Know Our Team', href: '/team.html', external: true },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Contact', href: '#contact' },
+  { label: 'Client Portal', href: PORTAL.url, external: true },
+]
+
 
 export const STEPS = [
   { n: '01', title: 'Discovery', body: 'We understand your business, requirements and goals.' },
@@ -118,11 +130,74 @@ export const STEPS = [
   { n: '06', title: 'Support', body: 'We keep monitoring, maintaining and reporting — ongoing, not a one-time handoff.' },
 ]
 
+// TEAM powers the standalone /team.html page and the per-person /about.html?m=<id> pages.
+// `bio` is the one-liner on the team card; `about` is the first-person career-journey
+// narrative shown on the About Me page, one string per paragraph.
 export const TEAM = [
-  { name: 'Ankit Prakash', role: 'Founder', bio: '11 years in operations and data across Yext and Amazon. Builds the dashboards and automation behind the scenes.', photo: ankitPhoto },
-  { name: 'Chandan Jha', role: 'Chief Technology Officer', bio: '10+ years building Ruby on Rails platforms across Munich, Stuttgart, and Bengaluru. Leads the build — first line of code to what ships in production.', photo: chandanPhoto },
-  { name: 'Bhuvanesh Meethal', role: 'Director – Client Relations', bio: '5 years in finance and healthcare operations with a 98%+ client satisfaction record. Keeps delivery on schedule.', photo: bhuvaneshPhoto },
-  { name: 'Irfan Azmi', role: 'Director – Customer Success', bio: '8+ years across Amazon, HSBC, and Foundever. Owns client communication and the numbers behind it.', photo: irfanPhoto },
+  {
+    id: 'ankit-prakash',
+    name: 'Ankit Prakash',
+    role: 'Founder',
+    photo: ankitPhoto,
+    location: 'Hyderabad, India',
+    bio: 'Nearly 11 years in operations and data across Yext and Amazon. Builds the dashboards and automation behind the scenes.',
+    about: [
+      "I've always been fascinated by the idea of turning complicated problems into simple, practical solutions. Over the last 11 years, I've had the opportunity to work across data analytics, operations, process optimization, automation, and technology with organizations such as Amazon and Yext.",
+      "My career has taught me that data is much more than numbers on a screen. When used correctly, it can tell a story, uncover a problem, improve a process, and help people make better decisions. This belief has driven me to work on everything from KPI dashboards and large datasets to AI-powered productivity tools and workflow automation.",
+      "Over time, I wanted to take everything I had learned and use it to build something of my own. That journey eventually led me to becoming a Founder. Today, I enjoy bringing together technology, business ideas, creativity, and problem-solving to build solutions that are genuinely useful.",
+      "Outside of work, I'm a big fan of cricket, movies, and music. I enjoy composing music whenever inspiration strikes, exploring new technologies, experimenting with new ideas, and sometimes spending an entire weekend working on a random idea that I simply couldn't stop thinking about.",
+      "For me, creativity doesn't really have an off switch — it just takes different forms.",
+    ],
+  },
+  {
+    id: 'chandan-jha',
+    name: 'Chandan Jha',
+    role: 'Chief Technology Officer',
+    photo: chandanPhoto,
+    location: 'Howrah, India',
+    bio: '10+ years building scalable SaaS platforms in Ruby on Rails, Postgres and React. Leads the build — first line of code to what ships in production.',
+    about: [
+      "I've spent more than a decade building software, solving technical problems, and learning how to turn ideas into products that can scale. My journey in technology began with software development and gradually evolved into full-stack engineering, SaaS platforms, system optimization, microservices, and most recently, machine learning and AI.",
+      "Over the years, I've worked on everything from building applications from scratch to improving the performance and reliability of large-scale systems. I've optimized databases and APIs, built microservices, worked with React and Ruby on Rails, introduced better testing practices, and developed ML-powered recommendation systems and customer-facing AI solutions.",
+      "What I enjoy most about engineering is solving problems that initially look complicated. Whether it is improving system performance, designing a better architecture, eliminating a bottleneck, or helping another developer understand a difficult concept, I enjoy finding a solution that is both effective and simple.",
+      "As CTO, I get to bring that mindset into everything we build. I believe great technology should not exist just for the sake of technology — it should solve real problems and create a better experience for the people using it.",
+      "Outside technology, I enjoy exploring new developments in AI, learning about emerging technologies, watching movies, travelling, and spending time with friends and family.",
+      "I'm naturally curious, so there is a good chance that even a casual conversation about a new idea can eventually turn into a technical discussion.",
+    ],
+  },
+  {
+    id: 'bhuvanesh-meethal',
+    name: 'Bhuvanesh Meethal',
+    role: 'Director – Client Relations',
+    photo: bhuvaneshPhoto,
+    location: 'Hyderabad, India',
+    bio: '5 years in customer success and operations across finance and healthcare, holding a 98%+ CSAT while handling 300+ portfolios a month.',
+    about: [
+      "Throughout my career, I've learned that successful business relationships are built on one simple thing: trust.",
+      "I've had the opportunity to work across healthcare, finance, operations, and customer success, which has given me a broad understanding of both business processes and the people behind them. Over the years, I've managed hundreds of client portfolios, handled a high volume of customer requests, and consistently focused on delivering a strong customer experience.",
+      "What I enjoy most about my work is understanding what a client actually needs. Sometimes the problem a client describes is not the real problem. I like asking the right questions, understanding the situation, finding the root cause, and making sure the solution actually works.",
+      "My experience in stakeholder management, quality control, process improvement, team leadership, and client advocacy has shaped the way I approach my role as Director – Client Relations. I believe a successful client relationship is not simply about completing a task or making a sale. It is about becoming someone the client knows they can depend on.",
+      "Outside work, I enjoy travelling, discovering new places and trying different food. I also enjoy watching sports, listening to music, learning about personal finance, and spending quality time with family and friends.",
+      "I believe that whether it is a client relationship or a personal relationship, the little things — listening, understanding, and being dependable — make the biggest difference.",
+    ],
+  },
+  {
+    id: 'irfan-azmi',
+    name: 'Irfan Azmi',
+    role: 'Director – Customer Success',
+    photo: irfanPhoto,
+    location: 'Kolkata, India',
+    bio: '8+ years in customer success and insights across Amazon, HSBC, Foundever and Gradient Cyber. Owns client communication and the numbers behind it.',
+    about: [
+      "I've always been interested in the space where people, data, and business decisions come together.",
+      "Over the last eight years, I've had the opportunity to work with organizations including Amazon, HSBC, Foundever, and Gradient Cyber, with my career evolving across customer service, customer success, data analysis, quality, reporting, and stakeholder management.",
+      "One thing I've learned throughout this journey is that data becomes truly valuable when it helps someone make a better decision. That is why I enjoy analysing information, identifying trends, understanding customer behaviour, and turning complex data into insights that people can actually use.",
+      "I've worked on KPI reporting, business reviews, dashboards, conversation analytics, project documentation, and AI-powered analytics solutions. These experiences have taught me to look at problems from both sides — the numbers behind the problem and the people experiencing it.",
+      "As Director – Customer Success, I want to bring that same approach to every client relationship. For me, customer success isn't simply about solving a problem when it appears. It is about understanding expectations, communicating clearly, identifying opportunities to improve, and building relationships that last.",
+      "Outside work, I enjoy travelling, watching movies and football, listening to music, exploring new technology, and spending time with friends and family. I also enjoy conversations about business, people, and the endless possibilities that technology can create.",
+      "I believe the best solutions happen when we stop looking at customers as numbers and start understanding the people behind those numbers.",
+    ],
+  },
 ]
 
 export const CARE_CHECKS = [

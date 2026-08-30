@@ -339,12 +339,31 @@ p { margin: 0; }
 .form .err { color: #e08a7c; font-size: 0.84rem; }
 
 /* ---------- footer ---------- */
-.foot { border-top: 1px solid var(--line); padding-block: 48px; text-align: center; }
-.foot-address { font-style: normal; color: var(--fg-2); font-size: 0.86rem; line-height: 1.55; margin: 22px 0 0; }
-.foot-address strong { display: block; color: var(--gold); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
-.foot .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; font-family: var(--mono); font-size: 0.78rem; color: var(--fg-2); margin: 18px 0; }
-.foot .links a:hover { color: var(--gold); }
-.foot small { color: var(--fg-3); font-size: 0.74rem; }
+.foot { border-top: 1px solid var(--line); padding-block: 48px; }
+
+/* centred brand + blurb */
+.foot-top { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.foot-blurb {
+  color: var(--fg-2); font-size: 0.92rem; line-height: 1.6;
+  max-width: 60ch; margin: 16px auto 0;
+}
+
+/* links (left) + address (right) */
+.foot-cols { display: grid; gap: 40px; margin-top: 44px; }
+@media (min-width: 820px) {
+  .foot-cols { grid-template-columns: 1fr auto; align-items: start; gap: 64px; }
+}
+.foot-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: 12px 44px;
+  font-family: var(--mono); font-size: 0.78rem; color: var(--fg-2);
+}
+.foot-links a { transition: color 0.2s; }
+.foot-links a:hover { color: var(--gold); }
+.foot-address { font-style: normal; color: var(--fg-2); font-size: 0.86rem; line-height: 1.6; margin: 0; }
+.foot-address strong { display: block; color: var(--gold); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.foot small { display: block; text-align: center; color: var(--fg-3); font-size: 0.74rem; margin-top: 40px; }
 
 /* ---------- whatsapp fab ---------- */
 .fab { position: fixed; right: 20px; bottom: 20px; z-index: 70; width: 54px; height: 54px; border-radius: 50%; background: #25d366; display: grid; place-items: center; box-shadow: 0 12px 34px -10px rgba(37,211,102,0.55); transition: transform 0.22s; }
