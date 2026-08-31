@@ -804,29 +804,32 @@ function Footer() {
             )}
           </nav>
 
+          <div className="foot-social">
+            <p className="foot-social-h">Social</p>
+            <div className="foot-social-row">
+              {D.SOCIALS.map((s) => {
+                const Icon = SOCIAL_ICONS[s.label]
+                return s.href
+                  ? (
+                    <a key={s.label} href={s.href} target="_blank" rel="noopener" aria-label={s.label}>
+                      <Icon />
+                    </a>
+                  )
+                  : (
+                    <span key={s.label} className="soon" aria-label={`${s.label} — coming soon`} title="Coming soon">
+                      <Icon />
+                    </span>
+                  )
+              })}
+            </div>
+          </div>
+
           <address className="foot-address">
             <strong>Contact Us</strong>
             144/2, Mahatma Gandhi Road<br />
             Thakurpukur, Kolkata – 700063<br />
             West Bengal, India
           </address>
-        </div>
-
-        <div className="foot-social">
-          {D.SOCIALS.map((s) => {
-            const Icon = SOCIAL_ICONS[s.label]
-            return s.href
-              ? (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener" aria-label={s.label}>
-                  <Icon />
-                </a>
-              )
-              : (
-                <span key={s.label} className="soon" aria-label={`${s.label} — coming soon`} title="Coming soon">
-                  <Icon />
-                </span>
-              )
-          })}
         </div>
 
         <small>© {new Date().getFullYear()} ठिkaana. All rights reserved.</small>
