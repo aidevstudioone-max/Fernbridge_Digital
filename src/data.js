@@ -107,13 +107,15 @@ export const PORTAL = {
   note: 'Demo logins are on the sign-in screen — have a click around before you commit to anything.',
 }
 
-// Left-hand link grid in the footer (2 columns x 4 rows).
+// Left-hand link grid in the footer.
 // `external` links open in a new tab; the rest are in-page anchors.
+// NOTE: "Know Our Team" is hidden for now — the /team and /about pages still
+// exist and build, they just aren't linked from the site. To re-enable, add
+// back: { label: 'Know Our Team', href: '/team.html', external: true }
 export const FOOTER_LINKS = [
   { label: 'Services', href: '#services' },
   { label: 'Work', href: '#work' },
   { label: 'Products', href: '#products' },
-  { label: 'Know Our Team', href: '/team.html', external: true },
   { label: 'Pricing', href: '#pricing' },
   { label: 'FAQ', href: '#faq' },
   { label: 'Contact', href: '#contact' },
