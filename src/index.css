@@ -363,7 +363,17 @@ p { margin: 0; }
 .foot-links a:hover { color: var(--gold); }
 .foot-address { font-style: normal; color: var(--fg-2); font-size: 0.86rem; line-height: 1.6; margin: 0; }
 .foot-address strong { display: block; color: var(--gold); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
-.foot small { display: block; text-align: center; color: var(--fg-3); font-size: 0.74rem; margin-top: 40px; }
+.foot-social { display: flex; justify-content: center; gap: 14px; margin-top: 44px; }
+.foot-social a, .foot-social .soon {
+  display: grid; place-items: center; width: 40px; height: 40px;
+  border: 1px solid var(--line-2); border-radius: 50%;
+  color: var(--fg-2);
+  transition: color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.foot-social a:hover { color: var(--gold); border-color: var(--gold); transform: translateY(-2px); }
+.foot-social svg { width: 16px; height: 16px; }
+.foot-social .soon { opacity: 0.32; cursor: default; }
+.foot small { display: block; text-align: center; color: var(--fg-3); font-size: 0.74rem; margin-top: 26px; }
 
 /* ---------- whatsapp fab ---------- */
 .fab { position: fixed; right: 20px; bottom: 20px; z-index: 70; width: 54px; height: 54px; border-radius: 50%; background: #25d366; display: grid; place-items: center; box-shadow: 0 12px 34px -10px rgba(37,211,102,0.55); transition: transform 0.22s; }

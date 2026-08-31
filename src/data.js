@@ -285,3 +285,11 @@ export const CONTACT = {
   phone: '+919022683699',
   whatsapp: '919022683699',
 }
+
+// Social icons in the footer. A row entry with no `href` renders as a
+// greyed-out "coming soon" icon — fill in the Facebook URL to activate it.
+export const SOCIALS = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/thikaana-support-1b8685430' },
+  { label: 'Instagram', href: 'https://www.instagram.com/thikaana.co' },
+  { label: 'Facebook', href: '' },
+]
