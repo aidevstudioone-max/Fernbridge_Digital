@@ -91,7 +91,7 @@ export const PRODUCTS = [
   { name: 'SellSight', shot: sellSightShot, url: 'https://aidevstudioone-max.github.io/SellSight/', host: 'SellSight', desc: 'AI-powered product listing tool — generates optimised titles & descriptions and scores every listing.' },
   { name: 'Eduvia', shot: eduviaShot, url: 'https://aidevstudioone-max.github.io/eduvia-school-management/', host: 'eduvia-school-management', desc: 'School management — admissions, attendance, fee collection and transport, always in sync.' },
   { name: 'MediCore', shot: medicoreShot, url: 'https://aidevstudioone-max.github.io/medicore-hospital-management/', host: 'medicore-hospital-management', desc: 'Hospital & clinic management — real-time bed occupancy, unified OPD/IPD workflow, and billing that reconciles itself.' },
-  { name: 'Thikaana Coaching ERP', shot: coachingErpShot, url: 'https://aidevstudioone-max.github.io/thikaana-coaching-erp/', host: 'thikaana-coaching-erp', desc: 'Coaching & tuition management — student records, fee collection with receipts, attendance, exams, and student & parent portals. Built for tutors and JEE / NEET coaching centres.' },
+  { name: 'Coaching ERP', shot: coachingErpShot, url: 'https://aidevstudioone-max.github.io/thikaana-coaching-erp/', host: 'thikaana-coaching-erp', desc: 'Coaching & tuition management — student records, fee collection with receipts, attendance, exams, and student & parent portals. Built for tutors and JEE / NEET coaching centres.' },
 ]
 
 export const PORTAL = {
